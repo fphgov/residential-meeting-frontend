@@ -1,0 +1,73 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #12326E;
+  line-height: normal;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+button:focus-visible,
+summary:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: dashed 3px Highlight;
+  outline: dashed 2px -webkit-focus-ring-color;
+  outline-offset: 2px;
+}
+
+.main-navigation ul > li > a:focus-visible,
+footer.main ul.footer-menu > li a {
+  outline-color: #fff;
+}
+
+div#__next {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+div#__next > .page {
+  flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+a {
+  -webkit-transition: color .14s ease-out, background-color .14s ease-out;
+  transition: color .14s ease-out, background-color .14s ease-out;
+}
+
+@media (min-width: 1440px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1280px
+  }
+}

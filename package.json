@@ -1,0 +1,32 @@
+{
+  "name": "residential-meeting-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Residential Meeting",
+  "scripts": {
+    "dev": "next dev -p 8080",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "browserslist": [
+    "ie >= 11",
+    "chrome >= 30",
+    "iOS >= 8",
+    "Android >= 4"
+  ],
+  "devDependencies": {
+    "@types/react": "^18.0.31"
+  },
+  "dependencies": {
+    "bootstrap-4-grid": "^3.4.0",
+    "next": "^13.2.4",
+    "next-seo": "^5.15.0",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
