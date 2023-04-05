@@ -1,0 +1,60 @@
+replicaCount: 1
+
+image:
+  repository: registry.prod.intra.fph.hu/docker/residential-meeting-client
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+app:
+  nodeEnv: "production"
+  port: "3000"
+
+ingress:
+  enabled: true
+  className: "public"
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
+  hosts:
+    - host: lakogyules.budapest.hu
+      paths:
+        - path: /szavazas
+          pathType: Prefix
+  tls:
+    - secretName: wildcard-budapest-hu-tls
+      hosts:
+        - lakogyules.budapest.hu
+
+
+resources:
+  limits:
+    memory: 2Gi
+    cpu: 2000m
+  requests:
+    memory: 200Mi
+    cpu: 100m
+
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 9
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+healtCheck:
+  path: /
+  startup:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+  liveness:
+    failureThreshold: 30
+    periodSeconds: 10

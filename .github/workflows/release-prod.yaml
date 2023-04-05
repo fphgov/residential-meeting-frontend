@@ -1,0 +1,91 @@
+name: Release - prod
+on:
+  push:
+    tags:
+      - 'prod-*'
+
+  workflow_dispatch:
+
+env:
+  DOCKER_REGISTRY_URL: 'registry.prod.intra.fph.hu'
+  DOCKER_BUILD_TARGET: 'production'
+  DOCKER_BUILD_FILE: 'docker/dev/Dockerfile'
+  DOCKER_IMAGE: 'docker/residential-meeting-client'
+  HELM_REPOSITORY_URL: 'nexus.prod.intra.fph.hu'
+  HELM_REPOSITORY_NAME: 'helm'
+  HELM_REPOSITORY_ALIAS: 'budapest-portal'
+  HELM_CHART_NAME: 'bpp-frontend'
+  HELM_RELEASE_NAME: 'client'
+  HELM_VALUES_FILE: 'values.prod.yaml'
+  APP_NAMESPACE: 'residential-meeting'
+
+jobs:
+  create-image-tag:
+    name: Create container image tag
+    runs-on: ['fph-prod-cluster']
+
+    outputs:
+      imageTag: ${{ steps.tag-helper.outputs.imageTag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: 'Tag helper'
+        id: tag-helper
+        uses: 'fphgov/actions-image-tag-helper@master'
+        with:
+          is_add_short_commit_hash: false
+
+  build-image:
+    name: Build container image
+    runs-on: ['fph-prod-cluster']
+
+    needs:
+      - create-image-tag
+
+    timeout-minutes: 600
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Build image
+        uses: aevea/action-kaniko@master
+        with:
+          image: ${{ env.DOCKER_IMAGE }}
+          build_file: ${{ env.DOCKER_BUILD_FILE }}
+          target: ${{ env.DOCKER_BUILD_TARGET }}
+          registry: ${{ env.DOCKER_REGISTRY_URL }}
+          username: ${{ secrets.PROD_NEXUS_USER }}
+          password: ${{ secrets.PROD_NEXUS_PASSWD }}
+          tag_with_latest: true
+          tag: ${{ needs.create-image-tag.outputs.imageTag }}
+          extra_args: '--skip-tls-verify --build-arg ARG_BACKEND_URL=http://backend-bpp-backend --build-arg ARG_PUBLIC_HOST=https://enbudapestem.hu --build-arg ARG_FORCE_HTTPS=1 --build-arg ARG_HOSTS_TO_PAGES={"enbudapestem.hu":"enbudapestem","uj.budapest.hu":"","localhost":"","bpp.dev.intra.fph.hu":"","enbudapestem.prod.intra.fph.hu":"enbudapestem"} --build-arg ARG_PRIMARY_HOSTS=["budapest.hu","uj.budapest.hu"] --build-arg ARG_MATOMO_URL=https://matomo.budapest.hu --build-arg ARG_MATOMO_SITE_ID=2'
+
+  deploy:
+    name: Deploy
+    runs-on: ['fph-prod-cluster']
+
+    needs:
+      - build-image
+      - create-image-tag
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Deploy
+        uses: 'fphgov/actions-helm-deploy@master'
+        with:
+          helm_repository_url: ${{ env.HELM_REPOSITORY_URL }}
+          helm_repository_name: ${{ env.HELM_REPOSITORY_NAME }}
+          helm_repository_alias: ${{ env.HELM_REPOSITORY_ALIAS }}
+          helm_repository_user: ${{ secrets.PROD_NEXUS_USER }}
+          helm_repository_password: ${{ secrets.PROD_NEXUS_PASSWD }}
+          helm_repository_insecure: 'true'
+          helm_chart: ${{ env.HELM_CHART_NAME }}
+          namespace: ${{ env.APP_NAMESPACE }}
+          app_name: ${{ env.HELM_RELEASE_NAME }}
+          kubeconfig: ${{ secrets.PROD_KUBECONFIG }}
+          helm_values_file: ${{ env.HELM_VALUES_FILE }}
+          helm_repository_upgrade_extra_args: |
+            --set image.tag=${{ needs.create-image-tag.outputs.imageTag }}
