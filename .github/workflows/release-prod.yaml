@@ -59,7 +59,7 @@ jobs:
           password: ${{ secrets.PROD_NEXUS_PASSWD }}
           tag_with_latest: true
           tag: ${{ needs.create-image-tag.outputs.imageTag }}
-          extra_args: '--skip-tls-verify --build-arg ARG_BACKEND_URL=http://backend-bpp-backend --build-arg ARG_PUBLIC_HOST=https://enbudapestem.hu --build-arg ARG_FORCE_HTTPS=1 --build-arg ARG_HOSTS_TO_PAGES={"enbudapestem.hu":"enbudapestem","uj.budapest.hu":"","localhost":"","bpp.dev.intra.fph.hu":"","enbudapestem.prod.intra.fph.hu":"enbudapestem"} --build-arg ARG_PRIMARY_HOSTS=["budapest.hu","uj.budapest.hu"] --build-arg ARG_MATOMO_URL=https://matomo.budapest.hu --build-arg ARG_MATOMO_SITE_ID=2'
+          extra_args: '--skip-tls-verify --build-arg ARG_BACKEND_URL=http://backend-bpp-backend --build-arg ARG_PUBLIC_HOST=https://lakogyules.budapest.hu --build-arg ARG_FORCE_HTTPS=1 --build-arg ARG_MATOMO_URL=https://matomo.budapest.hu --build-arg ARG_MATOMO_SITE_ID=6'
 
   deploy:
     name: Deploy
