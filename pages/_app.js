@@ -1,10 +1,27 @@
+import { useState } from 'react'
 import { NextSeo } from 'next-seo'
+import store from "store"
 import 'normalize.css/normalize.css'
 import 'bootstrap-4-grid/css/grid.min.css'
+import StoreContext from '../src/StoreContext'
 import '../styles/globals.css'
 import '../styles/main.css'
 
 const MyApp = ({ Component, pageProps }) => {
+  const [ state, setState ] = useState({
+    storeGet: (contextName) => {
+      return typeof store.get(contextName) !== 'undefined' ? store.get(contextName) : null
+    },
+    storeSave: (contextName, key, value) => {
+      store.set(contextName, { ...store.get(contextName), [key]: value })
+
+      setState({ ...state, [key]: value })
+    },
+    storeRemove: (contextName) => {
+      store.remove(contextName)
+    }
+  })
+
   return <>
     <NextSeo
       title="Budapest Lakógyűlés"
@@ -27,7 +44,9 @@ const MyApp = ({ Component, pageProps }) => {
       }}
     />
 
-    <Component {...pageProps} />
+    <StoreContext.Provider value={state}>
+      <Component {...pageProps} />
+    </StoreContext.Provider>
   </>
 }
 

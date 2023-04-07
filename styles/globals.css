@@ -7,7 +7,8 @@ body {
   font-style: normal;
   font-size: 16px;
   line-height: 24px;
-  color: #12326E;
+  color: #222222;
+  /* color: #12326E; */
   line-height: normal;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -22,7 +23,8 @@ summary:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-select:focus-visible {
+select:focus-visible,
+.styled-checkbox:focus-visible + label:before {
   outline: dashed 3px Highlight;
   outline: dashed 2px -webkit-focus-ring-color;
   outline-offset: 2px;
@@ -56,9 +58,111 @@ h1, h2, h3, h4, h5, h6 {
   hyphens: auto;
 }
 
+h1 {
+  font-size: 36px;
+}
+
 a {
   -webkit-transition: color .14s ease-out, background-color .14s ease-out;
   transition: color .14s ease-out, background-color .14s ease-out;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+.styled-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.styled-checkbox + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.styled-checkbox + label:before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 24px;
+  height: 24px;
+  background: #FFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  box-shadow: none;
+}
+.styled-checkbox:focus-visible + label:before {
+  outline: dashed 3px Highlight;
+  outline: dashed 2px -webkit-focus-ring-color;
+  outline-offset: 2px;
+}
+
+.styled-checkbox:hover + label:before {
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.styled-checkbox:checked + label:before {
+  background: #12326E;
+}
+
+.styled-checkbox:disabled + label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+
+.styled-checkbox:disabled + label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+
+.styled-checkbox:checked + label:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  background-image: url(../public/image/icon-pipe.svg);
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.button-loader {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.button-loader:after {
+  content: " ";
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: loader 1.2s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 1440px) {

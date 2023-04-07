@@ -1,4 +1,4 @@
-const { BACKEND_URL, MATOMO_URL, MATOMO_SITE_ID } = process.env
+const { BACKEND_URL, PUBLIC_HOST, MATOMO_URL, MATOMO_SITE_ID, SITE_KEY } = process.env
 
 module.exports = async (phase, { defaultConfig }) => {
   /**
@@ -10,11 +10,14 @@ module.exports = async (phase, { defaultConfig }) => {
       unoptimized: true,
     },
     serverRuntimeConfig: {
-      apiUrl: BACKEND_URL,
     },
     publicRuntimeConfig: {
       matomoUrl: MATOMO_URL,
       matomoSiteId: MATOMO_SITE_ID,
+      publicHost: PUBLIC_HOST,
+      siteKey: SITE_KEY,
+      apiUrl: BACKEND_URL,
+      apiAuth: '/auth',
     },
     experimental: {
       forceSwcTransforms: true,
