@@ -2,6 +2,7 @@ import { useState } from "react"
 
 export default function Details({ summary, children, startOpen = false, className = '' }){
   const [open, setOpen] = useState(startOpen)
+
   return (
     <details className={className} {...(open ? { open: true } : {})}>
       <summary

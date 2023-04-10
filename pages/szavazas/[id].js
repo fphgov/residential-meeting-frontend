@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import StoreContext from '../../src/StoreContext'
 import HeaderSection from '../../src/section/HeaderSection'
 import FooterSection from '../../src/section/FooterSection'
-import VoteRadio  from "../../src/component/form/elements/VoteRadio"
+import MultiDetails from '../../src/component/common/MultiDetails'
+import Question  from "../../src/component/common/Question"
 
 function QuestionPage() {
   const context = useContext(StoreContext)
@@ -65,35 +66,35 @@ function QuestionPage() {
           <div className="container">
             <div className="row">
               <div className="offset-lg-2 col-lg-8">
-                <h2>{id}. [Kérdés témája {id} nevű kérdés, biztos hogy hosszabb vagy több soros lesz, de törekedjünk a tömör, lényegretörő megfogalmazásra.]</h2>
+                <Question
+                  id={id}
+                  title={<>{id}. [Kérdés témája {id} nevű kérdés, biztos hogy hosszabb vagy több soros lesz, de törekedjünk a tömör, lényegretörő megfogalmazásra.]</>}
+                  answer={answer}
+                  optionYesLabel="mert szerintem is így vagy úgy kellene működnie."
+                  optionNoLabel="mert szerintem is így vagy úgy kellene működnie."
+                  handleChange={handleChange}
+                  handleSkip={() => {}}
+                >
+                  <p>[A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve. A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve.</p>
 
-                <p>[A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve. A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve.</p>
+                  <p>A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve. A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve.]</p>
+                </Question>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <p>A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve. A kérdés egyéb részleteit ide ki lehet fejteni, érdemes így szétbontani, ha hosszabb és/vagy összetettebb a kérdés, a felhasználónak is könnyebb így befogadnia/értelmeznie az infót, mint egybe ömlesztve.]</p>
-
-                <div className="form-group">
-                  <VoteRadio
-                    id={`question_${id}_yes`}
-                    name={`question_${id}`}
-                    option='yes'
-                    value={answer}
-                    handleChange={handleChange}
-                  >
-                    <b>Igen,</b>
-                    <span>mert szerintem is így vagy úgy kellene működnie.</span>
-                  </VoteRadio>
-
-                  <VoteRadio
-                    id={`question_${id}_no`}
-                    name={`question_${id}`}
-                    option='no'
-                    value={answer}
-                    handleChange={handleChange}
-                  >
-                    <b>Nem,</b>
-                    <span>mert szerintem is így vagy úgy kellene működnie.</span>
-                  </VoteRadio>
-                </div>
+        <div className="support-content">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-3">
+                <h2>Döntéstámogató tartalmak</h2>
+              </div>
+              <div className="col-lg-9">
+                <MultiDetails className="section-more" details={[
+                  { id: `${id}-detail-yes`, summary: '[Ha megszavazzuk, akkor várhatóan ez fog történni ...]', description: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iste illum qui provident eum tenetur voluptas ipsum ducimus esse, culpa praesentium libero voluptatibus accusantium consectetur, doloribus eos quia earum. Quo?</p>', open: false },
+                  { id: `${id}-detail-no`,summary: '[Ha nem megszavazzuk, akkor várhatóan ez fog történni ...]', description: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iste illum qui provident eum tenetur voluptas ipsum ducimus esse, culpa praesentium libero voluptatibus accusantium consectetur, doloribus eos quia earum. Quo?</p>' },
+                ]} />
               </div>
             </div>
           </div>

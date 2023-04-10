@@ -125,14 +125,20 @@ header.site-header.header-line .site-header-inner {
 
 details.section-more {
   text-align: left;
-}
-
-details.section-more[open] {
-  margin-bottom: 130px;
+  border-bottom: 1px solid #DDDDDD;
+  padding: 0px 0px 2px 0;
+  margin-bottom: 18px;
 }
 
 details > summary {
   list-style: none;
+  font-weight: bold;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin: 18px 0;
 }
 
 details > summary::marker,
@@ -140,47 +146,27 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
-details.section-more[open] summary {
-  position: absolute;
-  bottom: -60px;
-  right: 0;
-  left: 0;
-  margin: auto;
-}
-
-details.section-more[open] summary::before {
-  content: ' ';
-  /* background: url(../public/image/icon-arrow-up.svg); */
-  background-repeat: no-repeat;
-  display: block;
-  width: 12px;
-  height: 7px;
-  text-align: center;
-  margin: 0 auto;
+details.section-more[open] summary::after {
+  transform: rotate(180deg);
 }
 
 details.section-more summary::after {
   content: ' ';
-  /* background: url(../public/image/icon-arrow-down.svg); */
+  background: url(../public/image/icon-arrow-top-blue.svg);
   background-repeat: no-repeat;
-  display: block;
-  width: 12px;
-  height: 7px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
   text-align: center;
-  margin: 0 auto;
+  margin: 0;
 }
 
-details.section-more[open] summary::after {
-  display: none;
+details.section-more:first-of-type summary {
+  margin-top: 0;
 }
-
-details.section-more summary::before {
-  display: none;
-}
-
 
 details[open] summary ~ * {
-  animation: sweep .1s ease-in-out;
+  animation: sweep .2s ease-in-out;
 }
 
 @keyframes sweep {
@@ -447,6 +433,7 @@ footer.main .copyright-wrapper {
 
 .vote-section {
   padding: 58px 0;
+  flex: 1;
 }
 
 .vote-section h2 {
@@ -463,7 +450,11 @@ footer.main .copyright-wrapper {
   background: #FFFFFF;
   border: 1px solid rgba(18, 50, 110, 0.12);
   border-radius: 6px;
+}
+
+.radio-inline > label {
   padding: 24px;
+  cursor: pointer;
 }
 
 .radio-inline label span {
@@ -472,6 +463,49 @@ footer.main .copyright-wrapper {
 
 label.radio-inline > input[type="radio"] {
   margin-right: 6px;
+}
+
+.radio-inline input[type="radio"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+
+  font: inherit;
+  color: #DDDDDD;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #DDDDDD;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+.radio-inline input[type="radio"]::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #12326E;
+  background-color: CanvasText;
+}
+
+.radio-inline input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.radio-inline:hover {
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+}
+
+.radio-inline-active {
+  background-color: #0EA6CE;
+  color: #fff;
+  border-color: #0EA6CE;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
 }
 
 .form-group {
@@ -492,6 +526,45 @@ label.radio-inline > input[type="radio"] {
 
 .form-group > .radio-inline:last-child {
   margin-right: 0;
+}
+
+.radio-inline label {
+  display: flex;
+  flex-direction: row;
+}
+
+.radio-inline .radio-label {
+  flex: 1;
+  margin-left: 8px;
+}
+
+.vote-skip-wrapper {
+  text-align: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+button.vote-skip {
+  color: #0EA6CE;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+button.vote-skip:hover {
+  text-decoration: underline;
+}
+
+.support-content {
+  background-color: #ECF7FD;
+  padding: 60px 0;
+}
+
+.support-content h2 {
+  margin: 0;
 }
 
 @media screen and (max-width: 1023px) {
