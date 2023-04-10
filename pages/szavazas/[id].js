@@ -93,4 +93,18 @@ function QuestionPage() {
   )
 }
 
+export async function getServerSideProps({ params }) {
+  const id = params?.id
+
+  if (! Number.isInteger(id - 0)) {
+    return {
+      notFound: true
+    }
+  }
+
+  const data = {}
+
+  return { props: { data } }
+}
+
 export default QuestionPage
