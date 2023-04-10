@@ -32,6 +32,10 @@ function QuestionPage() {
     context.storeSave('form', 'data', form.data)
   }, [answer]);
 
+  if (! id) {
+    return null
+  }
+
   return (
     <>
       <HeaderSection />
@@ -92,8 +96,8 @@ function QuestionPage() {
               </div>
               <div className="col-lg-9">
                 <MultiDetails className="section-more" details={[
-                  { id: `${id}-detail-yes`, summary: '[Ha megszavazzuk, akkor várhatóan ez fog történni ...]', description: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iste illum qui provident eum tenetur voluptas ipsum ducimus esse, culpa praesentium libero voluptatibus accusantium consectetur, doloribus eos quia earum. Quo?</p>', open: false },
-                  { id: `${id}-detail-no`,summary: '[Ha nem megszavazzuk, akkor várhatóan ez fog történni ...]', description: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iste illum qui provident eum tenetur voluptas ipsum ducimus esse, culpa praesentium libero voluptatibus accusantium consectetur, doloribus eos quia earum. Quo?</p>' },
+                  { id: `${id}-detail-yes`, summary: '[Ha megszavazzuk, akkor várhatóan ez fog történni ...]', description: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iste illum qui provident eum tenetur voluptas ipsum ducimus esse, culpa praesentium libero voluptatibus accusantium consectetur, doloribus eos quia earum. Quo?</p>' },
+                  { id: `${id}-detail-no`, summary: '[Ha nem megszavazzuk, akkor várhatóan ez fog történni ...]', description: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iste illum qui provident eum tenetur voluptas ipsum ducimus esse, culpa praesentium libero voluptatibus accusantium consectetur, doloribus eos quia earum. Quo?</p>' },
                 ]} />
               </div>
             </div>

@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DetailsWithoutControl from "./DetailsWithoutControl"
 
 export default function MultiDetails({ details, className = '' }) {
-  const [openId, setOpenId] = useState('1-detail-yes')
+  const [openId, setOpenId] = useState(null)
 
   const changeDetails = (id) => {
     setOpenId(id)
   }
+
+  useEffect(() => {
+    setOpenId(details[0].id)
+  }, [])
 
   return (
     <>
