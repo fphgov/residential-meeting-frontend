@@ -5,6 +5,7 @@ import HeaderSection from '../../src/section/HeaderSection'
 import FooterSection from '../../src/section/FooterSection'
 import MultiDetails from '../../src/component/common/MultiDetails'
 import Question  from "../../src/component/common/Question"
+import VoteNavigation from "../../src/component/VoteNavigation"
 
 function QuestionPage() {
   const context = useContext(StoreContext)
@@ -41,30 +42,12 @@ function QuestionPage() {
       <HeaderSection />
 
       <main className="page">
-        <div className="vote-navigation">
-          <ul>
-            <li>
-              <div className="question-info">
-                <div className="number active">1</div>Lánchíd forgalma
-              </div>
-            </li>
-            <li>
-              <div className="question-info">
-                <div className="number active">2</div>[Kérdés témája 2]
-              </div>
-            </li>
-            <li>
-              <div className="question-info">
-                <div className="number">3</div>[Kérdés témája 3]
-              </div>
-            </li>
-            <li>
-              <div className="question-info">
-                <div className="number">4</div>[Kérdés témája 4]
-              </div>
-            </li>
-          </ul>
-        </div>
+        <VoteNavigation list={[
+          { id: 1, label: 'Lánchíd forgalma' },
+          { id: 2, label: '[Kérdés témája 2]' },
+          { id: 3, label: '[Kérdés témája 3]' },
+          { id: 4, label: '[Kérdés témája 4]' },
+        ]} />
 
         <div className="vote-section">
           <div className="container">
