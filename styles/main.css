@@ -610,6 +610,7 @@ label.radio-inline > input[type="radio"] {
   border: 1px solid rgba(18, 50, 110, 0.12);
   border-radius: 6px;
   padding: 18px;
+  margin-bottom: 18px;
 }
 
 .question-label {
@@ -658,6 +659,32 @@ label.radio-inline > input[type="radio"] {
 
 .question-modify-control button:last-of-type {
   margin-right: 0;
+}
+
+.error-message-inline {
+  color: #E5332A;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.error-message-inline::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url(../public/image/icon-alert.svg);
+  background-repeat: no-repeat;
+  margin-right: 6px;
+}
+
+input[type="text"][aria-invalid="true"] {
+  border-color: #E5332A;
+}
+
+input[aria-invalid="true"] + label::before,
+input[aria-invalid="true"] + label:hover::before {
+  border-color: #E5332A;
 }
 
 @media screen and (max-width: 1023px) {

@@ -17,7 +17,9 @@ module.exports = async (phase, { defaultConfig }) => {
       publicHost: PUBLIC_HOST,
       siteKey: SITE_KEY,
       apiUrl: BACKEND_URL,
-      apiAuth: '/auth',
+      apiAuth: '/app/api/account/check',
+      apiQuestion: '/app/api/question',
+      apiVote: '/app/api/vote',
     },
     experimental: {
       forceSwcTransforms: true,

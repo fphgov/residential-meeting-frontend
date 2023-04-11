@@ -16,6 +16,8 @@ ENV MATOMO_SITE_ID=$ARG_MATOMO_SITE_ID
 
 WORKDIR "/app"
 
+RUN npm install -g npm@9.6.4
+
 RUN printenv > .env
 RUN chown node:node .env
 

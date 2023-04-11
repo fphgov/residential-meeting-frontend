@@ -61,6 +61,24 @@ function QuestionPage() {
                     label="1. [Kérdés témája 1 nevű kérdés, biztos hogy hosszabb vagy több soros lesz, de törekedjünk a tömör, lényegretörő megfogalmazásra.]"
                     answer="Igen, mert szerintem is így vagy úgy kellene működnie, ezzel értek egyet."
                   />
+
+                  <VoteOverviewItem
+                    id={2}
+                    label="2. [Kérdés témája 2 nevű kérdés, biztos hogy hosszabb vagy több soros lesz, de törekedjünk a tömör, lényegretörő megfogalmazásra.]"
+                    answer="Igen, mert szerintem is így vagy úgy kellene működnie, ezzel értek egyet."
+                  />
+
+                  <VoteOverviewItem
+                    id={3}
+                    label="3. [Kérdés témája 3 nevű kérdés, biztos hogy hosszabb vagy több soros lesz, de törekedjünk a tömör, lényegretörő megfogalmazásra.]"
+                    answer="Igen, mert szerintem is így vagy úgy kellene működnie, ezzel értek egyet."
+                  />
+
+                  <VoteOverviewItem
+                    id={4}
+                    label="4. [Kérdés témája 4 nevű kérdés, biztos hogy hosszabb vagy több soros lesz, de törekedjünk a tömör, lényegretörő megfogalmazásra.]"
+                    answer="Igen, mert szerintem is így vagy úgy kellene működnie, ezzel értek egyet."
+                  />
                 </div>
 
                 <div className="button-wrapper">

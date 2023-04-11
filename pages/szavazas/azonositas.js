@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import getConfig from 'next/config'
+import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "../../src/assets/axios"
 import StoreContext from '../../src/StoreContext'
@@ -15,6 +16,7 @@ import { rmAllCharForEmail, rmAllCharForName } from '../../src/lib/removeSpecial
 
 function AuthPage() {
   const context = useContext(StoreContext)
+  const router = useRouter()
 
   const { publicRuntimeConfig } = getConfig()
 
@@ -27,11 +29,15 @@ function AuthPage() {
   const [ filterData, setFilterData ] = useState({
     'auth_code': '',
     'email': '',
-    'privacy': '',
-    'newsletter': '',
+    'privacy': false,
+    'newsletter': false,
   })
 
   useEffect(() => {
+    if (context.storeGet('form')?.data) {
+      setFilterData(context.storeGet('form').data)
+    }
+
     loadReCaptcha(getConfig().publicRuntimeConfig.siteKey, (recaptchaToken) => {
       setRecaptchaToken(recaptchaToken)
     })
@@ -70,13 +76,29 @@ function AuthPage() {
     context.storeSave('form', 'data', filterData)
 
     axios.post(
-      publicRuntimeConfig.apiUrl + publicRuntimeConfig.apiAuth,
+      publicRuntimeConfig.apiAuth,
       new URLSearchParams(data).toString()
     )
     .then(response => {
       if (response.data) {
-        context.storeSave('form', 'data', filterData)
-        // setSuccess(true)
+        axios.get(publicRuntimeConfig.apiQuestion, {
+          headers: {
+            Authorization: filterData.auth_code
+          }
+        }).then(response => {
+          if (response.data) {
+            context.storeSave('questions', 'questions', response.data.questions)
+          }
+
+          router.push('/szavazas/1')
+        }).catch(error => {
+          console.log(error)
+          setError('Váratlan hiba történt, kérünk próbáld később')
+          setScroll(true)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
       }
     })
     .catch(error => {
@@ -93,9 +115,6 @@ function AuthPage() {
       }
 
       recaptcha.execute()
-    })
-    .finally(() => {
-      setLoading(false)
     })
   }
 
@@ -128,7 +147,10 @@ function AuthPage() {
                           label="Egyedi azonosító kód: *"
                           placeholder="LGY-0000-AAAA"
                           value={filterData.auth_code}
+                          defaultValue={filterData.auth_code}
                           onChange={handleChangeRaw}
+                          ariaInvalid={error && error['auth_code'] ? true: false}
+                          ariaRequired={true}
                           info="Ide kerül segítő információ az adott mezőre vonatkozólag"
                         />
 
@@ -143,6 +165,8 @@ function AuthPage() {
                           placeholder="minta.janos@budapest.hu"
                           value={filterData.email}
                           onChange={handleChangeEmailInput}
+                          aria-invalid={error && error['email'] ? true: false}
+                          aria-required={false}
                           info="Ide kerül segítő információ az adott mezőre vonatkozólag"
                         />
 
@@ -150,7 +174,7 @@ function AuthPage() {
                       </div>
 
                       <div className="input-wrapper form-control">
-                        <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput}>
+                        <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
                           Elolvastam és elfogadom az <a href={`${getConfig().publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatót</a>. *
                         </Checkbox>
 
@@ -158,7 +182,7 @@ function AuthPage() {
                       </div>
 
                       <div className="input-wrapper form-control">
-                        <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput}>
+                        <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
                           Szeretnék feliratkozni a hírlevélre. (opcionális)
                         </Checkbox>
 
