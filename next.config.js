@@ -24,16 +24,7 @@ module.exports = async (phase, { defaultConfig }) => {
     experimental: {
       forceSwcTransforms: true,
     },
-    basePath: '/szavazas',
-    async rewrites() {
-    return [
-            {
-                source: '/',
-                destination: '/szavazas/',
-                basePath: false
-            },
-        ];
-    }
+    basePath: '/szavazas'
   }
 
   return nextConfig
