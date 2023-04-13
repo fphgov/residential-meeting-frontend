@@ -24,8 +24,8 @@ module.exports = async (phase, { defaultConfig }) => {
     experimental: {
       forceSwcTransforms: true,
     },
-    basePath: '/szavazas',
-    assetPrefix: '/szavazas',
+    // basePath: '/szavazas',
+    // assetPrefix: '/szavazas',
   }
 
   return nextConfig
