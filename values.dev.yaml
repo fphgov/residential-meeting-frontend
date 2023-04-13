@@ -27,7 +27,7 @@ ingress:
     - host: lakogyules.dev.intra.fph.hu
       paths:
         - path: /szavazas
-          pathType: Prefix
+          pathType: Exact
   tls:
    - secretName: wildcard-dev-intra-fph-hu-tls
      hosts:
