@@ -92,7 +92,7 @@ function AuthPage() {
             context.storeSave('questions', 'data', response.data.questions)
           }
 
-          router.push('/1')
+          router.push('/kerdes/1')
         }).catch(error => {
           console.log(error)
           setError('Váratlan hiba történt, kérünk próbáld később')
