@@ -12,11 +12,12 @@ function QuestionPage() {
   const router = useRouter()
 
   const [ answer, setAnswer ] = useState(null)
-  const [ question, setQuestion ] = useState(null)
 
   const { id } = router.query
 
   const form = context.storeGet('form')
+  const questions = context.storeGet('questions')?.data
+  const question = context.storeGet('questions')?.data.find(q => q.id == id)
 
   const handleChange = (e) => {
     setAnswer(e)
@@ -24,11 +25,7 @@ function QuestionPage() {
 
   useEffect(() => {
     if (! (form && form.data && form.data.auth_code)) {
-      router.push('/szavazas/azonositas')
-    }
-
-    if (context.storeGet('questions')?.questions) {
-      setQuestion(context.storeGet('questions').questions.find(q => q.id == id))
+      router.push('/azonositas')
     }
   }, []);
 
@@ -40,7 +37,7 @@ function QuestionPage() {
     }
   }, [answer]);
 
-  if (! id) {
+  if (! id || ! questions) {
     return null
   }
 
@@ -49,12 +46,7 @@ function QuestionPage() {
       <HeaderSection />
 
       <main className="page">
-        <VoteNavigation list={[
-          { id: 1, label: 'Lánchíd forgalma' },
-          { id: 2, label: '[Kérdés témája 2]' },
-          { id: 3, label: '[Kérdés témája 3]' },
-          { id: 4, label: '[Kérdés témája 4]' },
-        ]} />
+        <VoteNavigation list={questions} />
 
         {question ? <>
           <div className="vote-section">
@@ -65,8 +57,8 @@ function QuestionPage() {
                     id={question.id}
                     title={<>{question.question}</>}
                     answer={answer}
-                    optionYesLabel={question.optionYesLabel}
-                    optionNoLabel={question.optionNoLabel}
+                    optionLabelYes={question.optionLabelYes}
+                    optionLabelNo={question.optionLabelNo}
                     handleChange={handleChange}
                     handleSkip={() => {}}
                   >
@@ -98,20 +90,6 @@ function QuestionPage() {
       <FooterSection />
     </>
   )
-}
-
-export async function getServerSideProps({ params }) {
-  const id = params?.id
-
-  if (! Number.isInteger(id - 0)) {
-    return {
-      notFound: true
-    }
-  }
-
-  const data = {}
-
-  return { props: { data } }
 }
 
 export default QuestionPage

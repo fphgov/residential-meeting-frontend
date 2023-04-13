@@ -24,6 +24,15 @@ module.exports = async (phase, { defaultConfig }) => {
     experimental: {
       forceSwcTransforms: true,
     },
+    async redirects() {
+      return [
+        {
+          "source": "/",
+          "destination": "/azonositas",
+          "permanent": false
+        }
+      ]
+    },
   }
 
   return nextConfig

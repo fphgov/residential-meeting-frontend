@@ -6,7 +6,7 @@ export default function VoteNavigation({ list, state = 1 }){
           return (
             <li key={question.id}>
               <div className="question-info">
-                <div className={`number ${question.id <= state ? ' active' : null}`}>{question.id}</div>{question.label}
+                <div className={`number ${question.id <= state ? ' active' : null}`}>{question.id}</div>{question.questionShort}
               </div>
             </li>
           )

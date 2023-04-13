@@ -1,7 +1,7 @@
 import React from "react"
 import VoteRadio from '../form/elements/VoteRadio'
 
-export default function QuestionOptions({ id, answer, optionYesLabel, optionNoLabel, handleChange, handleSkip }) {
+export default function QuestionOptions({ id, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip }) {
   return (
     <>
       <div className="form-group">
@@ -13,7 +13,7 @@ export default function QuestionOptions({ id, answer, optionYesLabel, optionNoLa
           handleChange={handleChange}
         >
           <b>Igen,</b>
-          <span>{optionYesLabel}</span>
+          <span>{optionLabelYes}</span>
         </VoteRadio>
 
         <VoteRadio
@@ -24,7 +24,7 @@ export default function QuestionOptions({ id, answer, optionYesLabel, optionNoLa
           handleChange={handleChange}
         >
           <b>Nem,</b>
-          <span>{optionNoLabel}</span>
+          <span>{optionLabelNo}</span>
         </VoteRadio>
       </div>
 

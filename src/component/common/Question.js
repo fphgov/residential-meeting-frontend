@@ -1,7 +1,7 @@
 import React from "react"
 import QuestionOptions from './QuestionOptions'
 
-export default function Question({ id, title, children, answer, optionYesLabel, optionNoLabel, handleChange, handleSkip }) {
+export default function Question({ id, title, children, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip }) {
   return (
     <>
       <h2>{title}</h2>
@@ -11,8 +11,8 @@ export default function Question({ id, title, children, answer, optionYesLabel, 
       <QuestionOptions
         id={id}
         answer={answer}
-        optionYesLabel={optionYesLabel}
-        optionNoLabel={optionNoLabel}
+        optionLabelYes={optionLabelYes}
+        optionLabelNo={optionLabelNo}
         handleChange={handleChange}
         handleSkip={handleSkip}
       />

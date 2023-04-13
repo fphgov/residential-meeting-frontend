@@ -2,17 +2,17 @@ import React, { useEffect, useState, useContext } from 'react'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
-import axios from "../../src/assets/axios"
-import StoreContext from '../../src/StoreContext'
-import HeaderSection from '../../src/section/HeaderSection'
-import Submit  from "../../src/component/form/elements/Submit"
-import CodeInput  from "../../src/component/form/elements/CodeInput"
-import InputText  from "../../src/component/form/elements/InputText"
-import Checkbox  from "../../src/component/form/elements/Checkbox"
-import ScrollTo from "../../src/component/common/ScrollTo"
-import Error  from "../../src/component/form/Error"
-import ErrorMiniWrapper from "../../src/component/form/ErrorMiniWrapper"
-import { rmAllCharForEmail, rmAllCharForName } from '../../src/lib/removeSpecialCharacters'
+import axios from "../src/assets/axios"
+import StoreContext from '../src/StoreContext'
+import HeaderSection from '../src/section/HeaderSection'
+import Submit  from "../src/component/form/elements/Submit"
+import CodeInput  from "../src/component/form/elements/CodeInput"
+import InputText  from "../src/component/form/elements/InputText"
+import Checkbox  from "../src/component/form/elements/Checkbox"
+import ScrollTo from "../src/component/common/ScrollTo"
+import Error  from "../src/component/form/Error"
+import ErrorMiniWrapper from "../src/component/form/ErrorMiniWrapper"
+import { rmAllCharForEmail, rmAllCharForName } from '../src/lib/removeSpecialCharacters'
 
 function AuthPage() {
   const context = useContext(StoreContext)
@@ -34,9 +34,9 @@ function AuthPage() {
   })
 
   useEffect(() => {
-    if (context.storeGet('form')?.data) {
-      setFilterData(context.storeGet('form').data)
-    }
+    // if (context.storeGet('form')?.data) {
+    //   setFilterData(context.storeGet('form').data)
+    // }
 
     loadReCaptcha(getConfig().publicRuntimeConfig.siteKey, (recaptchaToken) => {
       setRecaptchaToken(recaptchaToken)
@@ -81,16 +81,18 @@ function AuthPage() {
     )
     .then(response => {
       if (response.data) {
+        setLoading(true)
+
         axios.get(publicRuntimeConfig.apiQuestion, {
           headers: {
             Authorization: filterData.auth_code
           }
         }).then(response => {
           if (response.data) {
-            context.storeSave('questions', 'questions', response.data.questions)
+            context.storeSave('questions', 'data', response.data.questions)
           }
 
-          router.push('/szavazas/1')
+          router.push('/1')
         }).catch(error => {
           console.log(error)
           setError('Váratlan hiba történt, kérünk próbáld később')
@@ -105,16 +107,21 @@ function AuthPage() {
       if (error.response && error.response.status === 403) {
         setError('Google reCapcha ellenőrzés sikertelen')
         setScroll(true)
+      } else if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error)
+        setScroll(true)
       } else if (error.response && error.response.data && error.response.data.errors) {
         setError(error.response.data.errors)
         setScroll(true)
       } else {
-        console.log(error)
         setError('Váratlan hiba történt, kérünk próbáld később')
         setScroll(true)
       }
 
       recaptcha.execute()
+    })
+    .finally(() => {
+      setLoading(false)
     })
   }
 
