@@ -23,6 +23,14 @@ module.exports = async (phase, { defaultConfig }) => {
     },
     experimental: {
       forceSwcTransforms: true,
+    },
+    rewrites: () => {
+      return [
+        {
+          source: `/szavazas/:path*`,
+          destination: `/:path*`
+        }
+      ]
     }
   }
 
