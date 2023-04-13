@@ -27,8 +27,8 @@ module.exports = async (phase, { defaultConfig }) => {
     rewrites: () => {
       return [
         {
-          source: `/szavazas/:path*`,
-          destination: `/:path*`
+          source: `/:path*`,
+          destination: `/szavazas/:path*`
         }
       ]
     }
