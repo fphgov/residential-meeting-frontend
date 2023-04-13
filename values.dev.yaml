@@ -23,10 +23,11 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
+    ingress.kubernetes.io/rewrite-target: /$2
   hosts:
     - host: lakogyules.dev.intra.fph.hu
       paths:
-        - path: /szavazas
+        - path: /szavazas(/|$)(.*)
           pathType: Prefix
   tls:
    - secretName: wildcard-dev-intra-fph-hu-tls
