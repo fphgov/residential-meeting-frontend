@@ -32,7 +32,8 @@ module.exports = async (phase, { defaultConfig }) => {
     //     }
     //   ]
     // }
-    basePath: `/szavazas`
+    basePath: `/szavazas`,
+    assetPrefix: `/szavazas`
   }
 
   return nextConfig
