@@ -24,7 +24,7 @@ module.exports = async (phase, { defaultConfig }) => {
     experimental: {
       forceSwcTransforms: true,
     },
-    basePath: '/portal',
+    basePath: '/szavazas',
     async rewrites() {
     return [
             {
