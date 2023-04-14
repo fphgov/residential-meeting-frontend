@@ -24,17 +24,15 @@ module.exports = async (phase, { defaultConfig }) => {
     experimental: {
       forceSwcTransforms: true,
     },
-    basePath: '/szavazas',
-    assetPrefix: '/szavazas',
-    // async redirects() {
-    //   return [
-    //     {
-    //       "source": "/",
-    //       "destination": "/azonositas",
-    //       "permanent": false
-    //     }
-    //   ]
-    // },
+    async redirects() {
+      return [
+        {
+          "source": "/",
+          "destination": "/azonositas",
+          "permanent": false
+        }
+      ]
+    },
   }
 
   return nextConfig
