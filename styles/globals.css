@@ -97,6 +97,7 @@ fieldset {
   border: 1px solid #DDDDDD;
   border-radius: 4px;
   box-shadow: none;
+  margin-top: -2px;
 }
 .styled-checkbox:focus-visible + label:before {
   outline: dashed 3px Highlight;
@@ -128,7 +129,7 @@ fieldset {
 .styled-checkbox:checked + label:after {
   content: "";
   position: absolute;
-  top: 1px;
+  top: -1px;
   left: 0;
   background-image: url(../public/image/icon-pipe.svg);
   background-repeat: no-repeat;

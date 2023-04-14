@@ -34,24 +34,32 @@ function AuthPage() {
   })
 
   useEffect(() => {
-    // if (context.storeGet('form')?.data) {
-    //   setFilterData(context.storeGet('form').data)
-    // }
-
-    loadReCaptcha(getConfig().publicRuntimeConfig.siteKey, (recaptchaToken) => {
+    loadReCaptcha(publicRuntimeConfig.siteKey, (recaptchaToken) => {
       setRecaptchaToken(recaptchaToken)
     })
   }, [])
 
+  const clearErrorItem = (inputName) => {
+    if (error && error[inputName]) {
+      delete error[inputName]
+    }
+  }
+
   const handleChangeRaw = (e) => {
+    clearErrorItem(e.target.name)
+
     setFilterData({ ...filterData, [e.target.name]: e.target.value })
   }
 
   const handleChangeEmailInput = (e) => {
+    clearErrorItem(e.target.name)
+
     setFilterData({ ...filterData, [e.target.name]: rmAllCharForEmail(e.target.value) })
   }
 
   const handleChangeInput = (e) => {
+    clearErrorItem(e.target.name)
+
     const value = e.target.type === 'checkbox' ? e.target.checked : rmAllCharForName(e.target.value)
 
     setFilterData({ ...filterData, [e.target.name]: value })
@@ -182,7 +190,7 @@ function AuthPage() {
 
                       <div className="input-wrapper form-control">
                         <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
-                          Elolvastam és elfogadom az <a href={`${getConfig().publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatót</a>. *
+                          Elolvastam és elfogadom az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatót</a>. *
                         </Checkbox>
 
                         <ErrorMiniWrapper error={error} id="privacy" />
@@ -200,7 +208,7 @@ function AuthPage() {
 
                       <ReCaptcha
                         ref={ref => setRecaptcha(ref)}
-                        sitekey={getConfig().publicRuntimeConfig.siteKey}
+                        sitekey={publicRuntimeConfig.siteKey}
                         action="submit"
                         verifyCallback={(recaptchaToken) => {
                           setRecaptchaToken(recaptchaToken)

@@ -12,8 +12,7 @@ export default function QuestionOptions({ id, answer, optionLabelYes, optionLabe
           value={answer}
           handleChange={handleChange}
         >
-          <b>Igen,</b>
-          <span>{optionLabelYes}</span>
+          <span dangerouslySetInnerHTML={{ __html: optionLabelYes }} />
         </VoteRadio>
 
         <VoteRadio
@@ -23,8 +22,7 @@ export default function QuestionOptions({ id, answer, optionLabelYes, optionLabe
           value={answer}
           handleChange={handleChange}
         >
-          <b>Nem,</b>
-          <span>{optionLabelNo}</span>
+          <span dangerouslySetInnerHTML={{ __html: optionLabelNo }} />
         </VoteRadio>
       </div>
 

@@ -668,14 +668,18 @@ label.radio-inline > input[type="radio"] {
   align-items: center;
 }
 
+label.checkbox + .error-message-inline {
+  margin-left: 34px;
+}
+
 .error-message-inline::before {
   content: '';
   display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   background: url(../public/image/icon-alert.svg);
   background-repeat: no-repeat;
-  margin-right: 6px;
+  margin-right: 4px;
 }
 
 input[type="text"][aria-invalid="true"] {
@@ -685,6 +689,10 @@ input[type="text"][aria-invalid="true"] {
 input[aria-invalid="true"] + label::before,
 input[aria-invalid="true"] + label:hover::before {
   border-color: #E5332A;
+}
+
+.question-answer-wrapper b {
+  font-weight: normal;
 }
 
 @media screen and (max-width: 1023px) {

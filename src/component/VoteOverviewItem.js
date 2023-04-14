@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import QuestionOptions from '../../src/component/common/QuestionOptions'
 
-export default function VoteOverviewItem({ question, label, answer, onChange }) {
+export default function VoteOverviewItem({ question, label, form, onChange }) {
   const [modify, setModify] = useState(false)
   const [newAnswer, setNewAnswer] = useState(false)
+  const [answer, setAnswer] = useState(null)
 
   const handleChange = () => {
     setModify(false)
@@ -13,6 +14,17 @@ export default function VoteOverviewItem({ question, label, answer, onChange }) 
     }
   }
 
+  useEffect(() => {
+    if (form["question_" + question.id] !== null) {
+      const loweredAnswer = form["question_" + question.id].toLowerCase()
+      const capitalized = loweredAnswer?.charAt(0).toUpperCase() + loweredAnswer.slice(1)
+
+      setAnswer(question['optionLabel' + capitalized])
+    } else {
+      setAnswer(null)
+    }
+  }, [question])
+
   return (
     <div className="vote-overview-item">
       <div className="question-label">{label}</div>
@@ -20,7 +32,7 @@ export default function VoteOverviewItem({ question, label, answer, onChange }) 
       <div className="question-answer-wrapper">
         <div className="question-answer-label">Általad adott válasz:</div>
         <div className="question-answer-inner">
-          <div className="question-answer">{answer === null ? "Nem adtál választ!" : answer}</div>
+          <div className="question-answer" dangerouslySetInnerHTML={{ __html: answer === null ? "Nem adtál választ!" : answer }} />
           <div className="question-modify-control">
             {modify ?
               <>
@@ -41,7 +53,6 @@ export default function VoteOverviewItem({ question, label, answer, onChange }) 
             optionLabelNo={question.optionLabelNo}
             handleChange={(e) => {
               setNewAnswer(e)
-              // setNewAnswer(e.target.value)
             }}
             handleSkip={() => {
               setModify(false)
