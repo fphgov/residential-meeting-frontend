@@ -4,9 +4,9 @@ import QuestionOptions from './QuestionOptions'
 export default function Question({ id, title, children, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip }) {
   return (
     <>
-      <h2>{title}</h2>
-
       {children}
+
+      <h4>{title}</h4>
 
       <QuestionOptions
         id={id}

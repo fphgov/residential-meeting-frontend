@@ -21,7 +21,7 @@ class MyDocument extends Document {
           <meta property="og:type" content="website" />
           <meta name="og:title" content="Budapest Lakógyűlés" />
           <meta name="og:description" content="" />
-          <meta name="og:image" content="https://lakogyules.budapest.hu/image/og-image.jpg" />
+          <meta name="og:image" content="https://lakogyules-szavazas.budapest.hu/image/og-image.jpg" />
 
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />
