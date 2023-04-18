@@ -78,7 +78,7 @@ function QuestionPage() {
                         handleChange(null)
                       }}
                     >
-                      <p>{question.id}.) {question.description}</p>
+                      <p>{question.description}</p>
                     </Question>
                   </div>
                 </div>

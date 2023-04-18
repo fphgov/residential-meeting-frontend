@@ -6,7 +6,7 @@ export default function Question({ id, title, children, answer, optionLabelYes, 
     <>
       {children}
 
-      <h4>{title}</h4>
+      <h4>{id}. {title}</h4>
 
       <QuestionOptions
         id={id}
