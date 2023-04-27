@@ -54,9 +54,9 @@ function HeaderSection({ position, showHeaderLine = false }) {
 
                   <div className={`navigation-wrapper ${openMenu ? 'open' : ''}`}>
                     <ul className={openMenu ? 'container' : ''}>
-                      <li><a href="/#" onClick={toggleMenu}><span>Főoldal</span></a></li>
-                      <li><a href="/#" onClick={toggleMenu}><span>Mi a lakógyűlés?</span></a></li>
-                      <li><a href="/#" onClick={toggleMenu}><span>Kérdések</span></a></li>
+                      <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={toggleMenu}><span>Főoldal</span></a></li>
+                      <li><a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank" onClick={toggleMenu}><span>Mi a lakógyűlés?</span></a></li>
+                      <li><a href="https://lakogyules.budapest.hu/mi-a-lakogyules#dontsunk-kozosen-a-budapest-sorsat-befolyasolo-kerdesekben!" target="_blank" onClick={toggleMenu}><span>Kérdések</span></a></li>
                       <li><Link href="/szavazas" className={`${/^\/szavazas/.test(asPath) ? 'active' : ''}`} onClick={toggleMenu}><span>Szavazás</span></Link></li>
                     </ul>
                   </div>
