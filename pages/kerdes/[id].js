@@ -39,14 +39,16 @@ function QuestionPage({ id, question, navigationList }) {
   }
 
   useEffect(() => {
+    if (! (form && form.data && form.data.auth_code)) {
+      router.push('/azonositas')
+
+      return
+    }
+
     if (form && form.data && form.data[`question_${id}`]) {
       setAnswer(form.data[`question_${id}`])
     } else {
       setAnswer(null)
-    }
-
-    if (! (form && form.data && form.data.auth_code)) {
-      router.push('/azonositas')
     }
   }, [router])
 

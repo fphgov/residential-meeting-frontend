@@ -703,7 +703,11 @@ input[aria-invalid="true"] + label:hover::before {
   margin: 0 auto;
 }
 
-.page.page-success {
+.page.success {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 

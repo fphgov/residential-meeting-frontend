@@ -96,6 +96,8 @@ function QuestionPage({ questions }) {
   useEffect(() => {
     if (! (form && form.auth_code)) {
       router.push('/azonositas')
+
+      return
     }
 
     loadReCaptcha(getConfig().publicRuntimeConfig.siteKey, (recaptchaToken) => {

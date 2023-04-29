@@ -1,10 +1,12 @@
 import { useRef, useEffect, useContext } from 'react'
+import { useRouter } from 'next/router'
 import HeaderSection from '../src/section/HeaderSection'
 import FooterSection from '../src/section/FooterSection'
-import StoreContext from '../../src/StoreContext'
+import StoreContext from '../src/StoreContext'
 
 function SuccessPage() {
   const context = useContext(StoreContext)
+  const router = useRouter()
   const linkRef = useRef()
 
   const form = context.storeGet('form')?.data
@@ -12,19 +14,21 @@ function SuccessPage() {
   useEffect(() => {
     if (! (form && form.auth_code)) {
       router.push('/azonositas')
+
+      return
     }
 
     setTimeout(() => {
       context.storeRemove('form')
       linkRef.current.click()
-    }, 2 * 1000)
+    }, 8 * 1000)
   }, []);
 
   return (
     <>
       <HeaderSection />
 
-      <main className="page page-success">
+      <main className="page success">
         <div className="container">
           <div className="row">
             <div className="offset-lg-2 col-lg-8 p-0">
@@ -33,7 +37,12 @@ function SuccessPage() {
 
                 <h2>[Szavazatod épp feldolgozásra kerül, hamarosan átirányítunk egy másik oldalra.]</h2>
 
-                <a ref={linkRef} href="#" rel="noopener noreferrer" className="btn btn-primary btn-small">Tovább</a>
+                <a ref={linkRef} href="#" rel="noopener noreferrer" style={{ display: 'inline-block' }} className="btn btn-primary btn-icon">
+                  <div className="button-inner">
+                    Tovább
+                    <div className="icon" />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
