@@ -695,6 +695,18 @@ input[aria-invalid="true"] + label:hover::before {
   font-weight: normal;
 }
 
+.event-logo {
+  background: url(../public/image/event-logo.svg);
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+.page.page-success {
+  text-align: center;
+}
+
 @media screen and (max-width: 1023px) {
 
 }

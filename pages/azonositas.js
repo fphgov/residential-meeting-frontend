@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
-import axios from "../src/assets/axios"
+import axios from "axios"
 import StoreContext from '../src/StoreContext'
 import HeaderSection from '../src/section/HeaderSection'
 import Submit  from "../src/component/form/elements/Submit"
@@ -89,26 +89,7 @@ function AuthPage() {
     )
     .then(response => {
       if (response.data) {
-        setLoading(true)
-
-        axios.get(publicRuntimeConfig.apiQuestion, {
-          headers: {
-            Authorization: filterData.auth_code
-          }
-        }).then(response => {
-          if (response.data) {
-            context.storeSave('questions', 'data', response.data.questions)
-          }
-
-          router.push('/kerdes/1')
-        }).catch(error => {
-          console.log(error)
-          setError('Váratlan hiba történt, kérünk próbáld később')
-          setScroll(true)
-        })
-        .finally(() => {
-          setLoading(false)
-        })
+        router.push('/kerdes/1')
       }
     })
     .catch(error => {

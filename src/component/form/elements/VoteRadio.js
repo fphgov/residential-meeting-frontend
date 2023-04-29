@@ -10,6 +10,9 @@ export default function VoteRadio({ id, name, option, value, children, handleCha
           name={name}
           value={option}
           checked={value === option}
+          onClick={(e) => {
+            handleChange(e.target.value)
+          }}
           onChange={(e) => {
             handleChange(e.target.value)
           }} />

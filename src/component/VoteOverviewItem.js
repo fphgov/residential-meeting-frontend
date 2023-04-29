@@ -3,24 +3,26 @@ import QuestionOptions from '../../src/component/common/QuestionOptions'
 
 export default function VoteOverviewItem({ question, label, form, onChange }) {
   const [modify, setModify] = useState(false)
-  const [newAnswer, setNewAnswer] = useState(false)
+  const [answerLabel, setAnswerLabel] = useState(null)
   const [answer, setAnswer] = useState(null)
 
   const handleChange = () => {
     setModify(false)
 
-    if (typeof onChange === "undefined") {
-      onChange(newAnswer, question)
+    if (typeof onChange === "function") {
+      onChange(answer, question)
     }
   }
 
   useEffect(() => {
-    if (form["question_" + question.id] !== null) {
+    if (form && form["question_" + question.id] !== null) {
       const loweredAnswer = form["question_" + question.id].toLowerCase()
       const capitalized = loweredAnswer?.charAt(0).toUpperCase() + loweredAnswer.slice(1)
 
-      setAnswer(question['optionLabel' + capitalized])
+      setAnswer(loweredAnswer)
+      setAnswerLabel(question['optionLabel' + capitalized])
     } else {
+      setAnswerLabel('Nem adtál választ!')
       setAnswer(null)
     }
   }, [question])
@@ -32,7 +34,7 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
       <div className="question-answer-wrapper">
         <div className="question-answer-label">Általad adott válasz:</div>
         <div className="question-answer-inner">
-          <div className="question-answer" dangerouslySetInnerHTML={{ __html: answer === null ? "Nem adtál választ!" : answer }} />
+          <div className="question-answer" dangerouslySetInnerHTML={{ __html: answerLabel }} />
           <div className="question-modify-control">
             {modify ?
               <>
@@ -52,10 +54,10 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
             optionLabelYes={question.optionLabelYes}
             optionLabelNo={question.optionLabelNo}
             handleChange={(e) => {
-              setNewAnswer(e)
+              setAnswer(e)
             }}
             handleSkip={() => {
-              setModify(false)
+              setAnswer(null)
             }}
           />
         </div> : null}

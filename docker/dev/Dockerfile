@@ -1,4 +1,4 @@
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 ARG ARG_DISABLE_ESLINT_PLUGIN='true'
 ARG ARG_TS_IGNORE_BUILD_ERRORS='true'
@@ -18,7 +18,7 @@ ENV SITE_KEY=$ARG_SITE_KEY
 
 WORKDIR "/app"
 
-RUN npm install -g npm@9.6.4
+RUN npm install -g npm@9.6.5
 
 RUN printenv > .env
 RUN chown node:node .env
@@ -27,7 +27,7 @@ COPY --chown=node:node . .
 RUN npm ci --force
 RUN npm run build
 
-FROM node:18-alpine AS production
+FROM node:20-alpine AS production
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

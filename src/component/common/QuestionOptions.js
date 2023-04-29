@@ -4,7 +4,7 @@ import VoteRadio from '../form/elements/VoteRadio'
 export default function QuestionOptions({ id, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip }) {
   return (
     <>
-      <div className="form-group">
+      <div className="form-group" tabIndex={0} role="radiogroup">
         <VoteRadio
           id={`question_${id}_yes`}
           name={`question_${id}`}

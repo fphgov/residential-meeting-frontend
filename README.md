@@ -3,13 +3,13 @@
 Build Docker image
 
 ```
-docker build --no-cache --pull --tag residential-meeting-frontend:latest .
+docker-compose up -d --build
 ```
 
-Run docker image with console (development in Linux/MacOS)
+Run docker image with console
 
 ```
-docker run -it --name residential_meeting_frontend --rm -v $(pwd):/app -p 8080:8080 residential-meeting-frontend:latest sh
+docker exec -it residential-meeting-frontend-frontend-1 sh
 ```
 
 Run inside Docker image with console
