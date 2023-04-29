@@ -14,18 +14,36 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
     }
   }
 
-  useEffect(() => {
+  const resetAnswer = () => {
     if (form && form["question_" + question.id] !== null) {
       const loweredAnswer = form["question_" + question.id].toLowerCase()
-      const capitalized = loweredAnswer?.charAt(0).toUpperCase() + loweredAnswer.slice(1)
 
       setAnswer(loweredAnswer)
+    } else {
+      setAnswer(null)
+    }
+  }
+
+  const handleCancel = () => {
+    resetAnswer()
+
+    setModify(false)
+  }
+
+  useEffect(() => {
+    resetAnswer()
+  }, [question])
+
+  useEffect(() => {
+    if (answer !== null) {
+      const loweredAnswer = answer.toLowerCase()
+      const capitalized = loweredAnswer?.charAt(0).toUpperCase() + loweredAnswer.slice(1)
+
       setAnswerLabel(question['optionLabel' + capitalized])
     } else {
       setAnswerLabel('Nem adtál választ!')
-      setAnswer(null)
     }
-  }, [question])
+  }, [answer])
 
   return (
     <div className="vote-overview-item">
@@ -38,7 +56,7 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
           <div className="question-modify-control">
             {modify ?
               <>
-                <button type="button" className="btn-link btn-small" onClick={() => {setModify(false)}}>Mégse</button>
+                <button type="button" className="btn-link btn-small" onClick={handleCancel}>Mégse</button>
                 <button type="button" className="btn btn-primary btn-small" onClick={handleChange}>Mentés</button>
               </>
               : <>

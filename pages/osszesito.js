@@ -70,7 +70,7 @@ function QuestionPage({ questions }) {
     )
     .then(response => {
       if (response.data) {
-        console.log(data)
+        router.push('/sikeres')
       }
     })
     .catch(error => {
