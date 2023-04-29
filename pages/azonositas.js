@@ -198,7 +198,7 @@ function AuthPage() {
 
                       <div className="input-wrapper form-control">
                         <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
-                          Szeretnék feliratkozni a hírlevélre. (opcionális)
+                          Szeretnék feliratkozni a hírlevélre, elolvastam és elfogadom a <a href="https://budapest.hu/Documents/adatkezelesi_tajekoztatok/Fovarosi_Onkormanyzat_hirlevele.pdf" target="_blank" rel="noopener noreferrer">hírlevélre vonatkozó adatkezelési tájékoztatót</a>. (opcionális)
                         </Checkbox>
 
                         <ErrorMiniWrapper error={error} id="newsletter" />
