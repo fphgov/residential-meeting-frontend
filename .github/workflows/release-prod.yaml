@@ -59,7 +59,7 @@ jobs:
           password: ${{ secrets.PROD_NEXUS_PASSWD }}
           tag_with_latest: true
           tag: ${{ needs.create-image-tag.outputs.imageTag }}
-          extra_args: '--skip-tls-verify --build-arg ARG_BACKEND_URL=http://backend-bpp-backend --build-arg ARG_PUBLIC_HOST=https://lakogyules-szavazas.budapest.hu --build-arg ARG_FORCE_HTTPS=1 --build-arg ARG_MATOMO_URL=https://matomo.budapest.hu --build-arg ARG_MATOMO_SITE_ID=6  --build-arg ARG_SITE_KEY=6LfP3mUlAAAAAKY52DSL08aOrkv9In7W9afCrvjU'
+          extra_args: '--skip-tls-verify --build-arg ARG_BACKEND_URL=http://backend-php-nginx:8080 --build-arg ARG_PUBLIC_HOST=https://lakogyules-szavazas.budapest.hu --build-arg ARG_FORCE_HTTPS=1 --build-arg ARG_MATOMO_URL=https://matomo.budapest.hu --build-arg ARG_MATOMO_SITE_ID=6  --build-arg ARG_SITE_KEY=6LfP3mUlAAAAAKY52DSL08aOrkv9In7W9afCrvjU'
 
   deploy:
     name: Deploy

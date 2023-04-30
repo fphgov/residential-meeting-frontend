@@ -26,7 +26,7 @@ ingress:
   hosts:
     - host: lakogyules-szavazas.budapest.hu
       paths:
-        - path: /szavazas
+        - path: /
           pathType: Prefix
   tls:
     - secretName: wildcard-budapest-hu-tls
