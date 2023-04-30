@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { IMaskInput } from 'react-imask'
 
-export default function CodeInput({ id, name, onChange, label, info }) {
+export default function CodeInput({ id, name, ariaInvalid, ariaRequired, onChange, label, info }) {
   const ref = useRef(null)
   const inputRef = useRef(null)
 
@@ -20,6 +20,8 @@ export default function CodeInput({ id, name, onChange, label, info }) {
         unmask={false}
         ref={ref}
         inputRef={inputRef}
+        aria-invalid={ariaInvalid}
+        aria-required={ariaRequired}
         prepare={(str) => {
           return str.toUpperCase()
         }}

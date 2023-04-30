@@ -1,12 +1,49 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import QuestionOptions from '../../src/component/common/QuestionOptions'
 
-export default function VoteOverviewItem({ id, label, answer }) {
+export default function VoteOverviewItem({ question, label, form, onChange }) {
   const [modify, setModify] = useState(false)
+  const [answerLabel, setAnswerLabel] = useState(null)
+  const [answer, setAnswer] = useState(null)
 
   const handleChange = () => {
     setModify(false)
+
+    if (typeof onChange === "function") {
+      onChange(answer, question)
+    }
   }
+
+  const resetAnswer = () => {
+    if (form && form["question_" + question.id] !== null) {
+      const loweredAnswer = form["question_" + question.id].toLowerCase()
+
+      setAnswer(loweredAnswer)
+    } else {
+      setAnswer(null)
+    }
+  }
+
+  const handleCancel = () => {
+    resetAnswer()
+
+    setModify(false)
+  }
+
+  useEffect(() => {
+    resetAnswer()
+  }, [question])
+
+  useEffect(() => {
+    if (answer !== null) {
+      const loweredAnswer = answer.toLowerCase()
+      const capitalized = loweredAnswer?.charAt(0).toUpperCase() + loweredAnswer.slice(1)
+
+      setAnswerLabel(question['optionLabel' + capitalized])
+    } else {
+      setAnswerLabel('Nem adtál választ!')
+    }
+  }, [answer])
 
   return (
     <div className="vote-overview-item">
@@ -15,12 +52,12 @@ export default function VoteOverviewItem({ id, label, answer }) {
       <div className="question-answer-wrapper">
         <div className="question-answer-label">Általad adott válasz:</div>
         <div className="question-answer-inner">
-          <div className="question-answer">{answer}</div>
+          <div className="question-answer" dangerouslySetInnerHTML={{ __html: answerLabel }} />
           <div className="question-modify-control">
             {modify ?
               <>
-                <button type="button" className="btn-link btn-small" onClick={() => {setModify(false)}}>Mégse</button>
-                <button type="button" className="btn btn-primary btn-small" onClick={() => {setModify(! modify)}}>Mentés</button>
+                <button type="button" className="btn-link btn-small" onClick={handleCancel}>Mégse</button>
+                <button type="button" className="btn btn-primary btn-small" onClick={handleChange}>Mentés</button>
               </>
               : <>
               <button type="button" className="btn btn-secondary btn-small" onClick={() => {setModify(! modify)}}>Módosítás</button>
@@ -30,12 +67,16 @@ export default function VoteOverviewItem({ id, label, answer }) {
 
         {modify ? <div className="question-modify">
           <QuestionOptions
-            id={id}
+            id={question.id}
             answer={answer}
-            optionYesLabel="mert szerintem is így vagy úgy kellene működnie."
-            optionNoLabel="mert szerintem is így vagy úgy kellene működnie."
-            handleChange={handleChange}
-            handleSkip={() => {setModify(false)}}
+            optionLabelYes={question.optionLabelYes}
+            optionLabelNo={question.optionLabelNo}
+            handleChange={(e) => {
+              setAnswer(e)
+            }}
+            handleSkip={() => {
+              setAnswer(null)
+            }}
           />
         </div> : null}
 

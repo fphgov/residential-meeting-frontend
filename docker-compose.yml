@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  frontend:
+    build:
+      context: ./docker/local
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app
+    networks:
+      - residential-meeting
+
+networks:
+  residential-meeting:
+    name: residential-meeting_default
+    external: true

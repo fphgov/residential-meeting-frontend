@@ -28,9 +28,9 @@ const MyApp = ({ Component, pageProps }) => {
       titleTemplate="Budapest Lakógyűlés"
       defaultTitle="Budapest Lakógyűlés"
       description=""
-      canonical="https://lakogyules.budapest.hu/"
+      canonical="https://lakogyules-szavazas.budapest.hu/"
       openGraph={{
-        url: "https://lakogyules.budapest.hu/",
+        url: "https://lakogyules-szavazas.budapest.hu/",
         title: "Budapest Lakógyűlés",
         description: "",
         images: [

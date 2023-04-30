@@ -610,6 +610,7 @@ label.radio-inline > input[type="radio"] {
   border: 1px solid rgba(18, 50, 110, 0.12);
   border-radius: 6px;
   padding: 18px;
+  margin-bottom: 18px;
 }
 
 .question-label {
@@ -658,6 +659,56 @@ label.radio-inline > input[type="radio"] {
 
 .question-modify-control button:last-of-type {
   margin-right: 0;
+}
+
+.error-message-inline {
+  color: #E5332A;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+label.checkbox + .error-message-inline {
+  margin-left: 34px;
+}
+
+.error-message-inline::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(../public/image/icon-alert.svg);
+  background-repeat: no-repeat;
+  margin-right: 4px;
+}
+
+input[type="text"][aria-invalid="true"] {
+  border-color: #E5332A;
+}
+
+input[aria-invalid="true"] + label::before,
+input[aria-invalid="true"] + label:hover::before {
+  border-color: #E5332A;
+}
+
+.question-answer-wrapper b {
+  font-weight: normal;
+}
+
+.event-logo {
+  background: url(../public/image/event-logo.svg);
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+.page.success {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 @media screen and (max-width: 1023px) {

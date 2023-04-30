@@ -10,17 +10,38 @@ module.exports = async (phase, { defaultConfig }) => {
       unoptimized: true,
     },
     serverRuntimeConfig: {
+      apiUrl: BACKEND_URL,
+      apiQuestion: '/app/api/question/:id',
+      apiQuestionAll: '/app/api/question/all',
+      apiNavigation: '/app/api/question/navigation',
     },
     publicRuntimeConfig: {
       matomoUrl: MATOMO_URL,
       matomoSiteId: MATOMO_SITE_ID,
       publicHost: PUBLIC_HOST,
       siteKey: SITE_KEY,
-      apiUrl: BACKEND_URL,
-      apiAuth: '/auth',
+      apiAuth: '/app/api/account/check',
+      apiVote: '/app/api/vote',
     },
     experimental: {
       forceSwcTransforms: true,
+    },
+    async rewrites() {
+      return [
+        {
+          source: "/app/api/:path*",
+          destination: `${BACKEND_URL}/app/api/:path*`,
+        },
+      ];
+    },
+    async redirects() {
+      return [
+        {
+          "source": "/",
+          "destination": "/azonositas",
+          "permanent": false
+        }
+      ]
     },
   }
 

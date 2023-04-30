@@ -1,20 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react'
 import getConfig from 'next/config'
+import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
-import axios from "../../src/assets/axios"
-import StoreContext from '../../src/StoreContext'
-import HeaderSection from '../../src/section/HeaderSection'
-import Submit  from "../../src/component/form/elements/Submit"
-import CodeInput  from "../../src/component/form/elements/CodeInput"
-import InputText  from "../../src/component/form/elements/InputText"
-import Checkbox  from "../../src/component/form/elements/Checkbox"
-import ScrollTo from "../../src/component/common/ScrollTo"
-import Error  from "../../src/component/form/Error"
-import ErrorMiniWrapper from "../../src/component/form/ErrorMiniWrapper"
-import { rmAllCharForEmail, rmAllCharForName } from '../../src/lib/removeSpecialCharacters'
+import axios from "axios"
+import StoreContext from '../src/StoreContext'
+import HeaderSection from '../src/section/HeaderSection'
+import Submit  from "../src/component/form/elements/Submit"
+import CodeInput  from "../src/component/form/elements/CodeInput"
+import InputText  from "../src/component/form/elements/InputText"
+import Checkbox  from "../src/component/form/elements/Checkbox"
+import ScrollTo from "../src/component/common/ScrollTo"
+import Error  from "../src/component/form/Error"
+import ErrorMiniWrapper from "../src/component/form/ErrorMiniWrapper"
+import { rmAllCharForEmail, rmAllCharForName } from '../src/lib/removeSpecialCharacters'
 
 function AuthPage() {
   const context = useContext(StoreContext)
+  const router = useRouter()
 
   const { publicRuntimeConfig } = getConfig()
 
@@ -27,25 +29,37 @@ function AuthPage() {
   const [ filterData, setFilterData ] = useState({
     'auth_code': '',
     'email': '',
-    'privacy': '',
-    'newsletter': '',
+    'privacy': false,
+    'newsletter': false,
   })
 
   useEffect(() => {
-    loadReCaptcha(getConfig().publicRuntimeConfig.siteKey, (recaptchaToken) => {
+    loadReCaptcha(publicRuntimeConfig.siteKey, (recaptchaToken) => {
       setRecaptchaToken(recaptchaToken)
     })
   }, [])
 
+  const clearErrorItem = (inputName) => {
+    if (error && error[inputName]) {
+      delete error[inputName]
+    }
+  }
+
   const handleChangeRaw = (e) => {
+    clearErrorItem(e.target.name)
+
     setFilterData({ ...filterData, [e.target.name]: e.target.value })
   }
 
   const handleChangeEmailInput = (e) => {
+    clearErrorItem(e.target.name)
+
     setFilterData({ ...filterData, [e.target.name]: rmAllCharForEmail(e.target.value) })
   }
 
   const handleChangeInput = (e) => {
+    clearErrorItem(e.target.name)
+
     const value = e.target.type === 'checkbox' ? e.target.checked : rmAllCharForName(e.target.value)
 
     setFilterData({ ...filterData, [e.target.name]: value })
@@ -70,24 +84,25 @@ function AuthPage() {
     context.storeSave('form', 'data', filterData)
 
     axios.post(
-      publicRuntimeConfig.apiUrl + publicRuntimeConfig.apiAuth,
+      publicRuntimeConfig.apiAuth,
       new URLSearchParams(data).toString()
     )
     .then(response => {
       if (response.data) {
-        context.storeSave('form', 'data', filterData)
-        // setSuccess(true)
+        router.push('/kerdes/1')
       }
     })
     .catch(error => {
       if (error.response && error.response.status === 403) {
         setError('Google reCapcha ellenőrzés sikertelen')
         setScroll(true)
+      } else if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error)
+        setScroll(true)
       } else if (error.response && error.response.data && error.response.data.errors) {
         setError(error.response.data.errors)
         setScroll(true)
       } else {
-        console.log(error)
         setError('Váratlan hiba történt, kérünk próbáld később')
         setScroll(true)
       }
@@ -128,7 +143,10 @@ function AuthPage() {
                           label="Egyedi azonosító kód: *"
                           placeholder="LGY-0000-AAAA"
                           value={filterData.auth_code}
+                          defaultValue={filterData.auth_code}
                           onChange={handleChangeRaw}
+                          ariaInvalid={error && error['auth_code'] ? true: false}
+                          ariaRequired={true}
                           info="Ide kerül segítő információ az adott mezőre vonatkozólag"
                         />
 
@@ -143,6 +161,8 @@ function AuthPage() {
                           placeholder="minta.janos@budapest.hu"
                           value={filterData.email}
                           onChange={handleChangeEmailInput}
+                          aria-invalid={error && error['email'] ? true: false}
+                          aria-required={false}
                           info="Ide kerül segítő információ az adott mezőre vonatkozólag"
                         />
 
@@ -150,16 +170,16 @@ function AuthPage() {
                       </div>
 
                       <div className="input-wrapper form-control">
-                        <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput}>
-                          Elolvastam és elfogadom az <a href={`${getConfig().publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatót</a>. *
+                        <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
+                          Elolvastam és elfogadom az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatót</a>. *
                         </Checkbox>
 
                         <ErrorMiniWrapper error={error} id="privacy" />
                       </div>
 
                       <div className="input-wrapper form-control">
-                        <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput}>
-                          Szeretnék feliratkozni a hírlevélre. (opcionális)
+                        <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
+                          Szeretnék feliratkozni a hírlevélre, elolvastam és elfogadom a <a href="https://budapest.hu/Documents/adatkezelesi_tajekoztatok/Fovarosi_Onkormanyzat_hirlevele.pdf" target="_blank" rel="noopener noreferrer">hírlevélre vonatkozó adatkezelési tájékoztatót</a>. (opcionális)
                         </Checkbox>
 
                         <ErrorMiniWrapper error={error} id="newsletter" />
@@ -169,7 +189,7 @@ function AuthPage() {
 
                       <ReCaptcha
                         ref={ref => setRecaptcha(ref)}
-                        sitekey={getConfig().publicRuntimeConfig.siteKey}
+                        sitekey={publicRuntimeConfig.siteKey}
                         action="submit"
                         verifyCallback={(recaptchaToken) => {
                           setRecaptchaToken(recaptchaToken)

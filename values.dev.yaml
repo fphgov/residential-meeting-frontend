@@ -24,14 +24,14 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
   hosts:
-    - host: lakogyules.dev.intra.fph.hu
+    - host: lakogyules-szavazas.dev.intra.fph.hu
       paths:
-        - path: /szavazas
+        - path: /
           pathType: Prefix
   tls:
    - secretName: wildcard-dev-intra-fph-hu-tls
      hosts:
-       - lakogyules.dev.intra.fph.hu
+       - lakogyules-szavazas.dev.intra.fph.hu
 
 resources:
   limits:

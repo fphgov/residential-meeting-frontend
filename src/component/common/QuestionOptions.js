@@ -1,10 +1,10 @@
 import React from "react"
 import VoteRadio from '../form/elements/VoteRadio'
 
-export default function QuestionOptions({ id, answer, optionYesLabel, optionNoLabel, handleChange, handleSkip }) {
+export default function QuestionOptions({ id, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip }) {
   return (
     <>
-      <div className="form-group">
+      <div className="form-group" tabIndex={0} role="radiogroup">
         <VoteRadio
           id={`question_${id}_yes`}
           name={`question_${id}`}
@@ -12,8 +12,7 @@ export default function QuestionOptions({ id, answer, optionYesLabel, optionNoLa
           value={answer}
           handleChange={handleChange}
         >
-          <b>Igen,</b>
-          <span>{optionYesLabel}</span>
+          <span dangerouslySetInnerHTML={{ __html: optionLabelYes }} />
         </VoteRadio>
 
         <VoteRadio
@@ -23,8 +22,7 @@ export default function QuestionOptions({ id, answer, optionYesLabel, optionNoLa
           value={answer}
           handleChange={handleChange}
         >
-          <b>Nem,</b>
-          <span>{optionNoLabel}</span>
+          <span dangerouslySetInnerHTML={{ __html: optionLabelNo }} />
         </VoteRadio>
       </div>
 
