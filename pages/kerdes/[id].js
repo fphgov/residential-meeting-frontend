@@ -48,7 +48,7 @@ function QuestionPage({ id, question, navigationList }) {
     if (form && form.data && form.data[`question_${id}`]) {
       setAnswer(form.data[`question_${id}`])
     } else {
-      setAnswer(null)
+      storeAnswer(null)
     }
   }, [router])
 

@@ -47,7 +47,11 @@ function QuestionPage({ questions }) {
     for (let index = 0; index < questions.length; index++) {
       const question = questions[index]
 
-      fillQuestions[`questions[${question.id}]`] = form[`question_${question.id}`]
+      if (typeof form[`question_${question.id}`] !== "undefined") {
+        fillQuestions[`questions[${question.id}]`] = form[`question_${question.id}`]
+      } else {
+        fillQuestions[`questions[${question.id}]`] = null
+      }
     }
 
     const data = {

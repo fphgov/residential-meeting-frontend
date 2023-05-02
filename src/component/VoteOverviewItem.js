@@ -15,7 +15,7 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
   }
 
   const resetAnswer = () => {
-    if (form && form["question_" + question.id] !== null) {
+    if (form && form["question_" + question.id] !== null && typeof form["question_" + question.id] !== "undefined") {
       const loweredAnswer = form["question_" + question.id].toLowerCase()
 
       setAnswer(loweredAnswer)
