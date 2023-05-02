@@ -27,8 +27,6 @@ function QuestionPage({ id, question, navigationList }) {
   }
 
   const handleNext = () => {
-    handleChange(null)
-
     if (navigationList.length > (id - 0)) {
       router.push(`/kerdes/${(id - 0) + 1}`)
     } else {
@@ -74,7 +72,10 @@ function QuestionPage({ id, question, navigationList }) {
                     optionLabelYes={question.optionLabelYes}
                     optionLabelNo={question.optionLabelNo}
                     handleChange={handleChange}
-                    handleSkip={handleNext}
+                    handleSkip={() => {
+                      handleChange(null)
+                      handleNext()
+                    }}
                     handleNext={handleNext}
                   >
                     <p>{question.description}</p>
