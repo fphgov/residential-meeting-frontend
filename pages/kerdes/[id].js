@@ -26,16 +26,18 @@ function QuestionPage({ id, question, navigationList }) {
     }
   }
 
+  const handleNext = () => {
+    handleChange(null)
+
+    if (navigationList.length > (id - 0)) {
+      router.push(`/kerdes/${(id - 0) + 1}`)
+    } else {
+      router.push('/osszesito')
+    }
+  }
+
   const handleChange = (e) => {
     storeAnswer(e)
-
-    setTimeout(() => {
-      if (navigationList.length > (id - 0)) {
-        router.push(`/kerdes/${(id - 0) + 1}`)
-      } else {
-        router.push('/osszesito')
-      }
-    }, 500)
   }
 
   useEffect(() => {
@@ -66,14 +68,14 @@ function QuestionPage({ id, question, navigationList }) {
                 <div className="offset-lg-2 col-lg-8 p-0">
                   <Question
                     id={question.id}
+                    questionShort={question.questionShort}
                     title={<>{question.question}</>}
                     answer={answer}
                     optionLabelYes={question.optionLabelYes}
                     optionLabelNo={question.optionLabelNo}
                     handleChange={handleChange}
-                    handleSkip={() => {
-                      handleChange(null)
-                    }}
+                    handleSkip={handleNext}
+                    handleNext={handleNext}
                   >
                     <p>{question.description}</p>
                   </Question>

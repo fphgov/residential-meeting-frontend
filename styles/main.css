@@ -559,6 +559,11 @@ label.radio-inline > input[type="radio"] {
   text-align: center;
   padding: 16px 0;
   border-bottom: 1px solid #DDDDDD;
+  display: flex;
+}
+
+.vote-skip-wrapper > div:first-of-type {
+  flex: 1;
 }
 
 .btn-link {
@@ -573,6 +578,25 @@ label.radio-inline > input[type="radio"] {
 }
 
 .btn-link:hover {
+  text-decoration: underline !important;
+}
+
+.btn-next {
+  color: #777777;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.btn-next.active {
+  color: #0EA6CE;
+}
+
+.btn-next:hover {
   text-decoration: underline !important;
 }
 

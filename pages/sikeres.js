@@ -18,10 +18,11 @@ function SuccessPage() {
       return
     }
 
+    context.storeRemove('form')
+
     setTimeout(() => {
-      context.storeRemove('form')
       linkRef.current.click()
-    }, 8 * 1000)
+    }, 6 * 1000)
   }, []);
 
   return (
@@ -35,7 +36,7 @@ function SuccessPage() {
               <div className="success-section">
                 <div className="event-logo" />
 
-                <h2>[Szavazatod épp feldolgozásra kerül, hamarosan átirányítunk egy másik oldalra.]</h2>
+                <h2>Szavazatod épp feldolgozásra kerül, hamarosan átirányítunk egy másik oldalra.</h2>
 
                 <a ref={linkRef} href="https://lakogyules.budapest.hu" rel="noopener noreferrer" style={{ display: 'inline-block' }} className="btn btn-primary btn-icon">
                   <div className="button-inner">

@@ -128,9 +128,9 @@ function AuthPage() {
                 <fieldset>
                   <div className="auth-wrapper">
                     <div className="information">
-                      <h1>[Azonosítás]</h1>
+                      <h1>Szavazás</h1>
 
-                      <p>[Itt tudod magad azonosító ahhoz, hogy leadhasd a szavazatod. Az azonosítót a levél ezen részén találod.]</p>
+                      <p>Döntsünk közösen, szavazz egyedi kódoddal az első Budapesti Lakógyűlésen június 11-ig!</p>
                     </div>
 
                     <div className="login-wrapper">
@@ -147,7 +147,7 @@ function AuthPage() {
                           onChange={handleChangeRaw}
                           ariaInvalid={error && error['auth_code'] ? true: false}
                           ariaRequired={true}
-                          info="Ide kerül segítő információ az adott mezőre vonatkozólag"
+                          info="A kódodat a Fővárosi Önkormányzat által küldött névre szóló postai levél tetején találod."
                         />
 
                         <ErrorMiniWrapper error={error} id="auth_code" />
@@ -163,7 +163,7 @@ function AuthPage() {
                           onChange={handleChangeEmailInput}
                           aria-invalid={error && error['email'] ? true: false}
                           aria-required={false}
-                          info="Ide kerül segítő információ az adott mezőre vonatkozólag"
+                          info="Add meg email címed, hogy értesíthessünk a Budapesti Lakógyűlés eredményéről!"
                         />
 
                         <ErrorMiniWrapper error={error} id="email" />

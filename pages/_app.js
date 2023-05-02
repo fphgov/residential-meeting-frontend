@@ -24,21 +24,21 @@ const MyApp = ({ Component, pageProps }) => {
 
   return <>
     <NextSeo
-      title="Budapest Lakógyűlés"
-      titleTemplate="Budapest Lakógyűlés"
-      defaultTitle="Budapest Lakógyűlés"
+      title="Budapesti Lakógyűlés szavazás"
+      titleTemplate="Budapesti Lakógyűlés szavazás"
+      defaultTitle="Budapesti Lakógyűlés szavazás"
       description=""
       canonical="https://lakogyules-szavazas.budapest.hu/"
       openGraph={{
         url: "https://lakogyules-szavazas.budapest.hu/",
-        title: "Budapest Lakógyűlés",
+        title: "Budapesti Lakógyűlés szavazás",
         description: "",
         images: [
           {
             url: "/og-image.jpg",
             width: 800,
             height: 420,
-            alt: "Budapest Lakógyűlés",
+            alt: "Budapesti Lakógyűlés szavazás",
           },
         ],
       }}
