@@ -10,6 +10,15 @@ header.site-header.header-line .site-header-inner {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.site-header a.logo {
+  display: inline-block;
+}
+
+.site-header a.logo img {
+  width: 100%;
+  height: auto;
+}
+
 .main-navigation ul {
   list-style: none;
   padding: 0;
@@ -347,8 +356,6 @@ footer.main .copyright-wrapper {
 .input-wrapper .info {
   color: #0EA6CE;
   font-size: 14px;
-  display: flex;
-  align-items: center;
 }
 
 .input-wrapper .info::before {
@@ -467,6 +474,8 @@ footer.main .copyright-wrapper {
   background: #FFFFFF;
   border: 1px solid rgba(18, 50, 110, 0.12);
   border-radius: 6px;
+  display: flex;
+  align-items: center;
 }
 
 .radio-inline > label {
@@ -530,6 +539,7 @@ label.radio-inline > input[type="radio"] {
   align-items: center;
   justify-content: space-between;
   margin: 32px 0;
+  align-items: stretch;
 }
 
 .form-group > .radio-inline {
@@ -548,6 +558,8 @@ label.radio-inline > input[type="radio"] {
 .radio-inline label {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .radio-inline .radio-label {
@@ -769,33 +781,41 @@ input[aria-invalid="true"] + label:hover::before {
 }
 
 @media screen and (max-width: 767px) {
-  details.section-more[open] summary {
-    position: relative;
-    bottom: 0;
+  .form-group {
+    flex-direction: column;
   }
 
-  details.section-more summary::after {
-    display: none;
+  .form-group > .radio-inline {
+    width: 100%;
   }
 
-  details.section-more summary::before {
-    content: '';
-    display: inline-block;
-    transform: rotate(90deg);
-    /* background: url(../public/image/icon-arrow-up.svg) no-repeat; */
-    width: 12px;
-    height: 12px;
-    margin: 0 5px 0 0;
+  .form-group > .radio-inline:first-child {
+    margin: 0 0 18px 0;
   }
 
-  details.section-more[open] summary::before {
-    display: inline-block;
-    transform: rotate(180deg);
-    margin: 0 5px 2px 0;
+  .form-group > .radio-inline:last-child {
+    margin: 0;
   }
 
-  .mobile-anchor-offset {
-    margin-top: -100px;
-    padding-top: 100px;
+  .support-content h2 {
+    margin-bottom: 36px;
+  }
+
+  footer.main .logo-wrapper {
+    padding-bottom: 24px;
+  }
+
+  footer.main ul.footer-menu {
+    margin-top: 36px;
+    display: block;
+    text-align: left;
+  }
+
+  footer.main ul.footer-menu > li {
+    display: block;
+  }
+
+  footer.main ul.footer-menu > li a {
+    padding: 12px 0;
   }
 }

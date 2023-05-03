@@ -123,7 +123,7 @@ function AuthPage() {
 
         <div className="container">
           <div className="row">
-            <div className="offset-lg-3 col-lg-6 col-md-12">
+            <div className="offset-lg-2 col-lg-8 col-md-12">
               <form className="form-horizontal" onSubmit={submitAuth}>
                 <fieldset>
                   <div className="auth-wrapper">

@@ -39,7 +39,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
         <div className="container">
           <div className="site-header-inner">
             <div className="row flex-center">
-              <div className="col-6 col-md-6 col-lg-6">
+              <div className="col-10 col-sm-8 col-md-8 col-lg-6">
                 <a className="logo" href="/">
                   <Image
                     src={headerLogo}
@@ -48,7 +48,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
                 </a>
               </div>
 
-              <div className="col-6 col-md-6 col-lg-6">
+              <div className="col-2 col-sm-4 col-md-4 col-lg-6">
                 <nav role="navigation" className="main-navigation">
                   <HamburgerMenu toggleMenu={toggleMenu} open={openMenu} />
 
