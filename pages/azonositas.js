@@ -163,7 +163,7 @@ function AuthPage() {
                           onChange={handleChangeEmailInput}
                           aria-invalid={error && error['email'] ? true: false}
                           aria-required={false}
-                          info="Add meg email címed, hogy értesíthessünk a Budapesti Lakógyűlés eredményéről!"
+                          info="Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, akkor add meg az e-mail címedet."
                         />
 
                         <ErrorMiniWrapper error={error} id="email" />
@@ -171,7 +171,7 @@ function AuthPage() {
 
                       <div className="input-wrapper form-control">
                         <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
-                          Elolvastam és elfogadom az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatót</a>. *
+                          Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglaltakat tudomásul véve kifejezetten hozzájárulok az e-mail címem kezeléséhez a szavazásom sikerességéről és a Lakógyűlés eredményéről való értesítés céljából.
                         </Checkbox>
 
                         <ErrorMiniWrapper error={error} id="privacy" />
@@ -179,7 +179,7 @@ function AuthPage() {
 
                       <div className="input-wrapper form-control">
                         <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
-                          Szeretnék feliratkozni a hírlevélre, elolvastam és elfogadom a <a href="https://budapest.hu/Documents/adatkezelesi_tajekoztatok/Fovarosi_Onkormanyzat_hirlevele.pdf" target="_blank" rel="noopener noreferrer">hírlevélre vonatkozó adatkezelési tájékoztatót</a>. (opcionális)
+                          Szeretnék feliratkozni a Fővárosi Önkormányzat Hírlevelére. Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglaltakat tudomásul véve kifejezetten hozzájárulok az e-mail címem hírlevél megküldése céljából való kezeléséhez.
                         </Checkbox>
 
                         <ErrorMiniWrapper error={error} id="newsletter" />
