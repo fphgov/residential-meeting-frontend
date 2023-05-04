@@ -393,7 +393,7 @@ footer.main .copyright-wrapper {
 
 .btn[disabled] {
   background: #EEEEEE;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #EEEEEE;
   border-radius: 999px;
 }
 
@@ -575,10 +575,10 @@ label.radio-inline > input[type="radio"] {
 }
 
 .vote-skip-wrapper {
-  text-align: center;
   padding: 16px 0;
   border-bottom: 1px solid #DDDDDD;
   display: flex;
+  align-items: center;
 }
 
 .vote-skip-wrapper > div:first-of-type {
@@ -598,6 +598,10 @@ label.radio-inline > input[type="radio"] {
 
 .btn-link:hover {
   text-decoration: underline !important;
+}
+
+.vote-skip-wrapper .btn-link {
+  color: #777777;
 }
 
 .btn-next {

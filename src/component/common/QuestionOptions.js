@@ -34,7 +34,7 @@ export default function QuestionOptions({ id, answer, optionLabelYes, optionLabe
         </div>
 
         {enableNext ? <div>
-          <button className={`btn-next${answer !== null ? ' active' : ''}`} type="button" onClick={handleNext}>
+          <button className={`btn btn-primary btn-small${answer !== null ? ' active' : ''}`} type="button" onClick={handleNext} disabled={answer === null}>
             Következő
           </button>
         </div> : null}
