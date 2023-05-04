@@ -3,6 +3,7 @@ import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
+import Modal from 'react-modal'
 import StoreContext from '../src/StoreContext'
 import HeaderSection from '../src/section/HeaderSection'
 import Submit  from "../src/component/form/elements/Submit"
@@ -12,7 +13,10 @@ import Checkbox  from "../src/component/form/elements/Checkbox"
 import ScrollTo from "../src/component/common/ScrollTo"
 import Error  from "../src/component/form/Error"
 import ErrorMiniWrapper from "../src/component/form/ErrorMiniWrapper"
+import StaticImage  from "../src/component/common/StaticImage"
 import { rmAllCharForEmail, rmAllCharForName } from '../src/lib/removeSpecialCharacters'
+
+Modal.setAppElement('body');
 
 function AuthPage() {
   const context = useContext(StoreContext)
@@ -27,6 +31,7 @@ function AuthPage() {
   const [ error, setError ] = useState(null)
   const [ isClosed, setIsClosed ] = useState(false)
   const [ showPrivacy, setShowPrivacy ] = useState(false)
+  const [ modalIsOpen, setIsOpen ] = React.useState(false)
   const [ filterData, setFilterData ] = useState({
     'auth_code': '',
     'email': '',
@@ -39,6 +44,14 @@ function AuthPage() {
       setRecaptchaToken(recaptchaToken)
     })
   }, [])
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+  function closeModal() {
+    setIsOpen(false)
+  }
 
   const clearErrorItem = (inputName) => {
     if (error && error[inputName]) {
@@ -181,7 +194,7 @@ function AuthPage() {
                           ariaInvalid={error && error['auth_code'] ? true: false}
                           ariaRequired={true}
                           longInfo={
-                            <>A kódodat a Fővárosi Önkormányzat által küldött névre szóló postai levél alján találod. Az adatkezelési tájékoztatót <a href={`${publicRuntimeConfig.publicHost}/files/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">itt éred el</a>.</>
+                            <>A kódodat a Fővárosi Önkormányzat által küldött névre szóló <a onClick={openModal}>postai levél alján</a> találod. Az adatkezelési tájékoztatót <a href={`${publicRuntimeConfig.publicHost}/files/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">itt éred el</a>.</>
                           }
                           info={null}
                         />
@@ -243,6 +256,21 @@ function AuthPage() {
             </div>
           </div>
         </div>
+
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          className="Modal"
+          overlayClassName="Overlay"
+        >
+          <div className="modal-content">
+            <StaticImage src="level.jpg" width={1600} height={1200} alt="Kód a postai levél alján" priority={true} />
+          </div>
+
+          <div className="modal-navigation">
+            <button onClick={closeModal}>Bezárás</button>
+          </div>
+        </Modal>
       </main>
     </>
   )

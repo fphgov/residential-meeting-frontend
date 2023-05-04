@@ -391,6 +391,10 @@ footer.main .copyright-wrapper {
   line-height: 24px;
 }
 
+.long-info a {
+  cursor: pointer;
+}
+
 .input-wrapper a {
   color: #0EA6CE;
   text-decoration: none;
@@ -745,6 +749,10 @@ label.checkbox + .error-message-inline {
   background: url(../public/image/icon-alert.svg);
   background-repeat: no-repeat;
   margin-right: 4px;
+}
+
+.error-message-single::before {
+  display: none;
 }
 
 input[type="text"][aria-invalid="true"] {
