@@ -124,9 +124,7 @@ function QuestionPage({ questions }) {
             <div className="row">
               <div className="offset-lg-2 col-lg-8">
                 <form onSubmit={submitQuestion}>
-                  <h1>Összesítő</h1>
-
-                  <p style={{ textAlign: 'center' }}>Szavazatod leadása előtt áttekintheted és módosíthatod a válaszaidat, vagy leadhatod szavazatodat.</p>
+                  <h2 style={{ textAlign: 'center' }}>Szavazatod leadása előtt áttekintheted és módosíthatod a válaszaidat, vagy leadhatod szavazatodat.</h2>
 
                   {error ? <Error message={error} /> : null}
 
