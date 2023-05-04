@@ -124,7 +124,9 @@ function QuestionPage({ questions }) {
             <div className="row">
               <div className="offset-lg-2 col-lg-8">
                 <form onSubmit={submitQuestion}>
-                  <h1>[Itt láthatod a leadott szavazatodat a témakörökben. Még lehetőséged van visszamenni módosítani, ha szeretnél!]</h1>
+                  <h1>Összesítő</h1>
+
+                  <p style={{ textAlign: 'center' }}>Szavazatod leadása előtt áttekintheted és módosíthatod a válaszaidat, vagy leadhatod szavazatodat.</p>
 
                   {error ? <Error message={error} /> : null}
 
