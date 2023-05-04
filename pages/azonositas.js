@@ -26,6 +26,7 @@ function AuthPage() {
   const [ scroll, setScroll ] = useState(false)
   const [ error, setError ] = useState(null)
   const [ isClosed, setIsClosed ] = useState(false)
+  const [ showPrivacy, setShowPrivacy ] = useState(false)
   const [ filterData, setFilterData ] = useState({
     'auth_code': '',
     'email': '',
@@ -114,6 +115,14 @@ function AuthPage() {
     })
   }
 
+  useEffect(() => {
+    if (filterData.email !== '') {
+      setShowPrivacy(true)
+    } else {
+      setShowPrivacy(false)
+    }
+  }, [filterData])
+
   return (
     <>
       <HeaderSection showHeaderLine={true} />
@@ -123,7 +132,7 @@ function AuthPage() {
 
         <div className="container">
           <div className="row">
-            <div className="offset-lg-2 col-lg-8 col-md-12">
+            <div className="offset-lg-3 col-lg-6 col-md-12">
               <form className="form-horizontal" onSubmit={submitAuth}>
                 <fieldset>
                   <div className="auth-wrapper">
@@ -147,7 +156,10 @@ function AuthPage() {
                           onChange={handleChangeRaw}
                           ariaInvalid={error && error['auth_code'] ? true: false}
                           ariaRequired={true}
-                          info="A kódodat a Fővárosi Önkormányzat által küldött névre szóló postai levél tetején találod."
+                          longInfo={
+                            <>A kódodat a Fővárosi Önkormányzat által küldött névre szóló postai levél tetején találod. Az adatkezelési tájékoztatót <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">itt éred el</a>.</>
+                          }
+                          info={null}
                         />
 
                         <ErrorMiniWrapper error={error} id="auth_code" />
@@ -157,33 +169,38 @@ function AuthPage() {
                         <InputText
                           id="email"
                           name="email"
-                          label="E-mail cím: (opcionális)"
+                          label="E-mail cím (nem kötelező):"
                           placeholder="minta.janos@budapest.hu"
                           value={filterData.email}
                           onChange={handleChangeEmailInput}
                           aria-invalid={error && error['email'] ? true: false}
                           aria-required={false}
-                          info="Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, akkor add meg az e-mail címedet."
+                          longInfo={
+                            <>Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, akkor add meg az e-mail címedet.</>
+                          }
+                          info={null}
                         />
 
                         <ErrorMiniWrapper error={error} id="email" />
                       </div>
 
-                      <div className="input-wrapper form-control">
-                        <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
-                          Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglaltakat tudomásul véve kifejezetten hozzájárulok az e-mail címem kezeléséhez a szavazásom sikerességéről és a Lakógyűlés eredményéről való értesítés céljából.
-                        </Checkbox>
+                      { showPrivacy ? <>
+                        <div className="input-wrapper form-control">
+                          <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
+                            Szeretnék külön értesítést kapni a szavazásom sikerességéről és a Lakógyűlés eredményéről. Az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
+                          </Checkbox>
 
-                        <ErrorMiniWrapper error={error} id="privacy" />
-                      </div>
+                          <ErrorMiniWrapper error={error} id="privacy" />
+                        </div>
 
-                      <div className="input-wrapper form-control">
-                        <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
-                          Szeretnék feliratkozni a Fővárosi Önkormányzat Hírlevelére. Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglaltakat tudomásul véve kifejezetten hozzájárulok az e-mail címem hírlevél megküldése céljából való kezeléséhez.
-                        </Checkbox>
+                        <div className="input-wrapper form-control">
+                          <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
+                            Szeretnék feliratkozni a Fővárosi Önkormányzat Hírlevelére. Az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
+                          </Checkbox>
 
-                        <ErrorMiniWrapper error={error} id="newsletter" />
-                      </div>
+                          <ErrorMiniWrapper error={error} id="newsletter" />
+                        </div>
+                      </> : null}
 
                       <hr />
 
