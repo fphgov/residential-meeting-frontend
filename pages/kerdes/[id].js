@@ -69,7 +69,7 @@ function QuestionPage({ id, question, navigationList }) {
           <div className="vote-section">
             <div className="container">
               <div className="row">
-                <div className="offset-lg-2 col-lg-8 p-0">
+                <div className="offset-lg-2 col-lg-8">
                   <Question
                     id={question.id}
                     questionShort={question.questionShort}

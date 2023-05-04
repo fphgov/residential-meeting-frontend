@@ -46,8 +46,26 @@ function AuthPage() {
     }
   }
 
+  const ShowPrivacyError = ({ error }) => {
+    if (! error) {
+      return null
+    }
+
+    if (error?.newsletter?.callbackValue && error?.privacy?.callbackValue) {
+      return <ErrorMiniWrapper error={error} id="privacy" className="error-message-single" />
+    }
+
+    if (error?.newsletter || error?.privacy) {
+      return (
+        <>
+          <ErrorMiniWrapper error={error} id="newsletter" className="error-message-single" />
+          <ErrorMiniWrapper error={error} id="privacy"  className="error-message-single" />
+        </>
+      )
+    }
+  }
+
   const handleChangeRaw = (e) => {
-    console.log(filterData)
     clearErrorItem(e.target.name)
 
     setFilterData({ ...filterData, [e.target.name]: e.target.value })
@@ -61,6 +79,11 @@ function AuthPage() {
 
   const handleChangeInput = (e) => {
     clearErrorItem(e.target.name)
+
+    if (e.target.name === 'privacy' || e.target.name === 'newsletter') {
+      clearErrorItem('privacy')
+      clearErrorItem('newsletter')
+    }
 
     const value = e.target.type === 'checkbox' ? e.target.checked : rmAllCharForName(e.target.value)
 
@@ -190,17 +213,15 @@ function AuthPage() {
                           <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
                             Szeretnék külön értesítést kapni a szavazásom sikerességéről és a Lakógyűlés eredményéről. Az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
                           </Checkbox>
-
-                          <ErrorMiniWrapper error={error} id="privacy" />
                         </div>
 
                         <div className="input-wrapper form-control">
                           <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
-                            Szeretnék feliratkozni a Fővárosi Önkormányzat Hírlevelére. Az <a href={`${publicRuntimeConfig.publicHost}/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
+                            Szeretnék feliratkozni a Fővárosi Önkormányzat Hírlevelére. Az <a href="https://budapest.hu/Documents/adatkezelesi_tajekoztatok/Fovarosi_Onkormanyzat_hirlevele.pdf" target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
                           </Checkbox>
-
-                          <ErrorMiniWrapper error={error} id="newsletter" />
                         </div>
+
+                        <ShowPrivacyError error={error} />
                       </> : null}
 
                       <hr />

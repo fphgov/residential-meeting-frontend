@@ -730,6 +730,7 @@ label.radio-inline > input[type="radio"] {
   font-size: 14px;
   display: flex;
   align-items: center;
+  line-height: 22px;
 }
 
 label.checkbox + .error-message-inline {
@@ -806,6 +807,10 @@ input[aria-invalid="true"] + label:hover::before {
   .main-navigation > .navigation-wrapper.open ul > li {
     display: flex;
   }
+
+  .support-content h2 {
+    margin-bottom: 36px;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -823,10 +828,6 @@ input[aria-invalid="true"] + label:hover::before {
 
   .form-group > .radio-inline:last-child {
     margin: 0;
-  }
-
-  .support-content h2 {
-    margin-bottom: 36px;
   }
 
   footer.main .logo-wrapper {

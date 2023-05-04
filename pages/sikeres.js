@@ -32,7 +32,7 @@ function SuccessPage() {
       <main className="page success">
         <div className="container">
           <div className="row">
-            <div className="offset-lg-2 col-lg-8 p-0">
+            <div className="offset-lg-2 col-lg-8">
               <div className="success-section">
                 <div className="event-logo" />
 
