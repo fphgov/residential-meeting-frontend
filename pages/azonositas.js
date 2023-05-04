@@ -47,6 +47,7 @@ function AuthPage() {
   }
 
   const handleChangeRaw = (e) => {
+    console.log(filterData)
     clearErrorItem(e.target.name)
 
     setFilterData({ ...filterData, [e.target.name]: e.target.value })
@@ -213,7 +214,7 @@ function AuthPage() {
                         }}
                       />
 
-                      <Submit label="Tovább a szavazáshoz" loading={loading} />
+                      <Submit label="Tovább a szavazáshoz" loading={loading} disabled={filterData.auth_code && /_/.test(filterData.auth_code)} />
                     </div>
                   </div>
                 </fieldset>

@@ -409,8 +409,9 @@ footer.main .copyright-wrapper {
 
 .btn[disabled] {
   background: #EEEEEE;
-  border: 1px solid #EEEEEE;
+  border: 1px solid #DDDDDD;
   border-radius: 999px;
+  cursor: default;
 }
 
 .error-message {
