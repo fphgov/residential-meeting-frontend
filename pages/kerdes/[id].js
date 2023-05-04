@@ -13,6 +13,7 @@ function QuestionPage({ id, question, navigationList }) {
   const router = useRouter()
 
   const [ answer, setAnswer ] = useState(null)
+  const [ details, setDetails ] = useState(null)
 
   const form = context.storeGet('form')
 
@@ -50,6 +51,11 @@ function QuestionPage({ id, question, navigationList }) {
     } else {
       storeAnswer(null)
     }
+
+    setDetails([
+      { id: `${id}-detail-yes`, summary: question.summaryOptionYes, description: question.descriptionOptionYes },
+      { id: `${id}-detail-no`, summary: question.summaryOptionNo, description: question.descriptionOptionNo },
+    ])
   }, [router])
 
   return (
@@ -89,13 +95,10 @@ function QuestionPage({ id, question, navigationList }) {
             <div className="container">
               <div className="row">
                 <div className="col-lg-3">
-                  <h2>Döntéstámogató tartalmak</h2>
+                  <h2>{question.summaryHeadline}</h2>
                 </div>
                 <div className="col-lg-9">
-                  <MultiDetails className="section-more" details={[
-                    { id: `${id}-detail-yes`, summary: question.summaryOptionYes, description: question.descriptionOptionYes },
-                    { id: `${id}-detail-no`, summary: question.summaryOptionNo, description: question.descriptionOptionNo },
-                  ]} />
+                  <MultiDetails className="section-more" details={details} />
                 </div>
               </div>
             </div>

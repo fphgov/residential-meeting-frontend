@@ -9,7 +9,9 @@ export default function MultiDetails({ details, className = '' }) {
   }
 
   useEffect(() => {
-    setOpenId(details[0].id)
+    if (details) {
+      setOpenId(details[0].id)
+    }
   }, [details])
 
   return (
