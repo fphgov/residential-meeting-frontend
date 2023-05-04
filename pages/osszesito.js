@@ -79,7 +79,7 @@ function QuestionPage({ questions }) {
     })
     .catch(error => {
       if (error.response && error.response.status === 403) {
-        setError('Google reCapcha ellenőrzés sikertelen')
+        setError('Google reCapcha ellenőrzés sikertelen. Kérjük frissíts rá az oldalra.')
       } else if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error)
       } else if (error.response && error.response.data && error.response.data.errors) {

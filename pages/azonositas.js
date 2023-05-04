@@ -95,7 +95,7 @@ function AuthPage() {
     })
     .catch(error => {
       if (error.response && error.response.status === 403) {
-        setError('Google reCapcha ellenőrzés sikertelen')
+        setError('Google reCapcha ellenőrzés sikertelen. Kérjük frissíts rá az oldalra.')
         setScroll(true)
       } else if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error)

@@ -38,7 +38,7 @@ function SuccessPage() {
 
                 <h2>Szavazatod épp feldolgozásra kerül, hamarosan átirányítunk egy másik oldalra.</h2>
 
-                <a ref={linkRef} href="https://lakogyules.budapest.hu" rel="noopener noreferrer" style={{ display: 'inline-block' }} className="btn btn-primary btn-icon">
+                <a ref={linkRef} href="http://lakogyules.budapest.hu/koszonjuk-hogy-szavaztal" rel="noopener noreferrer" style={{ display: 'inline-block' }} className="btn btn-primary btn-icon">
                   <div className="button-inner">
                     Tovább
                     <div className="icon" />
