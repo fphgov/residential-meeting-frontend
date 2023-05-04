@@ -72,10 +72,12 @@ function HeaderSection({ position, showHeaderLine = false }) {
                   <HamburgerMenu toggleMenu={toggleMenu} open={openMenu} />
 
                   <div className={`navigation-wrapper ${openMenu ? 'open' : ''}`}>
-                    <ul className={openMenu ? 'container' : ''}>
-                      <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={() => { setOpenMenu(false) }}><span>Vissza a főoldalra</span></a></li>
-                      <li><a href="/azonositas" onClick={toAuthPage}><span>Szavazás megszakítása</span></a></li>
-                    </ul>
+                    <div className="container">
+                      <ul className={openMenu ? '' : ''}>
+                        <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={() => { setOpenMenu(false) }}><span>Vissza a főoldalra</span></a></li>
+                        <li><a href="/azonositas" onClick={toAuthPage}><span>Szavazás megszakítása</span></a></li>
+                      </ul>
+                    </div>
                   </div>
                 </nav>
               </div>
