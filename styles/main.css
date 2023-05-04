@@ -1,5 +1,17 @@
+main.page {
+  margin-top: -98px;
+  padding-top: 98px;
+}
+
+main.page.auth {
+  background: linear-gradient(90deg,#12326e,#03194d);
+  background: url('../public/image/szabadsag-szobor.png') no-repeat top center, linear-gradient(90deg,#12326e,#03194d);
+  background-size: cover;
+}
+
 header.site-header {
-  background: linear-gradient(90deg, #12326E 0%, #03194D 100%);
+  background: linear-gradient(90deg,#12326e,#03194d);
+  z-index: 2;
 }
 
 header.site-header .site-header-inner {
@@ -8,6 +20,10 @@ header.site-header .site-header-inner {
 
 header.site-header.header-line .site-header-inner {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header.transparent-header {
+  background: transparent;
 }
 
 .site-header a.logo {

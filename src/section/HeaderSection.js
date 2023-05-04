@@ -9,6 +9,8 @@ function HeaderSection({ position, showHeaderLine = false }) {
   const context = useContext(StoreContext)
   const router = useRouter()
 
+  const { asPath } = router
+
   const form = context.storeGet('form')
 
   const [fixed, setFixed] = useState(false)
@@ -32,7 +34,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
     setOpenMenu(false)
 
     if (form && form.data) {
-      if (window.confirm("A korábban kitöltött adatok törlése kerülnek. Biztos vissza szeretne lépni?")) {
+      if (window.confirm("A korábban kitöltött adatok törlése kerülnek a böngészőből. Biztos megszakítja a szavazást?")) {
         context.storeRemove('form')
 
         router.push('/azonositas')
@@ -52,7 +54,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
 
   return (
     <>
-      <header className={`site-header ${showHeaderLine ? 'header-line' : ''} ${fixed ? 'fixed-header' : ''} ${position ? 'relative-header' : ''}`}>
+      <header className={`site-header${showHeaderLine ? ' header-line' : ''}${fixed ? ' fixed-header' : ''}${position ? 'relative-header' : ''}${asPath === '/azonositas' ? ' transparent-header' : ''}`}>
         <div className="container">
           <div className="site-header-inner">
             <div className="row flex-center">
@@ -72,7 +74,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
                   <div className={`navigation-wrapper ${openMenu ? 'open' : ''}`}>
                     <ul className={openMenu ? 'container' : ''}>
                       <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={() => { setOpenMenu(false) }}><span>Vissza a főoldalra</span></a></li>
-                      <li><a href="/azonositas" onClick={toAuthPage}><span>Azonosítás</span></a></li>
+                      <li><a href="/azonositas" onClick={toAuthPage}><span>Szavazás megszakítása</span></a></li>
                     </ul>
                   </div>
                 </nav>
