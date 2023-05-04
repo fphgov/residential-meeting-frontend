@@ -214,7 +214,7 @@ function AuthPage() {
                         }}
                       />
 
-                      <Submit label="Tovább a szavazáshoz" loading={loading} disabled={filterData.auth_code && /_/.test(filterData.auth_code)} />
+                      <Submit label="Tovább a szavazáshoz" loading={loading} disabled={/_/.test(filterData.auth_code) || filterData.auth_code.length == 0} />
                     </div>
                   </div>
                 </fieldset>

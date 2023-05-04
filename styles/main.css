@@ -804,7 +804,7 @@ input[aria-invalid="true"] + label:hover::before {
   }
 
   .main-navigation > .navigation-wrapper.open ul > li {
-    display: block;
+    display: flex;
   }
 }
 
