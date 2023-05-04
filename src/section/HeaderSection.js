@@ -34,7 +34,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
     setOpenMenu(false)
 
     if (form && form.data) {
-      if (window.confirm("A korábban kitöltött adatok törlése kerülnek a böngészőből. Biztos megszakítja a szavazást?")) {
+      if (window.confirm("A korábban kitöltött adatok törlése kerülnek a böngészőből. Biztos megszakítod a szavazást?")) {
         context.storeRemove('form')
 
         router.push('/azonositas')
