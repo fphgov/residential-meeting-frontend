@@ -1,13 +1,15 @@
 import { useRef } from 'react'
 import { IMaskInput } from 'react-imask'
 
-export default function CodeInput({ id, name, ariaInvalid, ariaRequired, onChange, label, info }) {
+export default function CodeInput({ id, name, ariaInvalid, ariaRequired, onChange, label, longInfo, info }) {
   const ref = useRef(null)
   const inputRef = useRef(null)
 
   return (
     <>
       <label htmlFor={id}>{label}</label>
+
+      {longInfo ? <div className="long-info">{longInfo}</div> : ''}
 
       <IMaskInput
         id={id}
@@ -31,7 +33,7 @@ export default function CodeInput({ id, name, ariaInvalid, ariaRequired, onChang
           }
         }
       />
-      <div className="info">{info}</div>
+      {info ? <div className="info">{info}</div> : ''}
     </>
   )
 }

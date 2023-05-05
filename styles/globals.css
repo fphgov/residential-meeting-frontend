@@ -8,6 +8,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: #222222;
+  background: #fff;
   /* color: #12326E; */
   line-height: normal;
   -moz-osx-font-smoothing: grayscale;
@@ -160,6 +161,59 @@ fieldset {
   animation: loader 1.2s linear infinite;
 }
 
+.Modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform: 'translate(-50%, -50%)';
+  transition: 'visibility .25s linear,opacity .25s ease,transform .25s ease,-webkit-transform .25s ease!important';
+  background-color: #FFF;
+  border-radius: 6px;
+  width: 50%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Modal img {
+  width: auto;
+  height: 100%;
+}
+
+.Modal .modal-content {
+  padding: 28px;
+  overflow: hidden;
+  flex: 1;
+  margin: 0 auto;
+}
+
+.Modal button {
+  color: #222;
+  background: #FFFFFF;
+  border: 1px solid #EEEEEE;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  border-radius: 0;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(4,6,8,.85);
+}
+
+body.ReactModal__Body--open .site-header {
+  z-index: 0;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0deg);
@@ -179,3 +233,54 @@ fieldset {
     max-width: 1280px
   }
 }
+
+
+/* stylelint-disable */
+#cc--main #cm {
+  width: 80%;
+  max-width: 500px;
+}
+
+#cc--main #c-txt p,
+#cc--main .desc p {
+  margin-bottom: 15px;
+  line-height: 18px;
+}
+
+span.cc_underline,
+span.cc_underline:hover {
+  text-decoration: underline;
+}
+
+span.cc_bold,
+span.cc_bold:hover {
+  font-weight: 600;
+}
+
+span.cc_highlight,
+span.cc_highlight:hover {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 991px) {
+  .Modal img {
+    width: 100%;
+    height: auto;
+  }
+
+  #cc--main #cm {
+    max-height: calc(100vh - 130px);
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #cc--main #cm {
+    width: 90%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+/* stylelint-enable */

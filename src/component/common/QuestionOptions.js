@@ -1,7 +1,7 @@
 import React from "react"
 import VoteRadio from '../form/elements/VoteRadio'
 
-export default function QuestionOptions({ id, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip }) {
+export default function QuestionOptions({ id, answer, optionLabelYes, optionLabelNo, handleChange, handleSkip, handleNext, enableNext = true }) {
   return (
     <>
       <div className="form-group" tabIndex={0} role="radiogroup">
@@ -27,9 +27,17 @@ export default function QuestionOptions({ id, answer, optionLabelYes, optionLabe
       </div>
 
       <div className="vote-skip-wrapper">
-        <button className="btn-link" type="button" onClick={handleSkip}>
-          Kihagyom ezt a kérdést
-        </button>
+        <div>
+          <button className="btn-link" type="button" onClick={handleSkip}>
+            Kihagyom ezt a kérdést
+          </button>
+        </div>
+
+        {enableNext ? <div>
+          <button className={`btn btn-primary btn-small${answer !== null ? ' active' : ''}`} type="button" onClick={handleNext} disabled={answer === null}>
+            Következő
+          </button>
+        </div> : null}
       </div>
     </>
   )

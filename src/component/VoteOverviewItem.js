@@ -15,7 +15,7 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
   }
 
   const resetAnswer = () => {
-    if (form && form["question_" + question.id] !== null) {
+    if (form && form["question_" + question.id] !== null && typeof form["question_" + question.id] !== "undefined") {
       const loweredAnswer = form["question_" + question.id].toLowerCase()
 
       setAnswer(loweredAnswer)
@@ -41,7 +41,7 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
 
       setAnswerLabel(question['optionLabel' + capitalized])
     } else {
-      setAnswerLabel('Nem adtál választ!')
+      setAnswerLabel('Kihagyom ezt a kérdést')
     }
   }, [answer])
 
@@ -69,6 +69,7 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
           <QuestionOptions
             id={question.id}
             answer={answer}
+            enableNext={false}
             optionLabelYes={question.optionLabelYes}
             optionLabelNo={question.optionLabelNo}
             handleChange={(e) => {

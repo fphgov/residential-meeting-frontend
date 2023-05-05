@@ -13,6 +13,7 @@ function QuestionPage({ id, question, navigationList }) {
   const router = useRouter()
 
   const [ answer, setAnswer ] = useState(null)
+  const [ details, setDetails ] = useState(null)
 
   const form = context.storeGet('form')
 
@@ -26,16 +27,16 @@ function QuestionPage({ id, question, navigationList }) {
     }
   }
 
+  const handleNext = () => {
+    if (navigationList.length > (id - 0)) {
+      router.push(`/kerdes/${(id - 0) + 1}`)
+    } else {
+      router.push('/osszesito')
+    }
+  }
+
   const handleChange = (e) => {
     storeAnswer(e)
-
-    setTimeout(() => {
-      if (navigationList.length > (id - 0)) {
-        router.push(`/kerdes/${(id - 0) + 1}`)
-      } else {
-        router.push('/osszesito')
-      }
-    }, 500)
   }
 
   useEffect(() => {
@@ -48,8 +49,13 @@ function QuestionPage({ id, question, navigationList }) {
     if (form && form.data && form.data[`question_${id}`]) {
       setAnswer(form.data[`question_${id}`])
     } else {
-      setAnswer(null)
+      storeAnswer(null)
     }
+
+    setDetails([
+      { id: `${id}-detail-yes`, summary: question.summaryOptionYes, description: question.descriptionOptionYes },
+      { id: `${id}-detail-no`, summary: question.summaryOptionNo, description: question.descriptionOptionNo },
+    ])
   }, [router])
 
   return (
@@ -63,9 +69,10 @@ function QuestionPage({ id, question, navigationList }) {
           <div className="vote-section">
             <div className="container">
               <div className="row">
-                <div className="offset-lg-2 col-lg-8 p-0">
+                <div className="offset-lg-2 col-lg-8">
                   <Question
                     id={question.id}
+                    questionShort={question.questionShort}
                     title={<>{question.question}</>}
                     answer={answer}
                     optionLabelYes={question.optionLabelYes}
@@ -73,7 +80,9 @@ function QuestionPage({ id, question, navigationList }) {
                     handleChange={handleChange}
                     handleSkip={() => {
                       handleChange(null)
+                      handleNext()
                     }}
+                    handleNext={handleNext}
                   >
                     <p>{question.description}</p>
                   </Question>
@@ -86,13 +95,10 @@ function QuestionPage({ id, question, navigationList }) {
             <div className="container">
               <div className="row">
                 <div className="col-lg-3">
-                  <h2>Döntéstámogató tartalmak</h2>
+                  <h2>{question.summaryHeadline}</h2>
                 </div>
                 <div className="col-lg-9">
-                  <MultiDetails className="section-more" details={[
-                    { id: `${id}-detail-yes`, summary: question.summaryOptionYes, description: question.descriptionOptionYes },
-                    { id: `${id}-detail-no`, summary: question.summaryOptionNo, description: question.descriptionOptionNo },
-                  ]} />
+                  <MultiDetails className="section-more" details={details} />
                 </div>
               </div>
             </div>

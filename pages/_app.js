@@ -6,6 +6,7 @@ import 'bootstrap-4-grid/css/grid.min.css'
 import StoreContext from '../src/StoreContext'
 import '../styles/globals.css'
 import '../styles/main.css'
+import CookieConsentPopup from '../src/component/CookieConsentPopup'
 
 const MyApp = ({ Component, pageProps }) => {
   const [ state, setState ] = useState({
@@ -24,25 +25,27 @@ const MyApp = ({ Component, pageProps }) => {
 
   return <>
     <NextSeo
-      title="Budapest Lakógyűlés"
-      titleTemplate="Budapest Lakógyűlés"
-      defaultTitle="Budapest Lakógyűlés"
+      title="Budapesti Lakógyűlés szavazás"
+      titleTemplate="Budapesti Lakógyűlés szavazás"
+      defaultTitle="Budapesti Lakógyűlés szavazás"
       description=""
       canonical="https://lakogyules-szavazas.budapest.hu/"
       openGraph={{
         url: "https://lakogyules-szavazas.budapest.hu/",
-        title: "Budapest Lakógyűlés",
+        title: "Budapesti Lakógyűlés szavazás",
         description: "",
         images: [
           {
             url: "/og-image.jpg",
             width: 800,
             height: 420,
-            alt: "Budapest Lakógyűlés",
+            alt: "Budapesti Lakógyűlés szavazás",
           },
         ],
       }}
     />
+
+    <CookieConsentPopup domain="lakogyules-szavazas.budapest.hu" />
 
     <StoreContext.Provider value={state}>
       <Component {...pageProps} />

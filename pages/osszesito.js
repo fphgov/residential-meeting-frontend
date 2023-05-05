@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
 import Error  from "../src/component/form/Error"
+import Submit  from "../src/component/form/elements/Submit"
 import StoreContext from '../src/StoreContext'
 import HeaderSection from '../src/section/HeaderSection'
 import FooterSection from '../src/section/FooterSection'
@@ -40,14 +41,20 @@ function QuestionPage({ questions }) {
     })
   }
 
-  const submitQuestion = () => {
+  const submitQuestion = (e) => {
+    e.preventDefault()
+
     setLoading(true)
 
     const fillQuestions = {}
     for (let index = 0; index < questions.length; index++) {
       const question = questions[index]
 
-      fillQuestions[`questions[${question.id}]`] = form[`question_${question.id}`]
+      if (typeof form[`question_${question.id}`] !== "undefined") {
+        fillQuestions[`questions[${question.id}]`] = form[`question_${question.id}`]
+      } else {
+        fillQuestions[`questions[${question.id}]`] = null
+      }
     }
 
     const data = {
@@ -75,7 +82,7 @@ function QuestionPage({ questions }) {
     })
     .catch(error => {
       if (error.response && error.response.status === 403) {
-        setError('Google reCapcha ellenőrzés sikertelen')
+        setError('Google reCapcha ellenőrzés sikertelen. Kérjük frissíts rá az oldalra.')
       } else if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error)
       } else if (error.response && error.response.data && error.response.data.errors) {
@@ -115,42 +122,44 @@ function QuestionPage({ questions }) {
         <div className="vote-section">
           <div className="container">
             <div className="row">
-              <div className="offset-lg-2 col-lg-8 p-0">
-                <h1>[Itt láthatod a leadott szavazatodat a témakörökben. Még lehetőséged van visszamenni módosítani, ha szeretnél!]</h1>
+              <div className="offset-lg-2 col-lg-8">
+                <form onSubmit={submitQuestion}>
+                  <h2 style={{ textAlign: 'center' }}>Szavazatod leadása előtt áttekintheted és módosíthatod a válaszaidat, vagy leadhatod szavazatodat.</h2>
 
-                {error ? <Error message={error} /> : null}
+                  {error ? <Error message={error} /> : null}
 
-                <div className="button-wrapper">
-                  <button type="button" className="btn btn-primary" onClick={submitQuestion}>Leadom a szavazatomat</button>
-                  <button type="button" className="btn btn-secondary" onClick={scrollToOverview}>Áttekintés</button>
-                </div>
+                  <div className="button-wrapper">
+                    <Submit label="Leadom a szavazatomat" loading={loading} disabled={false} enableIcon={false} />
+                    <button type="button" className="btn btn-secondary" onClick={scrollToOverview}>Áttekintés</button>
+                  </div>
 
-                <div className="overview" ref={overviewSection}>
-                  {questions.map(question => {
-                    return (
-                      <VoteOverviewItem
-                        key={question.id}
-                        question={question}
-                        label={question.question}
-                        onChange={handleOnChange}
-                        form={form}
-                      />
-                    )
-                  })}
-                </div>
+                  <div className="overview" ref={overviewSection}>
+                    {questions.map(question => {
+                      return (
+                        <VoteOverviewItem
+                          key={question.id}
+                          question={question}
+                          label={`${question.id}. ${question.questionShort} - ${question.question}`}
+                          onChange={handleOnChange}
+                          form={form}
+                        />
+                      )
+                    })}
+                  </div>
 
-                <ReCaptcha
-                  ref={ref => setRecaptcha(ref)}
-                  sitekey={publicRuntimeConfig.siteKey}
-                  action="submit"
-                  verifyCallback={(recaptchaToken) => {
-                    setRecaptchaToken(recaptchaToken)
-                  }}
-                />
+                  <ReCaptcha
+                    ref={ref => setRecaptcha(ref)}
+                    sitekey={publicRuntimeConfig.siteKey}
+                    action="submit"
+                    verifyCallback={(recaptchaToken) => {
+                      setRecaptchaToken(recaptchaToken)
+                    }}
+                  />
 
-                <div className="button-wrapper">
-                  <button type="button" className="btn btn-primary" onClick={submitQuestion}>Leadom a szavazatomat</button>
-                </div>
+                  <div className="button-wrapper">
+                    <Submit label="Leadom a szavazatomat" loading={loading} disabled={false} enableIcon={false} />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
