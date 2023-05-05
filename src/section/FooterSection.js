@@ -29,7 +29,7 @@ function FooterSection() {
                 <div className="col-md-12 col-lg-7">
                   <ul className="footer-menu">
                     <li><a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">Adatkezelési tájékoztató</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">Süti tájékoztató</a></li>
+                    <li><a href={`${publicRuntimeConfig.publicHost}/files/suti_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">Süti tájékoztató</a></li>
                     <li><a aria-label="Sütikezelés" data-cc="c-settings">Sütikezelés</a></li>
                   </ul>
                 </div>
