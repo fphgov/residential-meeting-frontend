@@ -289,6 +289,7 @@ footer.main ul.footer-menu > li a {
   line-height: 18px;
   font-weight: 400;
   padding: 0 16px;
+  cursor: pointer;
 }
 
 footer.main ul.footer-menu > li a:hover {

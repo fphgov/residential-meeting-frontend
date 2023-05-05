@@ -6,6 +6,7 @@ import 'bootstrap-4-grid/css/grid.min.css'
 import StoreContext from '../src/StoreContext'
 import '../styles/globals.css'
 import '../styles/main.css'
+import CookieConsentPopup from '../src/component/CookieConsentPopup'
 
 const MyApp = ({ Component, pageProps }) => {
   const [ state, setState ] = useState({
@@ -43,6 +44,8 @@ const MyApp = ({ Component, pageProps }) => {
         ],
       }}
     />
+
+    <CookieConsentPopup domain="lakogyules-szavazas.budapest.hu" />
 
     <StoreContext.Provider value={state}>
       <Component {...pageProps} />

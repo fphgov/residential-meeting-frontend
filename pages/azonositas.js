@@ -194,7 +194,7 @@ function AuthPage() {
                           ariaInvalid={error && error['auth_code'] ? true: false}
                           ariaRequired={true}
                           longInfo={
-                            <>A kódodat a Fővárosi Önkormányzat által küldött névre szóló <a onClick={openModal}>postai levél alján</a> találod. Az adatkezelési tájékoztatót <a href={`${publicRuntimeConfig.publicHost}/files/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">itt éred el</a>.</>
+                            <>A kódodat a Fővárosi Önkormányzat által küldött névre szóló <a onClick={openModal}>postai levél alján</a> találod. Az adatkezelési tájékoztatót <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">itt éred el</a>.</>
                           }
                           info={null}
                         />
@@ -213,7 +213,7 @@ function AuthPage() {
                           aria-invalid={error && error['email'] ? true: false}
                           aria-required={false}
                           longInfo={
-                            <>Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, akkor add meg az e-mail címedet.</>
+                            <>Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, vagy hírlevelet kapnál akkor add meg az e-mail címedet.</>
                           }
                           info={null}
                         />
@@ -224,7 +224,7 @@ function AuthPage() {
                       { showPrivacy ? <>
                         <div className="input-wrapper form-control">
                           <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
-                            Szeretnék külön értesítést kapni a szavazásom sikerességéről és a Lakógyűlés eredményéről. Az <a href={`${publicRuntimeConfig.publicHost}/files/adatvedelmi_tajekozato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
+                            Szeretnék külön értesítést kapni a szavazásom sikerességéről és a Lakógyűlés eredményéről. Az <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
                           </Checkbox>
                         </div>
 
