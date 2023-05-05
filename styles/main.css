@@ -811,12 +811,15 @@ input[aria-invalid="true"] + label:hover::before {
     position: fixed;
     width: 100%;
     left: 0;
+    top: 0;
+    z-index: -1;
+    padding-top: 82px;
   }
 
   .main-navigation > .navigation-wrapper.open ul {
     display: block;
     width: 100%;
-    margin: 36px 0 0 0;
+    margin: 0;
     text-align: left;
   }
 
