@@ -264,7 +264,7 @@ function AuthPage() {
           overlayClassName="Overlay"
         >
           <div className="modal-content">
-            <StaticImage src="level.jpg" width={1600} height={1200} alt="Kód a postai levél alján" priority={true} />
+            <StaticImage src="level.png" width={320} height={320} alt="Kód a postai levél alján" priority={true} />
           </div>
 
           <div className="modal-navigation">

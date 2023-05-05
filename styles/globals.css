@@ -172,18 +172,15 @@ fieldset {
   transition: 'visibility .25s linear,opacity .25s ease,transform .25s ease,-webkit-transform .25s ease!important';
   background-color: #FFF;
   border-radius: 6px;
-  width: 60%;
-  height: 65%;
+  width: 50%;
+  height: 60%;
   display: flex;
   flex-direction: column;
-  max-height: 540px;
-  max-width: 660px;
 }
 
 .Modal img {
-  width: 100%;
-  height: auto;
-  max-width: 600px;
+  width: auto;
+  height: 100%;
 }
 
 .Modal .modal-content {
@@ -267,6 +264,11 @@ span.cc_highlight:hover {
 }
 
 @media screen and (max-width: 991px) {
+  .Modal img {
+    width: 100%;
+    height: auto;
+  }
+
   #cc--main #cm {
     max-height: calc(100vh - 130px);
     overflow: scroll;
