@@ -60,7 +60,7 @@ function CookieConsentPopup({ domain }) {
               <p><span class="cc_bold">ELFOGADOM MINDET</span> - hozzájárulását adja a felhasználói élmény javításához szükséges sütik alkalmazásához.</p>
               <p><span class="cc_bold">VÁLASZTOK A SÜTIKATEGÓRIÁK KÖZÜL</span> - kiválaszthatja mely sütik alkalmazásához adja hozzájárulását. Választását az alábbi linkre kattinva adhatja meg.</p>
 
-              <p>A hozzájáruláshoz kötött sütik használatának elfogadásával Ön kijelenti, hogy az <a href="${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf" target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatóban</a> foglaltakat megismerte, és az ott írtakat tudomásul véve hozzájárul az adott cookie-k használatával járó adatkezeléshez.</p>
+              <p>A hozzájáruláshoz kötött sütik használatának elfogadásával Ön kijelenti, hogy az <a href="${publicRuntimeConfig.publicHost}/files/suti_tajekoztato.pdf" target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatóban</a> foglaltakat megismerte, és az ott írtakat tudomásul véve hozzájárul az adott cookie-k használatával járó adatkezeléshez.</p>
                 <button type="button" data-cc="c-settings" class="cc-link">Választok a sütik közül</button>`,
               primary_btn: {
                 text: 'Elfogadom mindet',
@@ -97,7 +97,7 @@ function CookieConsentPopup({ domain }) {
                   <p><span class="cc_bold">ELFOGADOM MINDET</span> - hozzájárulását adja a felhasználói élmény javításához szükséges sütik alkalmazásához.</p>
                   <p><span class="cc_bold">VÁLASZTOK A SÜTIKATEGÓRIÁK KÖZÜL</span> - az alábbi választási lehetőségek közül választva eldöntheti, hogy mely sütik alkalmazásához adja hozzájárulását.</p>
 
-                  <p>A hozzájáruláshoz kötött sütik használatának elfogadásával Ön kijelenti, hogy az <a href="${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf" target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatóban</a> foglaltakat megismerte, és az ott írtakat tudomásul véve hozzájárul az adott cookie-k használatával járó adatkezeléshez.</p>
+                  <p>A hozzájáruláshoz kötött sütik használatának elfogadásával Ön kijelenti, hogy az <a href="${publicRuntimeConfig.publicHost}/files/suti_tajekoztato.pdf" target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatóban</a> foglaltakat megismerte, és az ott írtakat tudomásul véve hozzájárul az adott cookie-k használatával járó adatkezeléshez.</p>
                   <p><span class="cc_bold">Mi az a süti?</span><br />
                   A felhasználók számítógépére mentett kis fájl, amely megkönnyíti a meglátogatott webhelyeken alkalmazott beállítások és egyéb információk tárolását. A süti általában tartalmazza annak a webhelynek a nevét, ahonnan érkezett, a süti értékét, azaz egy véletlenszerűen generált egyedi számot, valamint a süti élettartamát, vagyis hogy mennyi ideig tárolódik az eszközön. A süti a felhasználó eszközének háttértárjában egy fájlban tárolódik.</p>
                   <p><span class="cc_bold">Milyen sütiket és mire használunk?</span><br>
