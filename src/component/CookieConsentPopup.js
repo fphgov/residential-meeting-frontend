@@ -142,7 +142,7 @@ function CookieConsentPopup({ domain }) {
                     },
                     {
                       col1: '_GRECAPTCHA',
-                      col2: '',
+                      col2: `<p>Az oldal Google reCAPTCHA szolgáltatást használ abból a célból, felmérje, felhasználó használja az oldalt és nem robot vagy szoftver.</p><p>A Google reCAPTCHA szolgáltatása mesterséges intelligenciát használ a robotok kiszűrésére, ezzel segít megkülönböztetni a valós látogatókat a robotoktól az oldalon. A szolgáltatás az elemzéshez több információt együttesen értékel (pl. a felhasználó IP-címét, oldalon eltöltött idő, kurzor-/egérmozgásokat). A rendszer az elemzés során összegyűjtött adatokat a Google számára továbbítja.</p><p>A Google reCAPTCHA-val és Google adatvédelmi politikájával kapcsolatban további információkat itt érhetsz el: <a href="https://www.google.com/intl/de/policies/privacy" target="_blank">https://www.google.com/intl/de/policies/privacy</a> és <a href="https://www.google.com/recaptcha/intro" target="_blank">https://www.google.com/recaptcha/intro</a></p>`,
                       col3: `www.recaptcha.net`,
                       col4: '6 hónap',
                       col5: 'HTTP'

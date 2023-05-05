@@ -213,7 +213,7 @@ function AuthPage() {
                           aria-invalid={error && error['email'] ? true: false}
                           aria-required={false}
                           longInfo={
-                            <>Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, vagy hírlevelet kapnál akkor add meg az e-mail címedet.</>
+                            <>Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, vagy hírlevelet kapnál, akkor add meg az e-mail címedet.</>
                           }
                           info={null}
                         />

@@ -139,7 +139,7 @@ function QuestionPage({ questions }) {
                         <VoteOverviewItem
                           key={question.id}
                           question={question}
-                          label={question.question}
+                          label={`${question.id}. ${question.questionShort} - ${question.question}`}
                           onChange={handleOnChange}
                           form={form}
                         />

@@ -841,24 +841,6 @@ input[aria-invalid="true"] + label:hover::before {
   .support-content h2 {
     margin-bottom: 36px;
   }
-}
-
-@media screen and (max-width: 767px) {
-  .form-group {
-    flex-direction: column;
-  }
-
-  .form-group > .radio-inline {
-    width: 100%;
-  }
-
-  .form-group > .radio-inline:first-child {
-    margin: 0 0 18px 0;
-  }
-
-  .form-group > .radio-inline:last-child {
-    margin: 0;
-  }
 
   footer.main .logo-wrapper {
     padding-bottom: 24px;
@@ -876,6 +858,24 @@ input[aria-invalid="true"] + label:hover::before {
 
   footer.main ul.footer-menu > li a {
     padding: 12px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .form-group {
+    flex-direction: column;
+  }
+
+  .form-group > .radio-inline {
+    width: 100%;
+  }
+
+  .form-group > .radio-inline:first-child {
+    margin: 0 0 18px 0;
+  }
+
+  .form-group > .radio-inline:last-child {
+    margin: 0;
   }
 
   .vote-section .button-wrapper {
