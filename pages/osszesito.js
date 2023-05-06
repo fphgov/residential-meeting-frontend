@@ -10,7 +10,6 @@ import HeaderSection from '../src/section/HeaderSection'
 import FooterSection from '../src/section/FooterSection'
 import VoteNavigation from '../src/component/VoteNavigation'
 import VoteOverviewItem from '../src/component/VoteOverviewItem'
-import ScrollTo from "../src/component/common/ScrollTo"
 
 function QuestionPage({ questions }) {
   const context = useContext(StoreContext)
@@ -21,11 +20,21 @@ function QuestionPage({ questions }) {
 
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
-  const [ scroll, setScroll ] = useState(false)
   const [ recaptcha, setRecaptcha ] = useState(null)
   const [ recaptchaToken, setRecaptchaToken ] = useState('')
+  const [ modifyElemStatus, setModifyElemStatus ] = useState({})
 
   const form = context.storeGet('form')?.data
+
+  const handleIsLocked = (id, locked) => {
+    const status = { ...modifyElemStatus }
+
+    status[id] = locked
+
+    setModifyElemStatus(status)
+
+    setError(null)
+  }
 
   const handleOnChange = (newAnswer, question) => {
     form[`question_${question.id}`] = newAnswer
@@ -41,8 +50,31 @@ function QuestionPage({ questions }) {
     })
   }
 
+  const scrollToError = (query = '.error-message') => {
+    setTimeout(() => {
+      const element = document.querySelector(query)
+
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
+    }, 1)
+  }
+
   const submitQuestion = (e) => {
     e.preventDefault()
+
+    setError(null)
+
+    if (Object.values(modifyElemStatus).filter(t => t === true).length > 0) {
+      setError('Nem véglegesítettél minden kérdést. Véglegesítés után tudod leadni a szavazatod.')
+      scrollToError()
+
+      return
+    }
 
     setLoading(true)
 
@@ -91,7 +123,7 @@ function QuestionPage({ questions }) {
         setError('Váratlan hiba történt, kérünk próbáld később')
       }
 
-      setScroll(true)
+      scrollToError()
 
       recaptcha.execute()
     })
@@ -138,9 +170,11 @@ function QuestionPage({ questions }) {
                       return (
                         <VoteOverviewItem
                           key={question.id}
+                          id={question.id}
                           question={question}
                           label={`${question.id}. ${question.questionShort} - ${question.question}`}
                           onChange={handleOnChange}
+                          onIsLocked={handleIsLocked}
                           form={form}
                         />
                       )
@@ -164,8 +198,6 @@ function QuestionPage({ questions }) {
             </div>
           </div>
         </div>
-
-        {scroll && document.querySelector('.error-message-inline') ? <ScrollTo element={document.querySelector('.error-message-inline').offsetTop} /> : null}
       </main>
 
       <FooterSection />

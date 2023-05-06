@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import QuestionOptions from '../../src/component/common/QuestionOptions'
 
-export default function VoteOverviewItem({ question, label, form, onChange }) {
+export default function VoteOverviewItem({ id, question, label, form, onChange, onIsLocked }) {
   const [modify, setModify] = useState(false)
   const [answerLabel, setAnswerLabel] = useState(null)
   const [answer, setAnswer] = useState(null)
@@ -29,6 +29,10 @@ export default function VoteOverviewItem({ question, label, form, onChange }) {
 
     setModify(false)
   }
+
+  useEffect(() => {
+    onIsLocked(id, modify)
+  }, [modify])
 
   useEffect(() => {
     resetAnswer()
