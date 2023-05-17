@@ -7,8 +7,7 @@ import Modal from 'react-modal'
 import StoreContext from '../src/StoreContext'
 import HeaderSection from '../src/section/HeaderSection'
 import Submit  from "../src/component/form/elements/Submit"
-import CodeInput  from "../src/component/form/elements/CodeInput"
-import InputText  from "../src/component/form/elements/InputText"
+import FileUpload from "../src/component/form/elements/FileUpload"
 import Checkbox  from "../src/component/form/elements/Checkbox"
 import ScrollTo from "../src/component/common/ScrollTo"
 import Error  from "../src/component/form/Error"
@@ -18,7 +17,7 @@ import { rmAllCharForEmail, rmAllCharForName } from '../src/lib/removeSpecialCha
 
 Modal.setAppElement('body');
 
-function AuthPage() {
+function AddressCardPage() {
   const context = useContext(StoreContext)
   const router = useRouter()
 
@@ -88,6 +87,12 @@ function AuthPage() {
     clearErrorItem(e.target.name)
 
     setFilterData({ ...filterData, [e.target.name]: rmAllCharForEmail(e.target.value) })
+  }
+
+  const handleChangeFileInput = (data) => {
+    clearErrorItem('files')
+
+    setFilterData({ ...filterData, files: data })
   }
 
   const handleChangeInput = (e) => {
@@ -174,70 +179,36 @@ function AuthPage() {
                 <fieldset>
                   <div className="auth-wrapper">
                     <div className="information">
-                      <h1>Szavazás</h1>
+                      <h1>Új azonosító igénylése</h1>
 
-                      <p>Döntsünk közösen, szavazz egyedi kódoddal az első Budapesti Lakógyűlésen június 11-ig!</p>
+                      <p>Amennyiben elhagyta a kódját, itt tud új azonosítót igényelni</p>
                     </div>
 
                     <div className="login-wrapper">
                       {error && !isClosed ? <Error message={error} /> : null}
 
                       <div className="input-wrapper">
-                        <CodeInput
-                          id="auth_code"
-                          name="auth_code"
-                          label="Egyedi azonosító kód: *"
-                          placeholder="LGY-0000-AAAA"
-                          value={filterData.auth_code}
-                          defaultValue={filterData.auth_code}
-                          onChange={handleChangeRaw}
-                          ariaInvalid={error && error['auth_code'] ? true: false}
-                          ariaRequired={true}
-                          longInfo={
-                            <>A kódodat a Fővárosi Önkormányzat által küldött névre szóló <a onClick={openModal}>postai levél alján</a> találod. Az adatkezelési tájékoztatót <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">itt éred el</a>.</>
-                          }
-                          info={null}
+                        <FileUpload 
+                          id="address-card"
+                          name="address-card"
+                          label="Lakcím kártya feltöltése: *"
+                          onChange={handleChangeFileInput}
+                          longInfo="Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet."
+                          acceptedExtensions={['.jpg', '.jpeg', '.png', '.heif', '.avif']}
                         />
-
-                        <ErrorMiniWrapper error={error} id="auth_code" />
                       </div>
 
-                      <div className="input-wrapper">
-                        <InputText
-                          id="email"
-                          name="email"
-                          label="E-mail cím (nem kötelező):"
-                          placeholder="minta.janos@budapest.hu"
-                          value={filterData.email}
-                          onChange={handleChangeEmailInput}
-                          aria-invalid={error && error['email'] ? true: false}
-                          aria-required={false}
-                          longInfo={
-                            <>Ha azt szeretnéd, hogy külön is értesítsünk a szavazás sikerességéről és a Lakógyűlés eredményéről, vagy hírlevelet kapnál, akkor add meg az e-mail címedet.</>
-                          }
-                          info={null}
-                        />
+                      <hr />
 
-                        <ErrorMiniWrapper error={error} id="email" />
-                      </div>
-
-                      { showPrivacy ? <>
+                      <>
                         <div className="input-wrapper form-control">
                           <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
-                            Szeretnék külön értesítést kapni a szavazásom sikerességéről és a Lakógyűlés eredményéről. Az <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
-                          </Checkbox>
-                        </div>
-
-                        <div className="input-wrapper form-control">
-                          <Checkbox id="newsletter" name="newsletter" value={filterData.newsletter} onChange={handleChangeInput} ariaInvalid={error && error['newsletter'] ? true: false} ariaRequired={false}>
-                            Szeretnék feliratkozni a Fővárosi Önkormányzat Hírlevelére. Az <a href="https://budapest.hu/Documents/adatkezelesi_tajekoztatok/Fovarosi_Onkormanyzat_hirlevele.pdf" target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a> megismertem, és hozzájárulok, hogy e célból kezeljék az e-mail címemet.
+                            Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglatakat tudomásul vettem.
                           </Checkbox>
                         </div>
 
                         <ShowPrivacyError error={error} />
-                      </> : null}
-
-                      <hr />
+                      </>
 
                       <ReCaptcha
                         ref={ref => setRecaptcha(ref)}
@@ -247,10 +218,9 @@ function AuthPage() {
                           setRecaptchaToken(recaptchaToken)
                         }}
                       />
-
                       <div className="button-wrapper">
-                        <Submit label="Tovább a szavazáshoz" loading={loading} disabled={/_/.test(filterData.auth_code) || filterData.auth_code.length == 0} />
-                        <a href="/lakcimkartya-feltoltes">Elhagytam a kódomat</a>
+                        <Submit label="Azonosító igénylése" loading={loading} disabled={/_/.test(filterData.auth_code) || filterData.auth_code.length == 0} />
+                        <a className="cancel-button" href="/">Mégsem</a>
                       </div>
                     </div>
                   </div>
@@ -279,4 +249,4 @@ function AuthPage() {
   )
 }
 
-export default AuthPage
+export default AddressCardPage
