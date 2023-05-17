@@ -61,7 +61,7 @@ export default function FileUpload({ id, name, label, buttonLabel = "Tallózás"
           <img src={URL.createObjectURL(image)} alt="Preview" width="32" height="32" />
           <div>
             <div>{image.name}</div>
-            <div>{(image.size / 1024).toFixed(2)} KB</div>
+            <div>{(image.size / 1048576).toFixed(2)} MB</div>
           </div>
           <button className="remove-image-button" onClick={() => removeImage(index)}>x</button>
         </div>
