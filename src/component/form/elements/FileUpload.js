@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function FileUpload({ id, name, label, buttonLabel = "Tallózás", acceptedExtensions, onChange, info, longInfo, maximalImageCount = 2 }) {
+export default function FileUpload({ id, name, label, buttonLabel = "Tallózás", acceptedExtensions, onChange, info, longInfo, maximalImageCount = 1 }) {
   const [previewImages, setPreviewImages] = useState([]);
   const isAcceptedExtentionPatternValid = extentionListValidator(acceptedExtensions)
 
