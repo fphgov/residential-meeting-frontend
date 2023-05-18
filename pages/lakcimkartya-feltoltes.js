@@ -32,10 +32,8 @@ function AddressCardPage() {
   const [ showPrivacy, setShowPrivacy ] = useState(false)
   const [ modalIsOpen, setIsOpen ] = React.useState(false)
   const [ filterData, setFilterData ] = useState({
-    'auth_code': '',
-    'email': '',
-    'privacy': false,
-    'newsletter': false,
+    'token': 'dd',
+    'media': null,
   })
 
   useEffect(() => {
@@ -77,22 +75,10 @@ function AddressCardPage() {
     }
   }
 
-  const handleChangeRaw = (e) => {
-    clearErrorItem(e.target.name)
-
-    setFilterData({ ...filterData, [e.target.name]: e.target.value })
-  }
-
-  const handleChangeEmailInput = (e) => {
-    clearErrorItem(e.target.name)
-
-    setFilterData({ ...filterData, [e.target.name]: rmAllCharForEmail(e.target.value) })
-  }
-
   const handleChangeFileInput = (data) => {
     clearErrorItem('files')
 
-    setFilterData({ ...filterData, files: data })
+    setFilterData({ ...filterData, media: data })
   }
 
   const handleChangeInput = (e) => {
@@ -124,15 +110,15 @@ function AddressCardPage() {
       'g-recaptcha-response': recaptchaToken,
     }
 
-    context.storeSave('form', 'data', filterData)
+    context.storeSave('form_code', 'data', filterData)
 
     axios.post(
-      publicRuntimeConfig.apiAuth,
+      publicRuntimeConfig.apiImageSend,
       new URLSearchParams(data).toString()
     )
     .then(response => {
       if (response.data) {
-        router.push('/kerdes/1')
+        router.push('/success')
       }
     })
     .catch(error => {
@@ -156,14 +142,6 @@ function AddressCardPage() {
       setLoading(false)
     })
   }
-
-  useEffect(() => {
-    if (filterData.email !== '') {
-      setShowPrivacy(true)
-    } else {
-      setShowPrivacy(false)
-    }
-  }, [filterData])
 
   return (
     <>
@@ -200,16 +178,6 @@ function AddressCardPage() {
 
                       <hr />
 
-                      <>
-                        <div className="input-wrapper form-control">
-                          <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true: false} ariaRequired={true}>
-                            Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglatakat tudomásul vettem.
-                          </Checkbox>
-                        </div>
-
-                        <ShowPrivacyError error={error} />
-                      </>
-
                       <ReCaptcha
                         ref={ref => setRecaptcha(ref)}
                         sitekey={publicRuntimeConfig.siteKey}
@@ -219,7 +187,7 @@ function AddressCardPage() {
                         }}
                       />
                       <div className="button-wrapper">
-                        <Submit label="Azonosító igénylése" loading={loading} disabled={/_/.test(filterData.auth_code) || filterData.auth_code.length == 0} />
+                        <Submit label="Azonosító igénylése" loading={loading} disabled={!filterData.token || !filterData.media} />
                         <a className="cancel-button" href="/">Mégsem</a>
                       </div>
                     </div>

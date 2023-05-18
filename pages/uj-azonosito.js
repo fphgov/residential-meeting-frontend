@@ -50,7 +50,7 @@ function NewAuth() {
                     [A megadott e-mail címre 72 órán belül elküldjük az azonosító kódot, amivel szavazhatsz.]
                   </div>
                   <div className="button-wrapper">
-                    <NavigationButton label="új azonosító igénylése" url="/lakcimkartya-feltoltes" />
+                    <NavigationButton label="új azonosító igénylése" url="/kerulet-valaszto" />
                   </div>
                 </div>
               </div>
