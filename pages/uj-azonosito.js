@@ -8,7 +8,7 @@ function NewAuth() {
     <>
       <HeaderSection showHeaderLine={true} />
 
-      <main className="page auth">
+      <main className="page auth lost-code-steps-page">
         <div className="container">
           <div className="row">
             <div className="offset-lg-2 offset-xl-3 col-lg-8 col-xl-6 col-md-12">
@@ -27,28 +27,41 @@ function NewAuth() {
               <div className="offset-lg-2 offset-xl-3 col-lg-8 col-xl-6 col-md-12">
                 <div className="middle-section-wrapper">
                   <h2>
-                    [Azonosító kézbesítése]
+                    Azonosító kézbesítése
                   </h2>
                   <div>
-                    [Csak azok tudnak új kódot igényelni, akik már megkapták postai úton a levelet, de valamilyen oknál fogva elhagyták. Csak azok tudnak új kódot igényelni, akik már megkapták postai úton a levelet, de valamilyen oknál fogva elhagyták.]
+                    Csak azok tudnak új kódot igényelni, akik már megkapták postai úton a levelet, de valamilyen oknál fogva elhagyták. Csak azok tudnak új kódot igényelni, akik már megkapták postai úton a levelet, de valamilyen oknál fogva elhagyták.
                   </div>
                   <h2>
-                    [E-mail cím megadása]
+                    E-mail cím megadása
                   </h2>
                   <div>
-                    [Ilyen és ilyen adatokat szükséges megadnod, mert ott fogunk tudni elérni és új kódot adni]
+                    Add meg e-mail címedet, amire elküldhetjük a névre szóló egyedi azonosítódat. Miután megadtad az e-mail címedet, egy megerősítő levelet küldünk, ahol a kapott linkre kattintva folytathatod az azonosító igénylését
                   </div>
                   <h2>
-                    [Lakcímkártya feltöltése]
+                    Lakcímkártya előlapjának feltöltése
                   </h2>
                   <div>
-                    [Ügyelj arra, hogy jól látható, világos, homogén háttér előtti fényképet készíts. Csak a lakcímkártya elejét fotózd le! Csak a lakcímkártya szerepeljen rajta, olvashatóan az adataiddal.]
+                    Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! (elfogadott formátumok: jpg, png, jpeg, HEIF, avif, webp)
+                  </div>
+                  <p><b>A képnél ügyelj arra, hogy:</b></p>
+                  <div style={{ display: 'flex', gap: '18px', justifyContent: 'space-between' }}>
+                    <div><div style={{ width: '125px', height: '125px', backgroundColor: '#D9D9D9' }}></div>ne tartalmazza a lakcímkártya hátoldalát</div>
+                    <div><div style={{ width: '125px', height: '125px', backgroundColor: '#D9D9D9' }}></div>olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!</div>
+                    <div><div style={{ width: '125px', height: '125px', backgroundColor: '#D9D9D9' }}></div>használj egységes, homogén hátteret!</div>
+                    <div><div style={{ width: '125px', height: '125px', backgroundColor: '#D9D9D9' }}></div>a képen csak a lakcímkártyád szerepeljen!</div>
                   </div>
                   <h2>
-                    [Megérkezik az új kódod]
+                    Feldolgozzuk az adataidat
                   </h2>
                   <div>
-                    [A megadott e-mail címre 72 órán belül elküldjük az azonosító kódot, amivel szavazhatsz.]
+                    Ügyintézőink ellenőrzik a lakcímkártya fotóját és kikeresik az egyedi azonosítódat.
+                  </div>
+                  <h2>
+                    Megérkezik az e-mail címed a kódod
+                  </h2>
+                  <div>
+                    Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                   </div>
                   <div className="button-wrapper">
                     <NavigationButton label="új azonosító igénylése" url="/kerulet-valaszto" />
@@ -56,7 +69,7 @@ function NewAuth() {
                 </div>
               </div>
             </div>
-            <hr className="page-end-hr"/>
+            <hr className="page-end-hr" />
           </div>
         </div>
       </main>
