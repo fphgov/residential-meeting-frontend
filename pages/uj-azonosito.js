@@ -14,7 +14,8 @@ function NewAuth() {
             <div className="offset-lg-2 offset-xl-3 col-lg-8 col-xl-6 col-md-12">
               <div className="auth-wrapper new-auth">
                 <div className="information">
-                  <h1>[Azonosító igénylése]</h1>
+                  <h1>Hogyan igényelhetem az egyedi azonosítómat?</h1>
+                  <p>Ha elvesztetted vagy nem találod a leveledet, akkor is tudsz szavazni az első Budapesti Lakógyűlésen.</p>
                 </div>
               </div>
             </div>

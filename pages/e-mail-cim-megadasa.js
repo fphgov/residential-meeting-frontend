@@ -3,14 +3,21 @@ import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
+import Modal from 'react-modal'
 import StoreContext from '../src/StoreContext'
 import HeaderSection from '../src/section/HeaderSection'
 import Submit from "../src/component/form/elements/Submit"
-import Dropdown from '../src/component/form/elements/DropdownInput'
+import InputText from "../src/component/form/elements/InputText"
+import Checkbox from "../src/component/form/elements/Checkbox"
 import ScrollTo from "../src/component/common/ScrollTo"
+import Error from "../src/component/form/Error"
+import ErrorMiniWrapper from "../src/component/form/ErrorMiniWrapper"
+import { rmAllCharForEmail, rmAllCharForName } from '../src/lib/removeSpecialCharacters'
 import ErrorInfo from "../src/component/form/ErrorInfo"
 
-function DistrictSelector() {
+Modal.setAppElement('body');
+
+function EmailPage() {
   const context = useContext(StoreContext)
   const router = useRouter()
 
@@ -22,7 +29,8 @@ function DistrictSelector() {
   const [scroll, setScroll] = useState(false)
   const [error, setError] = useState(null)
   const [filterData, setFilterData] = useState({
-    'district': '',
+    'email': '',
+    'privacy': false,
   })
 
   useEffect(() => {
@@ -31,8 +39,48 @@ function DistrictSelector() {
     })
   }, [])
 
-  const handleSelectInput = (e) => {
-    setFilterData({ ...filterData, district: e.target.value })
+  const clearErrorItem = (inputName) => {
+    if (error && error[inputName]) {
+      delete error[inputName]
+    }
+  }
+
+  const ShowPrivacyError = ({ error }) => {
+    if (!error) {
+      return null
+    }
+
+    if (error?.newsletter?.callbackValue && error?.privacy?.callbackValue) {
+      return <ErrorMiniWrapper error={error} id="privacy" className="error-message-single" />
+    }
+
+    if (error?.newsletter || error?.privacy) {
+      return (
+        <>
+          <ErrorMiniWrapper error={error} id="newsletter" className="error-message-single" />
+          <ErrorMiniWrapper error={error} id="privacy" className="error-message-single" />
+        </>
+      )
+    }
+  }
+
+  const handleChangeEmailInput = (e) => {
+    clearErrorItem(e.target.name)
+
+    setFilterData({ ...filterData, [e.target.name]: rmAllCharForEmail(e.target.value) })
+  }
+
+  const handleChangeInput = (e) => {
+    clearErrorItem(e.target.name)
+
+    if (e.target.name === 'privacy' || e.target.name === 'newsletter') {
+      clearErrorItem('privacy')
+      clearErrorItem('newsletter')
+    }
+
+    const value = e.target.type === 'checkbox' ? e.target.checked : rmAllCharForName(e.target.value)
+
+    setFilterData({ ...filterData, [e.target.name]: value })
   }
 
   const submitAuth = (e) => {
@@ -54,12 +102,12 @@ function DistrictSelector() {
     context.storeSave('form_code', 'data', filterData)
 
     axios.post(
-      publicRuntimeConfig.apiCheckDistrict,
+      publicRuntimeConfig.apiEmailRequest,
       new URLSearchParams(data).toString()
     )
       .then(response => {
         if (response.data) {
-          router.push('/e-mail-cim-megadasa')
+          router.push('/e-mail-cim-megerositese')
         }
       })
       .catch(error => {
@@ -88,7 +136,7 @@ function DistrictSelector() {
     <>
       <HeaderSection showHeaderLine={true} />
 
-      <main className="page auth lost-code-steps-page district-selector-page">
+      <main className="page auth lost-code-steps-page">
         {scroll && document.querySelector('.error-message-inline') ? <ScrollTo element={document.querySelector('.error-message-inline').offsetTop} /> : null}
 
         <div className="container">
@@ -102,16 +150,36 @@ function DistrictSelector() {
                     </div>
 
                     <div className="login-wrapper">
-
+                      {error && <Error message={error} />}
                       <div className="input-wrapper">
-                        <Dropdown
-                          label="Kerület kiválasztása: *"
-                          longInfo="Válaszd ki a lakcímkártyádon szereplő címed szerinti kerületet!"
-                          onChange={handleSelectInput}
-                          disabled={error && true}
+                        <InputText
+                          id="email"
+                          name="email"
+                          label="E-mail cím megadása:"
+                          placeholder="Ide írd az email címedet"
+                          value={filterData.email}
+                          onChange={handleChangeEmailInput}
+                          aria-invalid={error && error['email'] ? true : false}
+                          aria-required={false}
+                          longInfo={
+                            <>Add meg az azt e-mail címet, amire elküldhetjük a megerősítő linket és a kódodat.</>
+                          }
+                          info={null}
                         />
-                        {error && <ErrorInfo message={error} />}
+
+                        <ErrorMiniWrapper error={error} id="email" />
                       </div>
+
+                      <>
+                        <div className="input-wrapper form-control" style={{marginBottom: '6px'}}>
+                          <Checkbox id="privacy" name="privacy" value={filterData.privacy} onChange={handleChangeInput} ariaInvalid={error && error['privacy'] ? true : false} ariaRequired={true}>
+                            Elolvastam az <a href={`${publicRuntimeConfig.publicHost}/files/adatkezelesi_tajekoztato.pdf`} target="_blank" rel="noopener noreferrer">adatkezelési tájékoztatást</a>, és az abban foglaltakat tudomásul vettem.
+                          </Checkbox>
+                        </div>
+                        <ErrorMiniWrapper error={error} id="privacy" />
+                      </>
+
+                      <hr />
 
                       <ReCaptcha
                         ref={ref => setRecaptcha(ref)}
@@ -121,10 +189,11 @@ function DistrictSelector() {
                           setRecaptchaToken(recaptchaToken)
                         }}
                       />
-                      {!error ? <div className="submit-button-wrapper">
-                        <Submit label="Tovább" loading={loading} disabled={!filterData.district} />
+
+                      <div className="submit-button-wrapper">
+                        <Submit label="Megerősítés" loading={loading} disabled={!filterData.email} />
                         <a className="cancel-button" href="/">Mégsem</a>
-                      </div> : <a className="mail-question-info" href="https://lakogyules.budapest.hu/mi-a-lakogyules#mikor-kapom-meg-a-levelem-az-egyeni-azonositommal" target="_blank">mikor kapom meg a levelem?</a>}
+                      </div>
                     </div>
                   </div>
                 </fieldset>
@@ -137,4 +206,4 @@ function DistrictSelector() {
   )
 }
 
-export default DistrictSelector
+export default EmailPage
