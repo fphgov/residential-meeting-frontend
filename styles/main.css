@@ -368,23 +368,6 @@ footer.main .copyright-wrapper {
   margin-bottom: 25px;
 }
 
-.login-wrapper .button-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button-wrapper > a {
-  color: #0EA6CE;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.button-wrapper > a.cancel-button {
-  color: #777777;
-}
-
 .input-wrapper label, .file-upload-container .file-upload-label {
   color: #12326E;
   font-style: normal;
@@ -795,12 +778,27 @@ label.radio-inline > input[type="radio"] {
   margin: 0 9px;
 }
 
-.button-wrapper a {
+.submit-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 32px; */
+}
+
+.submit-button-wrapper a {
   padding: 10px;
 }
 
-.district-selector-page .button-wrapper {
-  margin-bottom: 0;
+.submit-button-wrapper > a {
+  color: #0EA6CE;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.submit-button-wrapper > a.cancel-button {
+  color: #777777;
 }
 
 .overview {

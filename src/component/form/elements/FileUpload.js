@@ -28,6 +28,7 @@ export default function FileUpload({ id, name, label, buttonLabel = "Tallózás"
     let newImages = [...previewImages];
     newImages.splice(index, 1);
     setPreviewImages(newImages);
+    onChange(newImages)
   };
 
   function extentionListValidator(extentionArray) {
@@ -42,7 +43,7 @@ export default function FileUpload({ id, name, label, buttonLabel = "Tallózás"
   return (
     <div className="file-upload-container">
       <div className="file-upload-label">{label}</div>
-      {longInfo ? <div className="long-info">{longInfo}</div> : ''}
+      {longInfo ? <div className="long-info" dangerouslySetInnerHTML={{ __html: longInfo }}></div> : ''}
       <label htmlFor={id} className="file-upload-button-label">{buttonLabel}</label>
       <input
         type="file"
