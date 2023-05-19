@@ -8,17 +8,19 @@ function VerifyEmail() {
   const context = useContext(StoreContext)
   const router = useRouter()
 
-  // const form = context.storeGet('form_code')?.data
+  const form = context.storeGet('form_code')?.data
 
-  // useEffect(() => {
-  //   if (! (form && form.token)) {
-  //     router.push('/')
+  useEffect(() => {
+    if (!(form && form.email)) {
+      setTimeout(() => {
+        router.push('/azonositas')
+      }, 100)
 
-  //     return
-  //   }
+      return
+    }
 
-  //   context.storeRemove('form')
-  // }, []);
+    context.storeRemove('form_code')
+  }, []);
 
   return (
     <>

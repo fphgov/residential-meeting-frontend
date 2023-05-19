@@ -146,7 +146,7 @@ function AddressCardPage() {
         <div className="container">
           <div className="row">
             <div className="offset-lg-2 offset-xl-3 col-lg-8 col-xl-6 col-md-12">
-              <form className="form-horizontal" onSubmit={submitAuth}>
+              {filterData.token && <form className="form-horizontal" onSubmit={submitAuth}>
                 <fieldset>
                   <div className="auth-wrapper">
                     <div className="information">
@@ -188,7 +188,7 @@ function AddressCardPage() {
                     </div>
                   </div>
                 </fieldset>
-              </form>
+              </form>}
             </div>
           </div>
         </div>

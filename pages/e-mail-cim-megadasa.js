@@ -13,7 +13,6 @@ import ScrollTo from "../src/component/common/ScrollTo"
 import Error from "../src/component/form/Error"
 import ErrorMiniWrapper from "../src/component/form/ErrorMiniWrapper"
 import { rmAllCharForEmail, rmAllCharForName } from '../src/lib/removeSpecialCharacters'
-import ErrorInfo from "../src/component/form/ErrorInfo"
 
 Modal.setAppElement('body');
 
@@ -42,25 +41,6 @@ function EmailPage() {
   const clearErrorItem = (inputName) => {
     if (error && error[inputName]) {
       delete error[inputName]
-    }
-  }
-
-  const ShowPrivacyError = ({ error }) => {
-    if (!error) {
-      return null
-    }
-
-    if (error?.newsletter?.callbackValue && error?.privacy?.callbackValue) {
-      return <ErrorMiniWrapper error={error} id="privacy" className="error-message-single" />
-    }
-
-    if (error?.newsletter || error?.privacy) {
-      return (
-        <>
-          <ErrorMiniWrapper error={error} id="newsletter" className="error-message-single" />
-          <ErrorMiniWrapper error={error} id="privacy" className="error-message-single" />
-        </>
-      )
     }
   }
 

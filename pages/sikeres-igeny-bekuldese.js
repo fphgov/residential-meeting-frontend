@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
-
 import StoreContext from '../src/StoreContext'
 import HeaderSection from '../src/section/HeaderSection'
 import NavigationButton from '../src/component/form/elements/NavigationButton'
@@ -18,7 +17,7 @@ function SuccessfulRequest() {
       return
     }
 
-    context.storeRemove('form')
+    context.storeRemove('form_code')
   }, []);
 
   return (
