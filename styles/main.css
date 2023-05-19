@@ -4,13 +4,13 @@ main.page {
 }
 
 main.page.auth {
-  background: linear-gradient(90deg,#12326e,#03194d);
-  background: url('../public/image/szabadsag-szobor.png') no-repeat top center, linear-gradient(90deg,#12326e,#03194d);
+  background: linear-gradient(90deg, #12326e, #03194d);
+  background: url('../public/image/szabadsag-szobor.png') no-repeat top center, linear-gradient(90deg, #12326e, #03194d);
   background-size: cover;
 }
 
 header.site-header {
-  background: linear-gradient(90deg,#12326e,#03194d);
+  background: linear-gradient(90deg, #12326e, #03194d);
   z-index: 2;
 }
 
@@ -322,7 +322,7 @@ footer.main .copyright-wrapper {
 }
 
 .auth-wrapper.new-auth .information {
-  padding: 100px 0 100px 0;
+  padding: 150px 0 150px 0;
 }
 
 .new-auth.middle-section-container {
@@ -336,6 +336,44 @@ footer.main .copyright-wrapper {
 
 .new-auth .middle-section-wrapper {
   padding: 40px 0 0 0;
+}
+
+.middle-section-wrapper .headline-with-icon-wrapper {
+  display: flex;
+}
+
+.middle-section-wrapper .headline-with-icon-wrapper .headline-icon-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 16px 16px 0;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  background-color: #C5E9F5;
+  border-radius: 50%;
+}
+
+.middle-section-wrapper .blue-label-info-box {
+  background-color: #EEF8FE;
+  margin-top: 16px;
+  padding: 18px;
+}
+
+.middle-section-wrapper .blue-label-info-box > .headline {
+  line-height: 26px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.middle-section-wrapper .blue-label-info-box > ul {
+  margin: 0;
+}
+
+.middle-section-wrapper .blue-label-info-box > div,
+.middle-section-wrapper .blue-label-info-box li {
+  line-height: 24px;
+  font-size: 16px;
 }
 
 .new-auth .middle-section-wrapper .button-wrapper {
@@ -368,7 +406,8 @@ footer.main .copyright-wrapper {
   margin-bottom: 25px;
 }
 
-.input-wrapper label, .file-upload-container .file-upload-label {
+.input-wrapper label,
+.file-upload-container .file-upload-label {
   color: #12326E;
   font-style: normal;
   font-weight: 600;
@@ -455,7 +494,7 @@ footer.main .copyright-wrapper {
   margin-right: 5px;
 }
 
-.file-upload-image-thumbnail-info  .remove-image-button {
+.file-upload-image-thumbnail-info .remove-image-button {
   position: relative;
   top: -10px;
   color: #222222;
@@ -926,9 +965,7 @@ input[aria-invalid="true"] + label:hover::before {
   }
 }
 
-@media screen and (max-width: 1023px) {
-
-}
+@media screen and (max-width: 1023px) {}
 
 @media screen and (max-width: 991px) {
   .hamburger-menu-wrapper {
