@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function FileUpload({ id, name, label, buttonLabel = "Tallózás", acceptedExtensions, onChange, info, longInfo, maximalImageCount = 1 }) {
+export default function FileUpload({ id, name, label, buttonLabel = "Tallózás", acceptedExtensions, onChange, info, longInfo, linkText, onLinkClick, additionalHtml, maximalImageCount = 1 }) {
   const [previewImages, setPreviewImages] = useState([]);
   const isAcceptedExtentionPatternValid = extentionListValidator(acceptedExtensions)
 
@@ -17,9 +17,9 @@ export default function FileUpload({ id, name, label, buttonLabel = "Tallózás"
     const existingPreviewImageNames = previewImages.map(image => image.name);
     images = images.filter(image => !existingPreviewImageNames.includes(image.name));
 
-    const existingAndNewImages = [...previewImages, ...images ].slice(0, maximalImageCount)
+    const existingAndNewImages = [...previewImages, ...images].slice(0, maximalImageCount)
     setPreviewImages(existingAndNewImages)
-    onChange(existingAndNewImages); 
+    onChange(existingAndNewImages);
 
     event.target.value = null;
   };
@@ -43,7 +43,13 @@ export default function FileUpload({ id, name, label, buttonLabel = "Tallózás"
   return (
     <div className="file-upload-container">
       <div className="file-upload-label">{label}</div>
-      {longInfo ? <div className="long-info" dangerouslySetInnerHTML={{ __html: longInfo }}></div> : ''}
+      {longInfo ?
+        <div className="long-info">{longInfo}
+          {linkText &&
+            <a onClick={onLinkClick}>
+              {linkText}
+            </a>
+          }</div> : ''}
       <label htmlFor={id} className="file-upload-button-label">{buttonLabel}</label>
       <input
         type="file"
@@ -55,18 +61,19 @@ export default function FileUpload({ id, name, label, buttonLabel = "Tallózás"
         className="file-upload-input"
       />
       {info ? <div className="info">{info}</div> : ''}
+      <div className="mt-3" dangerouslySetInnerHTML={{ __html: additionalHtml }}></div>
 
       <div className="image-thumbnail-wrapper">
-      {previewImages.map((image, index) => (
-        <div key={index} className="file-upload-image-thumbnail-info">
-          <img src={URL.createObjectURL(image)} alt="Preview" width="32" height="32" />
-          <div>
-            <div>{image.name}</div>
-            <div>{(image.size / 1048576).toFixed(2)} MB</div>
+        {previewImages.map((image, index) => (
+          <div key={index} className="file-upload-image-thumbnail-info">
+            <img src={URL.createObjectURL(image)} alt="Preview" width="32" height="32" />
+            <div>
+              <div>{image.name}</div>
+              <div>{(image.size / 1048576).toFixed(2)} MB</div>
+            </div>
+            <button className="remove-image-button" onClick={() => removeImage(index)}>x</button>
           </div>
-          <button className="remove-image-button" onClick={() => removeImage(index)}>x</button>
-        </div>
-      ))}
+        ))}
       </div>
     </div>
   );

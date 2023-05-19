@@ -4,20 +4,19 @@ import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
 import Modal from 'react-modal'
-import StoreContext from '../src/StoreContext'
-import HeaderSection from '../src/section/HeaderSection'
-import Submit from "../src/component/form/elements/Submit"
-import FileUpload from "../src/component/form/elements/FileUpload"
-import ScrollTo from "../src/component/common/ScrollTo"
-import Error from "../src/component/form/Error"
-import ErrorMiniWrapper from "../src/component/form/ErrorMiniWrapper"
-import StaticImage from "../src/component/common/StaticImage"
+import StoreContext from '../../src/StoreContext'
+import HeaderSection from '../../src/section/HeaderSection'
+import Submit from "../../src/component/form/elements/Submit"
+import FileUpload from "../../src/component/form/elements/FileUpload"
+import ScrollTo from "../../src/component/common/ScrollTo"
+import Error from "../../src/component/form/Error"
 
 Modal.setAppElement('body');
 
 function AddressCardPage() {
   const context = useContext(StoreContext)
   const router = useRouter()
+  const { token } = router.query;
 
   const { publicRuntimeConfig } = getConfig()
 
@@ -26,7 +25,6 @@ function AddressCardPage() {
   const [recaptchaToken, setRecaptchaToken] = useState('')
   const [scroll, setScroll] = useState(false)
   const [error, setError] = useState(null)
-  const [isClosed, setIsClosed] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false)
   const [filterData, setFilterData] = useState({
     'token': null,
@@ -38,6 +36,21 @@ function AddressCardPage() {
       setRecaptchaToken(recaptchaToken)
     })
   }, [])
+
+  useEffect(() => {
+    async function fetchTokenData() {
+      if (token) {
+        const isTokenValid = await checkToken(token)
+        if (isTokenValid) {
+          setFilterData({ ...filterData, token: token })
+        } else {
+          router.push('/ervenytelen-link')
+        }
+      }
+    }
+
+    fetchTokenData()
+  }, [token]);
 
   function openModal() {
     setIsOpen(true)
@@ -59,6 +72,21 @@ function AddressCardPage() {
     setFilterData({ ...filterData, media: data })
   }
 
+  const checkToken = async (token) => {
+    let data = new FormData();
+    data.append('token', token);
+
+    try {
+      await axios.post(
+        publicRuntimeConfig.apiCheckToken,
+        data
+      )
+      return true
+    } catch {
+      return false
+    }
+  }
+
   const submitAuth = (e) => {
     e.preventDefault()
 
@@ -73,9 +101,9 @@ function AddressCardPage() {
     let data = new FormData();
     data.append('token', filterData.token);
     data.append('media', filterData.media[0]);
-    data.append('g-recaptcha-response',  recaptchaToken);
+    data.append('g-recaptcha-response', recaptchaToken);
 
-    context.storeSave('form_code', 'data', {token: filterData.token})
+    context.storeSave('form_code', 'data', { token: filterData.token })
 
     axios.post(
       publicRuntimeConfig.apiImageSend,
@@ -112,7 +140,7 @@ function AddressCardPage() {
     <>
       <HeaderSection showHeaderLine={true} />
 
-      <main className="page auth">
+      <main className="page auth lost-code-steps-page">
         {scroll && document.querySelector('.error-message-inline') ? <ScrollTo element={document.querySelector('.error-message-inline').offsetTop} /> : null}
 
         <div className="container">
@@ -127,7 +155,7 @@ function AddressCardPage() {
                     </div>
 
                     <div className="login-wrapper">
-                      {error && !isClosed ? <Error message={error} /> : null}
+                      {error && <Error message={error} />}
 
                       <div className="input-wrapper">
                         <FileUpload
@@ -135,8 +163,11 @@ function AddressCardPage() {
                           name="address-card"
                           label="Lakcím kártya feltöltése: *"
                           onChange={handleChangeFileInput}
-                          longInfo={`Készíts egy képet a lakcímkártyád előlapjáról vagy szkenneld be azt, és töltsd fel a képet! <a>Mire ügyelj a kép feltöltésénél?</a>`}
+                          longInfo="Készíts egy képet a lakcímkártyád előlapjáról vagy szkenneld be azt, és töltsd fel a képet! "
+                          linkText="Mire ügyelj a kép feltöltésénél?"
+                          onLinkClick={openModal}
                           acceptedExtensions={['.jpg', '.jpeg', '.png', '.heif', '.avif']}
+                          additionalHtml="<div>Elfogadott kiterjesztés: jpg, png, jpeg, heif, avif</div><div>Max. méret: 15 MB.</div>"
                         />
                       </div>
 
@@ -165,11 +196,17 @@ function AddressCardPage() {
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          className="Modal"
+          className="Text-Modal"
           overlayClassName="Overlay"
         >
-          <div className="modal-content">
-            <StaticImage src="level.png" width={320} height={320} alt="Kód a postai levél alján" priority={true} />
+          <div className="text-modal-content">
+            <h2>Mire ügyelj a kép feltöltésénél?</h2>
+            <ul>
+              <li>olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!</li>
+              <li>használj egységes, homogén hátteret!</li>
+              <li>a képen csak a lakcímkártyád szerepeljen!</li>
+              <li>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe.</li>
+            </ul>
           </div>
 
           <div className="modal-navigation">

@@ -66,6 +66,10 @@ h1 {
   font-size: 32px;
 }
 
+.lost-code-steps-page h1 {
+  text-transform: unset;
+}
+
 a {
   -webkit-transition: color .14s ease-out, background-color .14s ease-out;
   transition: color .14s ease-out, background-color .14s ease-out;
@@ -161,7 +165,7 @@ fieldset {
   animation: loader 1.2s linear infinite;
 }
 
-.Modal {
+.Modal, .Text-Modal {
   position: absolute;
   top: 0;
   left: 0;
@@ -190,7 +194,31 @@ fieldset {
   margin: 0 auto;
 }
 
-.Modal button {
+.Text-Modal {
+  height: 40%;
+}
+
+.Text-Modal .text-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px;
+  overflow: hidden;
+  flex: 1;
+  margin: 0 auto;
+}
+
+.Text-Modal .text-modal-content h2 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.Text-Modal .text-modal-content li {
+  padding-top: 16px;
+}
+
+.Modal button, .Text-Modal button {
   color: #222;
   background: #FFFFFF;
   border: 1px solid #EEEEEE;
@@ -267,6 +295,15 @@ span.cc_highlight:hover {
   .Modal img {
     width: 100%;
     height: auto;
+  }
+
+  .Text-Modal {
+    width: 80%;
+    height: 60%;
+  }
+
+  .Text-Modal .text-modal-content h2{
+    text-align: center;
   }
 
   #cc--main #cm {

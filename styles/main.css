@@ -438,6 +438,10 @@ footer.main .copyright-wrapper {
   margin-top: 16px;
 }
 
+.file-upload-container .long-info a:hover {
+  text-decoration: none;
+}
+
 .file-upload-image-thumbnail-info {
   display: flex;
   align-items: center;
