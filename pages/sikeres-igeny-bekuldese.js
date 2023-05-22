@@ -12,7 +12,7 @@ function SuccessfulRequest() {
 
   useEffect(() => {
     if (! (form && form.token)) {
-      router.push('/')
+      router.push('/azonositas')
 
       return
     }
@@ -34,7 +34,7 @@ function SuccessfulRequest() {
                   <h1>Sikeresen leadtad az igényedet az egyedi azonosítódra!</h1>
                   <p>Még ellenőriznünk kell az adatokat, ezért az igényléstől számított 3 munkanapon belül elküldjük részedre a kódodat az általod megadott e-mail címre!</p>
                   <div className='d-flex justify-content-center mt-5'>
-                  <NavigationButton label="vissza a főoldalra" url="/"/>
+                  <NavigationButton label="vissza a főoldalra" url="/azonositas"/>
                   </div>
                 </div>
               </div>
