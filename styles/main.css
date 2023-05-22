@@ -402,8 +402,11 @@ footer.main .copyright-wrapper {
 
 .middle-section-wrapper .static-image-thumbnail-wrapper {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 32px;
+}
+
+.middle-section-wrapper .static-image-thumbnail-wrapper .static-image-thumbnail {
+  width: 187px;
 }
 
 .new-auth .middle-section-wrapper .button-wrapper {
@@ -1070,6 +1073,10 @@ input[aria-invalid="true"] + label:hover::before {
 
   .submit-button-wrapper a {
     margin-top: 18px;
+  }
+
+  .middle-section-wrapper .static-image-thumbnail-wrapper {
+    flex-wrap: wrap;
   }
 }
 

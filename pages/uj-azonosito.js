@@ -8,7 +8,7 @@ import IconEmail from '../public/image/icon-email.svg'
 import IconIdCard from '../public/image/icon-id-card.svg'
 import IconTime from '../public/image/icon-time.svg'
 import IconNumbers from '../public/image/icon-numbers.svg'
-
+import StaticImage  from "../src/component/common/StaticImage"
 
 function NewAuth() {
   return (
@@ -61,12 +61,27 @@ function NewAuth() {
                     <div>
                       Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! A lakcímkártya előlapján található a név és a lakcím. <b>Elfogadott kiterjesztés:</b> jpg, png, jpeg, heif, avif. <b>Max. méret:</b> 15 MB.
                     </div>
-                    <p className='larger-text'>A képnél ügyelj arra, hogy:</p>
+                    <p className="larger-text"><b>A képnél ügyelj arra, hogy:</b></p>
                     <div className="static-image-thumbnail-wrapper">
-                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>ne tartalmazza a lakcímkártya hátoldalát</div>
-                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!</div>
-                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>használj egységes, homogén hátteret!</div>
-                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>a képen csak a lakcímkártyád szerepeljen!</div>
+                      <div className="static-image-thumbnail">
+                        <StaticImage src="instruction-1.png" width={187} height={230} alt="ne tartalmazza a lakcímkártya hátoldalát" priority={false} />
+                        ne tartalmazza a lakcímkártya hátoldalát
+                      </div>
+
+                      <div className="static-image-thumbnail">
+                        <StaticImage src="instruction-2.png" width={187} height={230} alt="olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!" priority={false} />
+                        olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!
+                      </div>
+
+                      <div className="static-image-thumbnail">
+                        <StaticImage src="instruction-3.png" width={187} height={230} alt="használj egységes, homogén hátteret!" priority={false} />
+                        használj egységes, homogén hátteret!
+                      </div>
+
+                      <div className="static-image-thumbnail">
+                        <StaticImage src="instruction-4.png" width={187} height={230} alt="a képen csak a lakcímkártyád szerepeljen!" priority={false} />
+                        a képen csak a lakcímkártyád szerepeljen!
+                      </div>
                     </div>
                     <p className="larger-text mt-5"><b>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe!</b></p>
                   </div>
@@ -83,7 +98,7 @@ function NewAuth() {
                     </div>
                   </div>
                   <div className="button-wrapper">
-                    <NavigationButton label="új azonosító igénylése" url="/kerulet-valaszto" />
+                    <NavigationButton label="Egyedi azonosító igénylése" url="/kerulet-valaszto" />
                   </div>
                 </div>
               </div>
