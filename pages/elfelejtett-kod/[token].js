@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import getConfig from 'next/config'
-import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
 import Modal from 'react-modal'
-import StoreContext from '../../src/StoreContext'
 import HeaderSection from '../../src/section/HeaderSection'
 import Submit from "../../src/component/form/elements/Submit"
 import FileUpload from "../../src/component/form/elements/FileUpload"
@@ -13,11 +11,7 @@ import Error from "../../src/component/form/Error"
 
 Modal.setAppElement('body');
 
-function LostCodePage() {
-  const context = useContext(StoreContext)
-  const router = useRouter()
-  const { token } = router.query;
-
+function LostCodePage({ token }) {
   const { publicRuntimeConfig } = getConfig()
 
   const [loading, setLoading] = useState(false)
@@ -27,7 +21,6 @@ function LostCodePage() {
   const [error, setError] = useState(null)
   const [modalIsOpen, setIsOpen] = React.useState(false)
   const [filterData, setFilterData] = useState({
-    'token': null,
     'media': null,
   })
 
@@ -73,8 +66,6 @@ function LostCodePage() {
     data.append('token', token)
     data.append('media', filterData.media[0])
     data.append('g-recaptcha-response', recaptchaToken)
-
-    context.storeSave('form_code', 'data', { token })
 
     axios.post(
       publicRuntimeConfig.apiImageSend,
@@ -154,7 +145,7 @@ function LostCodePage() {
                       />
 
                       <div className="submit-button-wrapper">
-                        <Submit label="Azonosító igénylése" loading={loading} disabled={!filterData.token || !filterData.media || !filterData.media.length} />
+                        <Submit label="Azonosító igénylése" loading={loading} disabled={!filterData.media || !filterData.media.length} />
                         <a className="cancel-button" href="/">Mégse</a>
                       </div>
                     </div>
