@@ -15,7 +15,7 @@ function NewAuth() {
     <>
       <HeaderSection showHeaderLine={true} />
 
-      <main className="page auth lost-code-steps-page">
+      <main className="page auth lost-code-steps-page new-auth">
         <div className="container">
           <div className="row">
             <div className="offset-xl-2 col-xl-8 col-lg-12">
@@ -33,43 +33,54 @@ function NewAuth() {
             <div className="row">
               <div className="offset-xl-2 col-xl-8 col-lg-12">
                 <div className="middle-section-wrapper">
-                  <IconWithHeadline headlineText="Bejelentett lakcímed kerületének megadása" icon={IconNotes} />
-                  <div>
-                    Azok a városlakók tudják online megigényelni az egyedi azonosítójukat, akiknek a kerületében már befejeződött a terjesztés.
+                  <div className="middle-section-point-wrapper">
+                    <IconWithHeadline headlineText="Bejelentett lakcímed kerületének megadása" icon={IconNotes} />
+                    <div>
+                      Azok a városlakók tudják online megigényelni az egyedi azonosítójukat, akiknek a kerületében már befejeződött a terjesztés.
+                    </div>
+                    <div className='blue-label-info-box'>
+                      <p className='headline'>Ellenőrizd, hogy a bejelentett lakcímed kerületében mikorra várható az utolsó levél érkezése! </p>
+                      <div><b>A levelek terjesztése befejeződött az alábbi kerületekben:</b> I., V., VI.</div>
+                      <div><b>A levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> III., IV., VII., VIII., IX., X., XI., XII., XIII.</div>
+                      <div><b>A terjesztés várható időtartama a kerületekben:</b></div>
+                      <ul>
+                        <li>II., XIV., XV. kerület: 2023. május 19-29.</li>
+                        <li>XVI., XVII. kerület: 2023. május 24. - június 3.</li>
+                        <li>XVIII., XIX., XX., XXI., XXII., XXIII. kerület: 2023. május 26. - június 5.</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className='blue-label-info-box'>
-                    <p className='headline'>Ellenőrizd, hogy a bejelentett lakcímed kerületében mikorra várható az utolsó levél érkezése! </p>
-                    <div><b>A levelek terjesztése befejeződött az alábbi kerületekben:</b> I., V., VI.</div>
-                    <div><b>A levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> III., IV., VII., VIII., IX., X., XI., XII., XIII.</div>
-                    <div><b>A terjesztés várható időtartama a kerületekben:</b></div>
-                    <ul>
-                      <li>II., XIV., XV. kerület: 2023. május 19-29.</li>
-                      <li>XVI., XVII. kerület: 2023. május 24. - június 3.</li>
-                      <li>XVIII., XIX., XX., XXI., XXII., XXIII. kerület: 2023. május 26. - június 5.</li>
-                    </ul>
+                  <div className="middle-section-point-wrapper">
+                    <IconWithHeadline headlineText="E-mail cím megadása" icon={IconEmail} />
+                    <div>
+                      Add meg e-mail címedet, amire elküldhetjük a névre szóló egyedi azonosítódat. Miután megadtad az e-mail címedet, egy megerősítő levelet küldünk, ahol a kapott linkre kattintva folytathatod az azonosító igénylését.
+                    </div>
                   </div>
-                  <IconWithHeadline headlineText="E-mail cím megadása" icon={IconEmail} />
-                  <div>
-                    Add meg e-mail címedet, amire elküldhetjük a névre szóló egyedi azonosítódat. Miután megadtad az e-mail címedet, egy megerősítő levelet küldünk, ahol a kapott linkre kattintva folytathatod az azonosító igénylését.
+                  <div className="middle-section-point-wrapper">
+                    <IconWithHeadline headlineText="Lakcímkártya előlapjának feltöltése" icon={IconIdCard} />
+                    <div>
+                      Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! A lakcímkártya előlapján található a név és a lakcím. <b>Elfogadott kiterjesztés:</b> jpg, png, jpeg, heif, avif. <b>Max. méret:</b> 15 MB.
+                    </div>
+                    <p className='larger-text'>A képnél ügyelj arra, hogy:</p>
+                    <div className="static-image-thumbnail-wrapper">
+                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>ne tartalmazza a lakcímkártya hátoldalát</div>
+                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!</div>
+                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>használj egységes, homogén hátteret!</div>
+                      <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9', marginBottom: '8px' }}></div>a képen csak a lakcímkártyád szerepeljen!</div>
+                    </div>
+                    <p className="larger-text mt-5"><b>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe!</b></p>
                   </div>
-                  <IconWithHeadline headlineText="Lakcímkártya előlapjának feltöltése" icon={IconIdCard} />
-                  <div>
-                    Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! A lakcímkártya előlapján található a név és a lakcím. <b>Elfogadott kiterjesztés:</b> jpg, png, jpeg, heif, avif. <b>Max. méret:</b> 15 MB.
+                  <div className="middle-section-point-wrapper">
+                    <IconWithHeadline headlineText="Feldolgozzuk az adataidat" icon={IconTime} />
+                    <div>
+                      Ügyintézőink ellenőrzik a lakcímkártya fotóját és kikeresik az egyedi azonosítódat.
+                    </div>
                   </div>
-                  <p><b>A képnél ügyelj arra, hogy:</b></p>
-                  <div style={{ display: 'flex', gap: '14px', justifyContent: 'space-between' }}>
-                    <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9' }}></div>ne tartalmazza a lakcímkártya hátoldalát</div>
-                    <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9' }}></div>olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!</div>
-                    <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9' }}></div>használj egységes, homogén hátteret!</div>
-                    <div><div style={{ width: '195px', height: '195px', backgroundColor: '#D9D9D9' }}></div>a képen csak a lakcímkártyád szerepeljen!</div>
-                  </div>
-                  <IconWithHeadline headlineText="Feldolgozzuk az adataidat" icon={IconTime} />
-                  <div>
-                    Ügyintézőink ellenőrzik a lakcímkártya fotóját és kikeresik az egyedi azonosítódat.
-                  </div>
-                  <IconWithHeadline headlineText="Megérkezik az e-mail címed a kódod" icon={IconNumbers} />
-                  <div>
-                    Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
+                  <div className="middle-section-point-wrapper">
+                    <IconWithHeadline headlineText="Megérkezik az e-mail címed a kódod" icon={IconNumbers} />
+                    <div>
+                      Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
+                    </div>
                   </div>
                   <div className="button-wrapper">
                     <NavigationButton label="új azonosító igénylése" url="/kerulet-valaszto" />
