@@ -31,9 +31,9 @@ export default function Dropdown({ id, name, value, onChange, label, longInfo, i
     <div className="dropdown-input-container">
       <label htmlFor={id}>{label}</label>
       {longInfo ? <div className="long-info">{longInfo}</div> : ''}
-      <select disabled={disabled} name={name} id={id} value={value} onChange={onChange} className="dropdown-select">
-      <option value="" disabled selected>Válassz a legördülő listából!</option>
-        {districts.map((district, index) => 
+      <select disabled={disabled} name={name} id={id} value={value} onChange={onChange} defaultValue="0" className="dropdown-select">
+      <option value="0" disabled>Válassz a legördülő listából!</option>
+        {districts.map((district, index) =>
           <option key={index} value={index+1}>{district}</option>
         )}
       </select>

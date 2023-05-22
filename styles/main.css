@@ -42,7 +42,7 @@ select.dropdown-select {
   padding: 12px;
   border: 1px solid #DDD;
   border-radius: 4px;
-  line-height: normal;
+  line-height: 22px;
   cursor: pointer;
   appearance: none;
   background-image: url('data:image/svg+xml,%3Csvg fill=%22none%22 xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M19.6 7.72a1.546 1.546 0 0 0-.972-.386 1.228 1.228 0 0 0-.938.386l-5.664 5.663L6.33 7.686c-.246-.246-.565-.363-.955-.352-.391.011-.71.14-.955.386-.29.29-.43.608-.42.955.012.346.151.653.42.921l6.668 6.669c.134.134.28.234.436.301.156.067.324.1.502.1.179 0 .347-.033.503-.1.156-.067.302-.167.436-.301L19.6 9.63c.268-.268.396-.581.385-.939a1.546 1.546 0 0 0-.385-.971Z%22 fill=%22%2312326E%22/%3E%3C/svg%3E');
