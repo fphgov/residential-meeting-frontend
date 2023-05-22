@@ -26,8 +26,7 @@ function VerifyEmail() {
     <>
       <HeaderSection showHeaderLine={true} />
 
-      <main className="page auth lost-code-steps-page">
-
+      <main className="page auth lost-code-steps-page dark-bg-page">
         <div className="container">
           <div className="row">
             <div className="offset-lg-2 offset-xl-3 col-lg-8 col-xl-6 col-md-12">

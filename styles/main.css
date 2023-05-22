@@ -9,6 +9,12 @@ main.page.auth {
   background-size: cover;
 }
 
+main.page.auth.dark-bg-page {
+  background: linear-gradient(90deg, #12326e, #03194d);
+  background: url('../public/image/szabadsag-szobor-dark.png') no-repeat top center, linear-gradient(90deg, #12326e, #03194d);
+  background-size: cover;
+}
+
 main.page.new-auth {
   background-size: contain;
 }
