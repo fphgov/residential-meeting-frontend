@@ -184,7 +184,7 @@ function AddressCardPage() {
                       />
                       <div className="submit-button-wrapper">
                         <Submit label="Azonosító igénylése" loading={loading} disabled={!filterData.token || !filterData.media || !filterData.media.length} />
-                        <a className="cancel-button" href="/">Mégsem</a>
+                        <a className="cancel-button" href="/">Mégse</a>
                       </div>
                     </div>
                   </div>

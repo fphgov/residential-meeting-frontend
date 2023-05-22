@@ -172,7 +172,7 @@ function EmailPage() {
 
                       <div className="submit-button-wrapper">
                         <Submit label="Megerősítés" loading={loading} disabled={!filterData.email} />
-                        <a className="cancel-button" href="/">Mégsem</a>
+                        <a className="cancel-button" href="/">Mégse</a>
                       </div>
                     </div>
                   </div>

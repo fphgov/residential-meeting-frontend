@@ -123,7 +123,7 @@ function DistrictSelector() {
                       />
                       {!error ? <div className="submit-button-wrapper">
                         <Submit label="Tovább" loading={loading} disabled={!filterData.district} />
-                        <a className="cancel-button" href="/">Mégsem</a>
+                        <a className="cancel-button" href="/">Mégse</a>
                       </div> : <a className="mail-question-info" href="https://lakogyules.budapest.hu/mi-a-lakogyules#mikor-kapom-meg-a-levelem-az-egyeni-azonositommal" target="_blank">mikor kapom meg a levelem?</a>}
                     </div>
                   </div>
