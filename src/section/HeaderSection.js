@@ -54,7 +54,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
 
   return (
     <>
-      <header className={`site-header${showHeaderLine ? ' header-line' : ''}${fixed ? ' fixed-header' : ''}${position ? 'relative-header' : ''}${asPath === '/azonositas' ? ' transparent-header' : ''}`}>
+      <header className={`site-header${showHeaderLine ? ' header-line' : ''}${fixed ? ' fixed-header' : ''}${position ? 'relative-header' : ''}${(asPath === '/azonositas' || '/uj-azonosito') ? ' transparent-header' : ''}`}>
         <div className="container">
           <div className="site-header-inner">
             <div className="row flex-center">
