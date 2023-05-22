@@ -9,6 +9,10 @@ main.page.auth {
   background-size: cover;
 }
 
+main.page.new-auth {
+  background-size: contain;
+}
+
 header.site-header {
   background: linear-gradient(90deg, #12326e, #03194d);
   z-index: 2;
@@ -338,15 +342,34 @@ footer.main .copyright-wrapper {
   padding: 40px 0 0 0;
 }
 
+.middle-section-wrapper .middle-section-point-wrapper > div, .larger-text {
+  font-size: 18px;
+  line-height: 26px;
+  color: #222222;
+}
+
+.middle-section-wrapper .middle-section-point-wrapper {
+  padding: 24px 0;
+}
+
+.middle-section-wrapper .middle-section-point-wrapper .headline-with-icon-wrapper {
+  margin-bottom: 12px;
+}
+
+.middle-section-wrapper .middle-section-point-wrapper h2 {
+  margin: 0;
+}
+
 .middle-section-wrapper .headline-with-icon-wrapper {
   display: flex;
+  align-items: center;
 }
 
 .middle-section-wrapper .headline-with-icon-wrapper .headline-icon-background {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 16px 16px 16px 0;
+  margin-right: 12px;
   width: 36px;
   min-width: 36px;
   height: 36px;
@@ -368,12 +391,19 @@ footer.main .copyright-wrapper {
 
 .middle-section-wrapper .blue-label-info-box > ul {
   margin: 0;
+  padding: 0 0 0 30px;
 }
 
 .middle-section-wrapper .blue-label-info-box > div,
 .middle-section-wrapper .blue-label-info-box li {
   line-height: 24px;
   font-size: 16px;
+}
+
+.middle-section-wrapper .static-image-thumbnail-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .new-auth .middle-section-wrapper .button-wrapper {
@@ -387,7 +417,6 @@ footer.main .copyright-wrapper {
 
 .dropdown-input-container .dropdown-select {
   padding: 12px;
-  color: #777777;
   width: 280px;
 }
 
@@ -1034,9 +1063,21 @@ input[aria-invalid="true"] + label:hover::before {
   footer.main ul.footer-menu > li a {
     padding: 12px 0;
   }
+
+  .submit-button-wrapper {
+    flex-direction: column;
+  }
+
+  .submit-button-wrapper a {
+    margin-top: 18px;
+  }
 }
 
 @media screen and (max-width: 767px) {
+  main.page.new-auth {
+    background-size: cover;
+  }
+
   .form-group {
     flex-direction: column;
   }

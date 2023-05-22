@@ -73,8 +73,9 @@ function AddressCardPage() {
   }
 
   const checkToken = async (token) => {
-    let data = new FormData();
-    data.append('token', token);
+    let data = new FormData()
+    data.append('token', token)
+    data.append('g-recaptcha-response', recaptchaToken)
 
     try {
       await axios.post(
@@ -98,10 +99,10 @@ function AddressCardPage() {
     setError(null)
     setLoading(true)
 
-    let data = new FormData();
-    data.append('token', filterData.token);
-    data.append('media', filterData.media[0]);
-    data.append('g-recaptcha-response', recaptchaToken);
+    let data = new FormData()
+    data.append('token', filterData.token)
+    data.append('media', filterData.media[0])
+    data.append('g-recaptcha-response', recaptchaToken)
 
     context.storeSave('form_code', 'data', { token: filterData.token })
 
@@ -111,7 +112,7 @@ function AddressCardPage() {
     )
       .then(response => {
         if (response.data) {
-          router.push('/sikeres-igeny-bekuldese')
+          window.location = 'https://lakogyules.budapest.hu/egyedi-azonosito'
         }
       })
       .catch(error => {
