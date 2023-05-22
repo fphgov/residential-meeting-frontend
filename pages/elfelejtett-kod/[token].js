@@ -13,7 +13,7 @@ import Error from "../../src/component/form/Error"
 
 Modal.setAppElement('body');
 
-function AddressCardPage() {
+function LostCodePage() {
   const context = useContext(StoreContext)
   const router = useRouter()
   const { token } = router.query;
@@ -37,21 +37,6 @@ function AddressCardPage() {
     })
   }, [])
 
-  useEffect(() => {
-    async function fetchTokenData() {
-      if (token) {
-        const isTokenValid = await checkToken(token)
-        if (isTokenValid) {
-          setFilterData({ ...filterData, token: token })
-        } else {
-          router.push('/ervenytelen-link')
-        }
-      }
-    }
-
-    fetchTokenData()
-  }, [token]);
-
   function openModal() {
     setIsOpen(true)
   }
@@ -72,22 +57,6 @@ function AddressCardPage() {
     setFilterData({ ...filterData, media: data })
   }
 
-  const checkToken = async (token) => {
-    let data = new FormData()
-    data.append('token', token)
-    data.append('g-recaptcha-response', recaptchaToken)
-
-    try {
-      await axios.post(
-        publicRuntimeConfig.apiCheckToken,
-        data
-      )
-      return true
-    } catch {
-      return false
-    }
-  }
-
   const submitAuth = (e) => {
     e.preventDefault()
 
@@ -99,12 +68,13 @@ function AddressCardPage() {
     setError(null)
     setLoading(true)
 
-    let data = new FormData()
-    data.append('token', filterData.token)
+    const data = new FormData()
+
+    data.append('token', token)
     data.append('media', filterData.media[0])
     data.append('g-recaptcha-response', recaptchaToken)
 
-    context.storeSave('form_code', 'data', { token: filterData.token })
+    context.storeSave('form_code', 'data', { token })
 
     axios.post(
       publicRuntimeConfig.apiImageSend,
@@ -147,7 +117,7 @@ function AddressCardPage() {
         <div className="container">
           <div className="row">
             <div className="offset-lg-2 offset-xl-3 col-lg-8 col-xl-6 col-md-12">
-              {filterData.token && <form className="form-horizontal" onSubmit={submitAuth}>
+              <form className="form-horizontal" onSubmit={submitAuth}>
                 <fieldset>
                   <div className="auth-wrapper">
                     <div className="information">
@@ -182,6 +152,7 @@ function AddressCardPage() {
                           setRecaptchaToken(recaptchaToken)
                         }}
                       />
+
                       <div className="submit-button-wrapper">
                         <Submit label="Azonosító igénylése" loading={loading} disabled={!filterData.token || !filterData.media || !filterData.media.length} />
                         <a className="cancel-button" href="/">Mégse</a>
@@ -189,7 +160,7 @@ function AddressCardPage() {
                     </div>
                   </div>
                 </fieldset>
-              </form>}
+              </form>
             </div>
           </div>
         </div>
@@ -219,4 +190,33 @@ function AddressCardPage() {
   )
 }
 
-export default AddressCardPage
+export async function getServerSideProps({ params }) {
+  const { serverRuntimeConfig } = getConfig()
+
+  const data = {
+    token: params.token,
+  }
+
+  try {
+    await axios.post(
+      serverRuntimeConfig.apiUrl + serverRuntimeConfig.apiCheckToken,
+      new URLSearchParams(data).toString()
+    )
+  } catch (error) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/ervenytelen-link",
+      },
+      props: {},
+    }
+  }
+
+  return {
+    props: {
+      ...params
+    }
+  }
+}
+
+export default LostCodePage
