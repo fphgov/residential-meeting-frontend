@@ -1,9 +1,9 @@
 import React from 'react'
-import HeaderForgotSection from '../src/section/HeaderForgotSection'
-import FooterSection from '../src/section/FooterSection'
-import NavigationButton from '../src/component/form/elements/NavigationButton'
-import NumberWithHeadline from '../src/component/NumberWithHeadline'
-import StaticImage  from "../src/component/common/StaticImage"
+import HeaderForgotSection from '../../src/section/HeaderForgotSection'
+import FooterSection from '../../src/section/FooterSection'
+import NavigationButton from '../../src/component/form/elements/NavigationButton'
+import NumberWithHeadline from '../../src/component/NumberWithHeadline'
+import StaticImage  from "../../src/component/common/StaticImage"
 
 function NewAuth() {
   return (

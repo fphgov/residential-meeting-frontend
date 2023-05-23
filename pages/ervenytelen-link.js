@@ -16,7 +16,7 @@ function InvalidToken() {
                 <div className="information">
                   <h1>Az e-mailben küldött link felhasználhatósága lejárt. Add le újra igényedet és erősítsd meg e-mail címedet!</h1>
                   <div className="d-flex justify-content-center mt-5">
-                    <NavigationButton label="Azonosító igénylése" url="/uj-azonosito" />
+                    <NavigationButton label="Azonosító igénylése" url="/elfelejtett-kod/igenyles" />
                   </div>
                 </div>
               </div>
