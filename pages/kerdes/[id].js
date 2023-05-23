@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import StoreContext from '../../src/StoreContext'
-import HeaderSection from '../../src/section/HeaderSection'
+import HeaderVoteSection from '../../src/section/HeaderVoteSection'
 import FooterSection from '../../src/section/FooterSection'
 import MultiDetails from '../../src/component/common/MultiDetails'
 import Question  from "../../src/component/common/Question"
@@ -60,7 +60,7 @@ function QuestionPage({ id, question, navigationList }) {
 
   return (
     <>
-      <HeaderSection />
+      <HeaderVoteSection />
 
       <main className="page">
         <VoteNavigation list={navigationList} state={id} />

@@ -5,7 +5,7 @@ import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
 import Modal from 'react-modal'
 import StoreContext from '../src/StoreContext'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderForgotSection from '../src/section/HeaderForgotSection'
 import Submit from "../src/component/form/elements/Submit"
 import InputText from "../src/component/form/elements/InputText"
 import Checkbox from "../src/component/form/elements/Checkbox"
@@ -114,7 +114,7 @@ function EmailPage() {
 
   return (
     <>
-      <HeaderSection showHeaderLine={true} />
+      <HeaderForgotSection showHeaderLine={true} />
 
       <main className="page auth lost-code-steps-page">
         {scroll && document.querySelector('.error-message-inline') ? <ScrollTo element={document.querySelector('.error-message-inline').offsetTop} /> : null}

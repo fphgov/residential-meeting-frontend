@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 
 import StoreContext from '../src/StoreContext'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderForgotSection from '../src/section/HeaderForgotSection'
 
 function VerifyEmail() {
   const context = useContext(StoreContext)
@@ -24,7 +24,7 @@ function VerifyEmail() {
 
   return (
     <>
-      <HeaderSection showHeaderLine={true} />
+      <HeaderForgotSection showHeaderLine={true} />
 
       <main className="page auth lost-code-steps-page dark-bg-page">
         <div className="container">

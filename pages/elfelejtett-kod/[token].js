@@ -3,7 +3,7 @@ import getConfig from 'next/config'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
 import Modal from 'react-modal'
-import HeaderSection from '../../src/section/HeaderSection'
+import HeaderForgotSection from '../../src/section/HeaderForgotSection'
 import Submit from "../../src/component/form/elements/Submit"
 import FileUpload from "../../src/component/form/elements/FileUpload"
 import ScrollTo from "../../src/component/common/ScrollTo"
@@ -100,7 +100,7 @@ function LostCodePage({ token }) {
 
   return (
     <>
-      <HeaderSection showHeaderLine={true} />
+      <HeaderForgotSection showHeaderLine={true} />
 
       <main className="page auth lost-code-steps-page">
         {scroll && document.querySelector('.error-message-inline') ? <ScrollTo element={document.querySelector('.error-message-inline').offsetTop} /> : null}

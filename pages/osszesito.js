@@ -6,7 +6,7 @@ import axios from "axios"
 import Error  from "../src/component/form/Error"
 import Submit  from "../src/component/form/elements/Submit"
 import StoreContext from '../src/StoreContext'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderVoteSection from '../src/section/HeaderVoteSection'
 import FooterSection from '../src/section/FooterSection'
 import VoteNavigation from '../src/component/VoteNavigation'
 import VoteOverviewItem from '../src/component/VoteOverviewItem'
@@ -146,7 +146,7 @@ function QuestionPage({ questions }) {
 
   return (
     <>
-      <HeaderSection />
+      <HeaderVoteSection />
 
       <main className="page">
         <VoteNavigation list={questions} state={questions.length} />

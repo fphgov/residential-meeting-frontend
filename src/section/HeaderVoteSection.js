@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import headerLogo from '../../public/image/bp-residential-header.svg'
 import HamburgerMenu from '../component/HamburgerMenu'
 
-function HeaderSection({ position, showHeaderLine = false }) {
+function HeaderVoteSection({ position, showHeaderLine = false }) {
   const router = useRouter()
 
   const { asPath } = router
@@ -55,6 +56,7 @@ function HeaderSection({ position, showHeaderLine = false }) {
                     <div className="container">
                       <ul className={openMenu ? '' : ''}>
                         <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={() => { setOpenMenu(false) }}><span>Vissza a főoldalra</span></a></li>
+                        <li><Link href="/azonositas"><span>Azonosítás</span></Link></li>
                       </ul>
                     </div>
                   </div>
@@ -69,4 +71,4 @@ function HeaderSection({ position, showHeaderLine = false }) {
   )
 }
 
-export default HeaderSection
+export default HeaderVoteSection

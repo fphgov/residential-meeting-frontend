@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { ReCaptcha, loadReCaptcha } from 'react-recaptcha-v3'
 import axios from "axios"
 import StoreContext from '../src/StoreContext'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderForgotSection from '../src/section/HeaderForgotSection'
 import Submit from "../src/component/form/elements/Submit"
 import Dropdown from '../src/component/form/elements/DropdownInput'
 import ScrollTo from "../src/component/common/ScrollTo"
@@ -86,7 +86,7 @@ function DistrictSelector() {
 
   return (
     <>
-      <HeaderSection showHeaderLine={true} />
+      <HeaderForgotSection showHeaderLine={true} />
 
       <main className="page auth lost-code-steps-page district-selector-page">
         {scroll && document.querySelector('.error-message-inline') ? <ScrollTo element={document.querySelector('.error-message-inline').offsetTop} /> : null}

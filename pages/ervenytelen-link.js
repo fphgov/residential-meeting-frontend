@@ -1,12 +1,12 @@
 import React from 'react'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderForgotSection from '../src/section/HeaderForgotSection'
 import NavigationButton from '../src/component/form/elements/NavigationButton'
 
 function InvalidToken() {
 
   return (
     <>
-      <HeaderSection showHeaderLine={true} />
+      <HeaderForgotSection showHeaderLine={true} />
 
       <main className="page auth lost-code-steps-page dark-bg-page">
         <div className="container">

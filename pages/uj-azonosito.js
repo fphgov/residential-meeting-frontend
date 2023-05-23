@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderForgotSection from '../src/section/HeaderForgotSection'
 import FooterSection from '../src/section/FooterSection'
 import NavigationButton from '../src/component/form/elements/NavigationButton'
 import IconWithHeadline from '../src/component/IconWithHeadline'
@@ -13,7 +13,7 @@ import StaticImage  from "../src/component/common/StaticImage"
 function NewAuth() {
   return (
     <>
-      <HeaderSection showHeaderLine={true} />
+      <HeaderForgotSection showHeaderLine={true} />
 
       <main className="page auth lost-code-steps-page new-auth">
         <div className="container">
