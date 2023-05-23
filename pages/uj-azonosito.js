@@ -2,12 +2,7 @@ import React from 'react'
 import HeaderForgotSection from '../src/section/HeaderForgotSection'
 import FooterSection from '../src/section/FooterSection'
 import NavigationButton from '../src/component/form/elements/NavigationButton'
-import IconWithHeadline from '../src/component/IconWithHeadline'
-import IconNotes from '../public/image/icon-notes.svg'
-import IconEmail from '../public/image/icon-email.svg'
-import IconIdCard from '../public/image/icon-id-card.svg'
-import IconTime from '../public/image/icon-time.svg'
-import IconNumbers from '../public/image/icon-numbers.svg'
+import NumberWithHeadline from '../src/component/NumberWithHeadline'
 import StaticImage  from "../src/component/common/StaticImage"
 
 function NewAuth() {
@@ -34,7 +29,7 @@ function NewAuth() {
               <div className="offset-xl-2 col-xl-8 col-lg-12">
                 <div className="middle-section-wrapper">
                   <div className="middle-section-point-wrapper">
-                    <IconWithHeadline headlineText="Bejelentett lakcímed kerületének megadása" icon={IconNotes} />
+                    <NumberWithHeadline headlineText="Bejelentett lakcímed kerületének megadása" number={1} />
                     <div>
                       Azok a városlakók tudják online megigényelni az egyedi azonosítójukat, akiknek a kerületében már befejeződött a terjesztés.
                     </div>
@@ -51,13 +46,13 @@ function NewAuth() {
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <IconWithHeadline headlineText="E-mail cím megadása" icon={IconEmail} />
+                    <NumberWithHeadline headlineText="E-mail cím megadása" number={2} />
                     <div>
                       Add meg e-mail címedet, amire elküldhetjük a névre szóló egyedi azonosítódat. Miután megadtad az e-mail címedet, egy megerősítő levelet küldünk, ahol a kapott linkre kattintva folytathatod az azonosító igénylését.
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <IconWithHeadline headlineText="Lakcímkártya előlapjának feltöltése" icon={IconIdCard} />
+                    <NumberWithHeadline headlineText="Lakcímkártya előlapjának feltöltése" number={3} />
                     <div>
                       Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! A lakcímkártya előlapján található a név és a lakcím. <b>Elfogadott kiterjesztés:</b> jpg, png, jpeg, heif, avif. <b>Max. méret:</b> 15 MB.
                     </div>
@@ -86,13 +81,13 @@ function NewAuth() {
                     <p className="larger-text mt-5"><b>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe!</b></p>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <IconWithHeadline headlineText="Feldolgozzuk az adataidat" icon={IconTime} />
+                    <NumberWithHeadline headlineText="Feldolgozzuk az adataidat" number={4} />
                     <div>
                       Ügyintézőink ellenőrzik a lakcímkártya fotóját és kikeresik az egyedi azonosítódat.
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <IconWithHeadline headlineText="Megérkezik az e-mail címed a kódod" icon={IconNumbers} />
+                    <NumberWithHeadline headlineText="Megérkezik az e-mail címed a kódod" number={5} />
                     <div>
                       Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                     </div>
