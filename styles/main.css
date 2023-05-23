@@ -398,6 +398,14 @@ footer.main .copyright-wrapper {
   border-radius: 50%;
 }
 
+.middle-section-wrapper .headline-with-icon-wrapper .headline-icon-background .headline-ordinal-number {
+  color: #0EA6CE;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 700;
+  padding-left: 5px;
+}
+
 .middle-section-wrapper .blue-label-info-box {
   background-color: #EEF8FE;
   margin-top: 16px;
