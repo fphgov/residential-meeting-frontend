@@ -123,9 +123,9 @@ function LostCodePage({ token }) {
                         <FileUpload
                           id="address-card"
                           name="address-card"
-                          label="Lakcím kártya feltöltése: *"
+                          label="Lakcímkártya képének feltöltése: *"
                           onChange={handleChangeFileInput}
-                          longInfo="Készíts egy képet a lakcímkártyád előlapjáról vagy szkenneld be azt, és töltsd fel a képet! "
+                          longInfo="A lakcímkártya előlapja az, ahol a név és a lakcím található, kérjük, csak ezt fotózd be. Mire ügyelj a kép feltöltésénél?"
                           linkText="Mire ügyelj a kép feltöltésénél?"
                           onLinkClick={openModal}
                           acceptedExtensions={['.jpg', '.jpeg', '.png', '.heif', '.avif']}

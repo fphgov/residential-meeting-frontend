@@ -250,7 +250,7 @@ function AuthPage() {
 
                       <div className="submit-button-wrapper">
                         <Submit label="Tovább a szavazáshoz" loading={loading} disabled={/_/.test(filterData.auth_code) || filterData.auth_code.length == 0} />
-                        <a href="/uj-azonosito">Elhagytam a kódomat</a>
+                        <a href="/uj-azonosito">Nincs meg a kódom</a>
                       </div>
                     </div>
                   </div>
