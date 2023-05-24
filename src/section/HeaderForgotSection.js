@@ -56,7 +56,6 @@ function HeaderForgotSection({ position, showHeaderLine = false }) {
                     <div className="container">
                       <ul className={openMenu ? '' : ''}>
                         <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={() => { setOpenMenu(false) }}><span>Vissza a főoldalra</span></a></li>
-                        <li><Link href="/azonositas"><span>Azonosítás</span></Link></li>
                       </ul>
                     </div>
                   </div>
