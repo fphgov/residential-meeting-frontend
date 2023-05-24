@@ -56,7 +56,7 @@ function NewAuth() {
                     <div>
                       Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! A lakcímkártya előlapján található a név és a lakcím. <b>Elfogadott kiterjesztés:</b> jpg, png, jpeg, heif, avif. <b>Max. méret:</b> 15 MB.
                     </div>
-                    <p className="larger-text"><b>A képnél ügyelj arra, hogy:</b></p>
+                    <p className="larger-text small-screen-align-center"><b>A képnél ügyelj arra, hogy:</b></p>
                     <div className="static-image-thumbnail-wrapper">
                       <div className="static-image-thumbnail">
                         <StaticImage src="instruction-1.png" width={187} height={230} alt="ne tartalmazza a lakcímkártya hátoldalát" priority={false} />
@@ -87,7 +87,7 @@ function NewAuth() {
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="Megérkezik az e-mail címed a kódod" number={5} />
+                    <NumberWithHeadline headlineText="Megérkezik az e-mail címedre a kódod" number={5} />
                     <div>
                       Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                     </div>
