@@ -78,7 +78,7 @@ function NewAuth() {
                         a képen csak a lakcímkártyád szerepeljen!
                       </div>
                     </div>
-                    <p className="larger-text mt-5"><b>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe!</b></p>
+                    <p className="larger-text mt-5"><b>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe! Elutasítás esetén e-mail-ben értesítünk és újra leadhatod az igényedet.</b></p>
                   </div>
                   <div className="middle-section-point-wrapper">
                     <NumberWithHeadline headlineText="Feldolgozzuk az adataidat" number={4} />

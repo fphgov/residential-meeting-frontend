@@ -168,7 +168,7 @@ function LostCodePage({ token }) {
               <li>olvasható legyen minden adat a lakcímkártyán, fotózz fényes helyen!</li>
               <li>használj egységes, homogén hátteret!</li>
               <li>a képen csak a lakcímkártyád szerepeljen!</li>
-              <li>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe.</li>
+              <li>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe! Elutasítás esetén e-mail-ben értesítünk és újra leadhatod az igényedet.</li>
             </ul>
           </div>
 
