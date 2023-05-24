@@ -78,7 +78,7 @@ function LostCodePage({ token }) {
       })
       .catch(error => {
         if (error.response && error.response.status === 403) {
-          setError('Google reCapcha ellenőrzés sikertelen. Kérjük frissíts rá az oldalra.')
+          setError('Google reCapcha ellenőrzés sikertelen. Kérjük, frissítsd az oldalt!')
           setScroll(true)
         } else if (error.response && error.response.data && error.response.data.error) {
           setError(error.response.data.error)
@@ -113,7 +113,7 @@ function LostCodePage({ token }) {
                   <div className="auth-wrapper">
                     <div className="information">
                       <h1>Egyedi azonosító igénylése</h1>
-                      <p>Köszönjük, hogy megerősítetted e-mail címedet! Utolsó lépésként tölts fel egy lakcímkártyád előlapjáról készült képet, hogy azonosíthassunk.</p>
+                      <p>Köszönjük, hogy megerősítetted e-mail címedet! Utolsó lépésként tölts fel egy képet a lakcímkártyád előlapjáról készült képet, hogy azonosíthassunk.</p>
                     </div>
 
                     <div className="login-wrapper">

@@ -87,7 +87,7 @@ function NewAuth() {
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="Megérkezik az e-mail címedre a kódod" number={5} />
+                    <NumberWithHeadline headlineText="Megérkezik a kódod az e-mail fiókodba" number={5} />
                     <div>
                       Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                     </div>
