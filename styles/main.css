@@ -1105,6 +1105,12 @@ input[aria-invalid="true"] + label:hover::before {
 
   .middle-section-wrapper .static-image-thumbnail-wrapper {
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .middle-section-wrapper .static-image-thumbnail-wrapper .static-image-thumbnail, 
+  .middle-section-wrapper .middle-section-point-wrapper p.small-screen-align-center {
+    text-align: center;
   }
 }
 
