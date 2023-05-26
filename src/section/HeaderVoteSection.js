@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
+import React, { useState, useEffect, useContext } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
+import StoreContext from '../../src/StoreContext'
 import headerLogo from '../../public/image/bp-residential-header.svg'
 import HamburgerMenu from '../component/HamburgerMenu'
 
 function HeaderVoteSection({ position, showHeaderLine = false }) {
+  const context = useContext(StoreContext)
+  const router = useRouter()
+
+  const form = context.storeGet('form')
+
   const [fixed, setFixed] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -18,6 +24,22 @@ function HeaderVoteSection({ position, showHeaderLine = false }) {
 
   const toggleMenu = () => {
     setOpenMenu(state => !state)
+  }
+
+  const toAuthPage = (e) => {
+    e.preventDefault()
+
+    setOpenMenu(false)
+
+    if (form && form.data) {
+      if (window.confirm("A korábban kitöltött adatok törlése kerülnek a böngészőből. Biztos megszakítod a szavazást?")) {
+        context.storeRemove('form')
+
+        router.push('/azonositas')
+
+        return
+      }
+    }
   }
 
   useEffect(() => {
@@ -51,7 +73,7 @@ function HeaderVoteSection({ position, showHeaderLine = false }) {
                     <div className="container">
                       <ul className={openMenu ? '' : ''}>
                         <li><a href="https://lakogyules.budapest.hu" target="_blank" onClick={() => { setOpenMenu(false) }}><span>Vissza a főoldalra</span></a></li>
-                        <li><Link href="/azonositas"><span>Azonosítás</span></Link></li>
+                        <li><a href="/azonositas" onClick={toAuthPage}><span>Szavazás megszakítása</span></a></li>
                       </ul>
                     </div>
                   </div>
