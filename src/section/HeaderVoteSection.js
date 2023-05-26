@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import headerLogo from '../../public/image/bp-residential-header.svg'
 import HamburgerMenu from '../component/HamburgerMenu'
 
 function HeaderVoteSection({ position, showHeaderLine = false }) {
-  const router = useRouter()
-
-  const { asPath } = router
-
   const [fixed, setFixed] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -35,7 +30,7 @@ function HeaderVoteSection({ position, showHeaderLine = false }) {
 
   return (
     <>
-      <header className={`site-header${showHeaderLine ? ' header-line' : ''}${fixed ? ' fixed-header' : ''}${position ? 'relative-header' : ''}${(asPath === '/azonositas' || '/elfelejtett-kod/igenyles') ? ' transparent-header' : ''}`}>
+      <header className={`site-header${showHeaderLine ? ' header-line' : ''}${fixed ? ' fixed-header' : ''}${position ? 'relative-header' : ''}`}>
         <div className="container">
           <div className="site-header-inner">
             <div className="row flex-center">
