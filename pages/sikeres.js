@@ -1,6 +1,6 @@
 import { useRef, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
-import HeaderSection from '../src/section/HeaderSection'
+import HeaderVoteSection from '../src/section/HeaderVoteSection'
 import FooterSection from '../src/section/FooterSection'
 import StoreContext from '../src/StoreContext'
 
@@ -27,7 +27,7 @@ function SuccessPage() {
 
   return (
     <>
-      <HeaderSection />
+      <HeaderVoteSection />
 
       <main className="page success">
         <div className="container">

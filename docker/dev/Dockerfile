@@ -18,7 +18,7 @@ ENV SITE_KEY=$ARG_SITE_KEY
 
 WORKDIR "/app"
 
-RUN npm install -g npm@9.6.5
+RUN npm install -g npm@9.6.6
 
 RUN printenv > .env
 RUN chown node:node .env

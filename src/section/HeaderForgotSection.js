@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import headerLogo from '../../public/image/bp-residential-header.svg'
 import HamburgerMenu from '../component/HamburgerMenu'
 
-function HeaderSection({ position, showHeaderLine = false }) {
+function HeaderForgotSection({ position, showHeaderLine = false }) {
   const router = useRouter()
 
   const { asPath } = router
@@ -69,4 +70,4 @@ function HeaderSection({ position, showHeaderLine = false }) {
   )
 }
 
-export default HeaderSection
+export default HeaderForgotSection

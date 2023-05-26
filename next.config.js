@@ -14,6 +14,7 @@ module.exports = async (phase, { defaultConfig }) => {
       apiQuestion: '/app/api/question/:id',
       apiQuestionAll: '/app/api/question/all',
       apiNavigation: '/app/api/question/navigation',
+      apiCheckToken: '/app/api/account/forgot/token',
     },
     publicRuntimeConfig: {
       matomoUrl: MATOMO_URL,
@@ -22,6 +23,9 @@ module.exports = async (phase, { defaultConfig }) => {
       siteKey: SITE_KEY,
       apiAuth: '/app/api/account/check',
       apiVote: '/app/api/vote',
+      apiCheckDistrict: '/app/api/account/forgot/check',
+      apiEmailRequest: '/app/api/account/forgot/first',
+      apiImageSend: '/app/api/account/forgot/second'
     },
     experimental: {
       forceSwcTransforms: true,

@@ -19,7 +19,8 @@
     "Android >= 4"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.31"
+    "@types/react": "^18.0.31",
+    "@types/store": "^2.0.2"
   },
   "dependencies": {
     "@socialgouv/matomo-next": "^1.6.1",
