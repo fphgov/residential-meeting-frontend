@@ -86,6 +86,9 @@ function NewAuth() {
                       Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                     </div>
                   </div>
+
+                  <p>Ha kérdésed van, a <a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank">Mi a lakógyűlés?</a> oldalon tájékozódhatsz vagy keresd munkatársainkat a +36-1-900-0668 telefonszámon minden hétköznap 9:00 és 18:00 között, vagy az <a href="info.lakogyules@budapest.hu">info.lakogyules@budapest.hu</a> email-címen!</p>
+
                   <div className="button-wrapper">
                     <NavigationButton label="Egyedi azonosító igénylése" url="/kerulet-valaszto" />
                   </div>
