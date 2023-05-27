@@ -35,14 +35,8 @@ function NewAuth() {
                     </div>
                     <div className='blue-label-info-box'>
                       <p className='headline'>Ellenőrizd, hogy a bejelentett lakcímed kerületében mikorra várható az utolsó levél érkezése! </p>
-                      <div><b>A levelek terjesztése befejeződött az alábbi kerületekben:</b> I., V., VI.</div>
-                      <div><b>A levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> III., IV., VII., VIII., IX., X., XI., XII., XIII.</div>
-                      <div><b>A terjesztés várható időtartama a kerületekben:</b></div>
-                      <ul>
-                        <li>II., XIV., XV. kerület: 2023. május 19-29.</li>
-                        <li>XVI., XVII. kerület: 2023. május 24. - június 3.</li>
-                        <li>XVIII., XIX., XX., XXI., XXII., XXIII. kerület: 2023. május 26. - június 5.</li>
-                      </ul>
+                      <div><b>A levelek terjesztése befejeződött az alábbi kerületekben:</b> I., IV., V., VI., VIII.</div>
+                      <div><b>A levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> II., III., VII., IX., X., XI., XII., XIII, XIV., XV., XVI., XVII., XVIII., XIX., XX., XXI., XXII., XXIII.</div>
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
@@ -92,6 +86,9 @@ function NewAuth() {
                       Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                     </div>
                   </div>
+
+                  <p>Ha kérdésed van, a <a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank">Mi a lakógyűlés?</a> oldalon tájékozódhatsz vagy keresd munkatársainkat a +36-1-900-0668 telefonszámon minden hétköznap 9:00 és 18:00 között, vagy az <a href="info.lakogyules@budapest.hu">info.lakogyules@budapest.hu</a> email-címen!</p>
+
                   <div className="button-wrapper">
                     <NavigationButton label="Egyedi azonosító igénylése" url="/kerulet-valaszto" />
                   </div>

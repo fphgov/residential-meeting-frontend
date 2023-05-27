@@ -113,7 +113,7 @@ function LostCodePage({ token }) {
                   <div className="auth-wrapper">
                     <div className="information">
                       <h1>Egyedi azonosító igénylése</h1>
-                      <p>Köszönjük, hogy megerősítetted e-mail címedet! Utolsó lépésként tölts fel egy képet a lakcímkártyád előlapjáról készült képet, hogy azonosíthassunk.</p>
+                      <p>Köszönjük, hogy megerősítetted e-mail címedet! Utolsó lépésként tölts fel a lakcímkártyád előlapjáról készült képet, hogy azonosíthassunk.</p>
                     </div>
 
                     <div className="login-wrapper">

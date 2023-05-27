@@ -197,7 +197,7 @@ fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow-y: auto;
   flex: 1;
   margin: 0 auto;
 }
