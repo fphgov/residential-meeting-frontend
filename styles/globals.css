@@ -190,7 +190,7 @@ fieldset {
 }
 
 .Text-Modal {
-  height: 38%;
+  height: 48%;
 }
 
 .Text-Modal .text-modal-content {
@@ -294,7 +294,7 @@ span.cc_highlight:hover {
 
   .Text-Modal {
     width: 80%;
-    height: 60%;
+    height: 80%;
   }
 
   .Text-Modal .text-modal-content h2{

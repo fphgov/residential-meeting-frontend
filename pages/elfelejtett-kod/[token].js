@@ -170,6 +170,9 @@ function LostCodePage({ token }) {
               <li>a képen csak a lakcímkártyád szerepeljen!</li>
               <li>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe! Elutasítás esetén e-mail-ben értesítünk és újra leadhatod az igényedet.</li>
             </ul>
+            <div className='m-3'>
+              <p>Ha kérdésed van, a <a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank">Mi a lakógyűlés?</a> oldalon tájékozódhatsz vagy keresd munkatársainkat a +36-1-900-0668 telefonszámon minden hétköznap 9:00 és 18:00 között, vagy az <a href="mailto:info.lakogyules@budapest.hu">info.lakogyules@budapest.hu</a> email-címen!</p>
+            </div>
           </div>
 
           <div className="modal-navigation">
