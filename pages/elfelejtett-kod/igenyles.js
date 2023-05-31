@@ -31,12 +31,12 @@ function NewAuth() {
                   <div className="middle-section-point-wrapper">
                     <NumberWithHeadline headlineText="Bejelentett lakcímed kerületének megadása" number={1} />
                     <div>
-                      Azok a városlakók tudják online megigényelni az egyedi azonosítójukat, akiknek a kerületében már befejeződött a terjesztés.
+                      Azok a városlakók tudják online igényelni az egyedi azonosítójukat, akiknek a kerületében már befejeződött a terjesztés.
                     </div>
                     <div className='blue-label-info-box'>
                       <p className='headline'>Ellenőrizd, hogy a bejelentett lakcímed kerületében mikorra várható az utolsó levél érkezése! </p>
-                      <div><b>A levelek terjesztése befejeződött az alábbi kerületekben:</b> I., IV., V., VI., VIII.</div>
-                      <div><b>A levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> II., III., VII., IX., X., XI., XII., XIII, XIV., XV., XVI., XVII., XVIII., XIX., XX., XXI., XXII., XXIII.</div>
+                      <div><b>Igényelhető, mert a levelek terjesztése befejeződött az alábbi kerületekben:</b> I., IV., V., VI., VIII., IX. , X., XIII., XIV., XV.</div>
+                      <div><b>Még nem igényelhető, mert a levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> II., III., VII., XI., XII., XVI., XVII., XVIII., XIX., XX., XXI., XXII., XXIII.</div>
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
@@ -91,7 +91,7 @@ function NewAuth() {
                     <NavigationButton label="Egyedi azonosító igénylése" url="/kerulet-valaszto" />
                   </div>
 
-                  <p>Ha kérdésed van, a <a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank">Mi a lakógyűlés?</a> oldalon tájékozódhatsz vagy keresd munkatársainkat a +36-1-900-0668 telefonszámon minden hétköznap 9:00 és 18:00 között, vagy az <a href="info.lakogyules@budapest.hu">info.lakogyules@budapest.hu</a> email-címen!</p>
+                  <p>Ha kérdésed van, a <a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank">Mi a lakógyűlés?</a> oldalon tájékozódhatsz vagy keresd munkatársainkat a +36-1-900-0668 telefonszámon minden hétköznap 9:00 és 18:00 között, vagy az <a href="mailto:info.lakogyules@budapest.hu">info.lakogyules@budapest.hu</a> email-címen!</p>
                 </div>
               </div>
             </div>
