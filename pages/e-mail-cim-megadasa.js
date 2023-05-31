@@ -136,13 +136,13 @@ function EmailPage() {
                           id="email"
                           name="email"
                           label="E-mail cím megadása:"
-                          placeholder="Ide írd az email címedet"
+                          placeholder="Ide írd az e-mail címedet"
                           value={filterData.email}
                           onChange={handleChangeEmailInput}
                           aria-invalid={error && error['email'] ? true : false}
                           aria-required={false}
                           longInfo={
-                            <>Add meg az azt e-mail címet, amire elküldhetjük a megerősítő linket és a kódodat.</>
+                            <>Add meg azt az e-mail címet, amire elküldhetjük a megerősítő linket és a kódodat.</>
                           }
                           info={null}
                         />
