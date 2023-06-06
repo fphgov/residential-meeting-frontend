@@ -3,7 +3,7 @@ import HeaderForgotSection from '../../src/section/HeaderForgotSection'
 import FooterSection from '../../src/section/FooterSection'
 import NavigationButton from '../../src/component/form/elements/NavigationButton'
 import NumberWithHeadline from '../../src/component/NumberWithHeadline'
-import StaticImage  from "../../src/component/common/StaticImage"
+import StaticImage from "../../src/component/common/StaticImage"
 
 function NewAuth() {
   return (
@@ -29,24 +29,13 @@ function NewAuth() {
               <div className="offset-xl-2 col-xl-8 col-lg-12">
                 <div className="middle-section-wrapper">
                   <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="Bejelentett lakcímed kerületének megadása" number={1} />
-                    <div>
-                      Azok a városlakók tudják online igényelni az egyedi azonosítójukat, akiknek a kerületében már befejeződött a terjesztés.
-                    </div>
-                    <div className='blue-label-info-box'>
-                      <p className='headline'>Ellenőrizd, hogy a bejelentett lakcímed kerületében mikorra várható az utolsó levél érkezése! </p>
-                      <div><b>Igényelhető, mert a levelek terjesztése befejeződött az alábbi kerületekben:</b> I., IV., V., VI., VIII., IX. , X., XIII., XIV., XV.</div>
-                      <div><b>Még nem igényelhető, mert a levelek terjesztése jelenleg folyamatban van az alábbi kerületekben:</b> II., III., VII., XI., XII., XVI., XVII., XVIII., XIX., XX., XXI., XXII., XXIII.</div>
-                    </div>
-                  </div>
-                  <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="E-mail cím megadása" number={2} />
+                    <NumberWithHeadline headlineText="E-mail cím megadása" number={1} />
                     <div>
                       Add meg e-mail címedet, amire elküldhetjük a névre szóló egyedi azonosítódat. Miután megadtad az e-mail címedet, egy megerősítő levelet küldünk, ahol a kapott linkre kattintva folytathatod az azonosító igénylését.
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="Lakcímkártya előlapjának feltöltése" number={3} />
+                    <NumberWithHeadline headlineText="Lakcímkártya előlapjának feltöltése" number={2} />
                     <div>
                       Készíts egy képet a lakcímkártyád előlapjáról, vagy szkenneld, és töltsd fel a képet! A lakcímkártya előlapján található a név és a lakcím. <b>Elfogadott kiterjesztés:</b> jpg, png, jpeg, heif, avif. <b>Max. méret:</b> 15 MB.
                     </div>
@@ -75,20 +64,20 @@ function NewAuth() {
                     <p className="larger-text mt-5"><b>Az igényedet csak abban az esetben tudjuk befogadni, ha a fenti pontoknak megfelel a lakcímkártya képe! Elutasítás esetén e-mail-ben értesítünk és újra leadhatod az igényedet.</b></p>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="Feldolgozzuk az adataidat" number={4} />
+                    <NumberWithHeadline headlineText="Feldolgozzuk az adataidat" number={3} />
                     <div>
                       Ügyintézőink ellenőrzik a lakcímkártya fotóját és kikeresik az egyedi azonosítódat.
                     </div>
                   </div>
                   <div className="middle-section-point-wrapper">
-                    <NumberWithHeadline headlineText="Megérkezik a kódod az e-mail fiókodba" number={5} />
+                    <NumberWithHeadline headlineText="Megérkezik a kódod az e-mail fiókodba" number={4} />
                     <div>
                       Az igényléstől számítva 3 munkanapon belül elküldjük részedre az egyedi azonosító kódodat, amivel már szavazhatsz is az első Budapesti Lakógyűlésen!
                     </div>
                   </div>
 
                   <div className="button-wrapper">
-                    <NavigationButton label="Egyedi azonosító igénylése" url="/kerulet-valaszto" />
+                    <NavigationButton label="Egyedi azonosító igénylése" url="/e-mail-cim-megadasa" />
                   </div>
 
                   <p>Ha kérdésed van, a <a href="https://lakogyules.budapest.hu/mi-a-lakogyules" target="_blank">Mi a lakógyűlés?</a> oldalon tájékozódhatsz vagy keresd munkatársainkat a +36-1-900-0668 telefonszámon minden hétköznap 9:00 és 18:00 között, vagy az <a href="mailto:info.lakogyules@budapest.hu">info.lakogyules@budapest.hu</a> email-címen!</p>
