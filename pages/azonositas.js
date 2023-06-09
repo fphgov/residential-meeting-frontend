@@ -176,7 +176,7 @@ function AuthPage() {
                     <div className="information">
                       <h1>Szavazás</h1>
 
-                      <p>Döntsünk közösen, szavazz egyedi kódoddal az első Budapesti Lakógyűlésen június 11-ig!</p>
+                      <p>Döntsünk közösen, szavazz egyedi kódoddal az első Budapesti Lakógyűlésen június 18-ig!</p>
                     </div>
 
                     <div className="login-wrapper">
