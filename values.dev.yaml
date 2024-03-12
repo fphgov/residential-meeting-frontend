@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: registry.dev.intra.fph.hu/docker/residential-meeting-client
+  repository: harbor.dev.intra.fph.hu/docker/residential-meeting-client
   pullPolicy: Always
   tag: "latest"
 
